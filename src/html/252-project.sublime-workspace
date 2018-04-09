@@ -1,0 +1,1433 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"un",
+				"unhighlight"
+			],
+			[
+				"fil",
+				"fileContent"
+			],
+			[
+				"load",
+				"loadEdits〔function〕"
+			],
+			[
+				"cha",
+				"changedEdit〔variable〕"
+			],
+			[
+				"edit",
+				"editHighlight〔function〕"
+			],
+			[
+				"cons",
+				"console.log(\"In"
+			],
+			[
+				"end",
+				"endIndex〔argument〕"
+			],
+			[
+				"edi",
+				"editType"
+			],
+			[
+				"par",
+				"parsedContent"
+			],
+			[
+				"newE",
+				"newEdit〔variable〕"
+			],
+			[
+				"cur",
+				"current"
+			],
+			[
+				"remo",
+				"removeTypedText〔function〕"
+			],
+			[
+				"remove",
+				"removeTypedText"
+			],
+			[
+				"ed",
+				"editType"
+			],
+			[
+				"deleteEd",
+				"deleteEditById〔function〕"
+			],
+			[
+				"c",
+				"console"
+			],
+			[
+				"changed",
+				"changedEdit"
+			],
+			[
+				"change",
+				"changedEdit"
+			],
+			[
+				"star",
+				"startIndex"
+			],
+			[
+				"delta",
+				"delta.lines"
+			],
+			[
+				"ch",
+				"changedEdit"
+			],
+			[
+				"pre",
+				"prefix"
+			],
+			[
+				"upda",
+				"updateFile〔function〕"
+			],
+			[
+				"bef",
+				"beforeContents"
+			],
+			[
+				"start",
+				"startIndex〔argument〕"
+			],
+			[
+				"string",
+				"stringify〔function〕"
+			],
+			[
+				"global",
+				"global_ignore〔variable〕"
+			],
+			[
+				"gl",
+				"global_ignore"
+			],
+			[
+				"curr",
+				"currentEdit〔variable〕"
+			],
+			[
+				"cu",
+				"cursorPosition"
+			],
+			[
+				"curre",
+				"currentEdit.content"
+			],
+			[
+				"fix",
+				"fixIndicesAfterRemovalAccept"
+			],
+			[
+				"file",
+				"fileContents〔variable〕"
+			],
+			[
+				"child",
+				"childSnapshot〔argument〕"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"onlin",
+				"onlineUsers〔variable〕"
+			],
+			[
+				"current",
+				"currentFile〔variable〕"
+			],
+			[
+				"sna",
+				"snapshot2〔argument〕"
+			],
+			[
+				"online",
+				"onlineUsersContainer〔variable〕"
+			],
+			[
+				"onli",
+				"onlineUsersContainer〔variable〕"
+			],
+			[
+				"add",
+				"addEventListener"
+			],
+			[
+				"chil",
+				"childSnapshot〔argument〕"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"ena",
+				"enableClose"
+			],
+			[
+				"font",
+				"fontSize〔variable〕"
+			],
+			[
+				"fon",
+				"fontSize〔variable〕"
+			],
+			[
+				"saveF",
+				"saveFileAs〔function〕"
+			],
+			[
+				"saveFil",
+				"saveFileAs〔function〕"
+			],
+			[
+				"glob",
+				"globalShortcut"
+			],
+			[
+				"ex",
+				"expanded2"
+			],
+			[
+				"p",
+				"pathSeperator"
+			],
+			[
+				"pa",
+				"pathSeperator"
+			],
+			[
+				"f",
+				"function"
+			],
+			[
+				"pas",
+				"passwordField〔variable〕"
+			],
+			[
+				"hid",
+				"hideMessage"
+			],
+			[
+				"clear",
+				"clearName〔function〕"
+			],
+			[
+				"onc",
+				"onclick\tAttr"
+			],
+			[
+				"python",
+				"python_scripts"
+			],
+			[
+				"newP",
+				"newPasswordInput2〔variable〕"
+			],
+			[
+				"ne",
+				"newPasswordInput2"
+			],
+			[
+				"newPa",
+				"newPasswordInput"
+			],
+			[
+				"oldP",
+				"oldPasswordInput〔variable〕"
+			],
+			[
+				"newN",
+				"newNameInput〔variable〕"
+			],
+			[
+				"old",
+				"oldPasswordInput〔variable〕"
+			],
+			[
+				"newEm",
+				"newEmailInput〔variable〕"
+			],
+			[
+				"changeP",
+				"changePasswordBtn"
+			],
+			[
+				"changeN",
+				"changeNameBtn〔variable〕"
+			],
+			[
+				"changeNa",
+				"changeNameBtn"
+			],
+			[
+				"fo",
+				"form-item"
+			],
+			[
+				"em",
+				"emailField"
+			],
+			[
+				"rg",
+				"rgba()"
+			],
+			[
+				"ad",
+				"addEventListener"
+			],
+			[
+				"pad",
+				"padding-top"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"user",
+				"userSettingsBtn"
+			],
+			[
+				"s",
+				"style"
+			],
+			[
+				"aut",
+				"auth_footer"
+			],
+			[
+				"fun",
+				"function〔keyword〕"
+			],
+			[
+				"btn",
+				"btn-success"
+			],
+			[
+				"id",
+				"id=\"logo"
+			],
+			[
+				"re",
+				"require"
+			],
+			[
+				"bot",
+				"bottom"
+			],
+			[
+				"clearChange",
+				"clearChangePassword〔function〕"
+			],
+			[
+				"chan",
+				"changeName"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"margi",
+				"margin"
+			],
+			[
+				"st",
+				"style\tTag"
+			],
+			[
+				"col",
+				"color"
+			],
+			[
+				"ta",
+				"table\tTag"
+			],
+			[
+				"lo",
+				"loadFileAsText"
+			],
+			[
+				"new",
+				"newString"
+			],
+			[
+				"in",
+				"indeces"
+			],
+			[
+				"inp",
+				"input"
+			],
+			[
+				"bor",
+				"border"
+			],
+			[
+				"d",
+				"div\tTag"
+			],
+			[
+				"overflw",
+				"overflow-y"
+			],
+			[
+				"over",
+				"overflow"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"list-s",
+				"list-style-type"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"table",
+				"table-cell"
+			],
+			[
+				"reg",
+				"registerForClass"
+			],
+			[
+				"class",
+				"classes"
+			],
+			[
+				"cla",
+				"classAvailable"
+			],
+			[
+				"log",
+				"loggedIn"
+			],
+			[
+				"clas",
+				"classSet"
+			],
+			[
+				"set",
+				"setupVariables"
+			],
+			[
+				"pr",
+				"println"
+			],
+			[
+				"wri",
+				"write_buf"
+			],
+			[
+				"write",
+				"write_buf_size"
+			],
+			[
+				"myw",
+				"mywritec"
+			],
+			[
+				"bord",
+				"border"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"Styl",
+				"stylesheet"
+			],
+			[
+				"na",
+				"navMenuButton"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"ri",
+				"right"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"col-",
+				"col-6"
+			],
+			[
+				"max",
+				"max-width"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 187,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Alex/Desktop/252/src/js/index.js",
+			"settings":
+			{
+				"buffer_size": 309,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 345.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"git pul",
+				"Git: Pull"
+			],
+			[
+				"git log",
+				"Git: Log Current File"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"git ad",
+				"Git: Add All"
+			],
+			[
+				"view",
+				"View In Browser"
+			],
+			[
+				"view i",
+				"View In Browser"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"open ",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"browsser",
+				"SFTP: Browse Server…"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"git add",
+				"Git: Add All"
+			],
+			[
+				"html",
+				"HTMLPrettify"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"git",
+				"Git: Init"
+			],
+			[
+				"box",
+				"Boxy Theme: Activation"
+			],
+			[
+				"mat",
+				"Material Theme: Activate theme"
+			],
+			[
+				"settings",
+				"Preferences: Settings"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"mater",
+				"Material Theme: Activate theme"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"config",
+				"Material Theme: Configuration"
+			],
+			[
+				"ma",
+				"Material Theme: Activate theme"
+			],
+			[
+				"mate",
+				"Material Theme: Activate theme"
+			],
+			[
+				"m",
+				"Material Theme: Advanced configuration"
+			],
+			[
+				"maer",
+				"Material Theme: Extras"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"browse",
+				"View In Browser"
+			],
+			[
+				"browser",
+				"View In Browser"
+			],
+			[
+				"c",
+				"Color Picker"
+			],
+			[
+				"prettify",
+				"HTMLPrettify"
+			],
+			[
+				"color",
+				"Color Picker"
+			],
+			[
+				"remoec",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"indenta",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"spacegra",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"package control",
+				"Package Control: Disable Package"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"vmen",
+				"View: Toggle Menu"
+			],
+			[
+				"package control d",
+				"Package Control: Disable Package"
+			],
+			[
+				"activate",
+				"Material Theme: Activate theme"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"Install P",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 552.0
+	},
+	"console":
+	{
+		"height": 165.0,
+		"history":
+		[
+			"view.settings().get('font_face')",
+			"view.settings.get('font_face')"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Alex/Desktop/252/.gitignore",
+		"/C/Users/Alex/AppData/Roaming/Sublime Text 3/Packages/View In Browser/View In Browser.sublime-settings",
+		"/C/Users/Alex/AppData/Roaming/Sublime Text 3/Packages/User/View In Browser.sublime-settings",
+		"/C/Users/Alex/Desktop/252-project",
+		"/C/Users/Alex/Desktop/307/app/js/edits.js",
+		"/C/Users/Alex/Desktop/307/app/js/concurrency.js",
+		"/C/Users/Alex/Desktop/307/app/index.html",
+		"/C/Users/Alex/Desktop/307/main.js",
+		"/C/Users/Alex/Desktop/307/app/js/localFile.js",
+		"/C/Users/Alex/Desktop/307/app/js/index.js",
+		"/C/Users/Alex/Desktop/cb/config.conf",
+		"/C/Users/Alex/Desktop/307/app/js/link.js",
+		"/C/Users/Alex/Desktop/307/app/js/tab.js",
+		"/C/Users/Alex/Desktop/307/app/js/userSettings.js",
+		"/C/Users/Alex/Desktop/307/app/js/aceStart.js",
+		"/C/Users/Alex/Desktop/307/app/js/auth.js",
+		"/C/Users/Alex/Desktop/307/app/js/chatbox.js",
+		"/C/Users/Alex/Desktop/307/app/js/comment.js",
+		"/C/Users/Alex/Desktop/307/app/comment.html",
+		"/C/Users/Alex/Desktop/307/app/auth.html",
+		"/C/Users/Alex/Desktop/307/app/img/share-post-symbol.png",
+		"/C/Users/Alex/Desktop/ChaturbateRecorder-master/config.conf",
+		"/C/Users/Alex/Downloads/ChaturbateRecorder-master/config.conf",
+		"/C/Users/Alex/Desktop/Hive/app/js/edits.js",
+		"/C/Users/Alex/Desktop/Hive/app/js/concurrency.js",
+		"/C/Users/Alex/Desktop/Hive/app/js/localFile.js",
+		"/C/Users/Alex/Desktop/Hive/app/js/link.js",
+		"/C/users/alex/appdata/local/temp/sublime-sftp-browse-1522613763/alex/homes/ageier/cs252/lab5-src/src/tempserverswp",
+		"/C/users/alex/appdata/local/temp/sublime-sftp-browse-1522613555/alex/homes/ageier/cs252/lab5-src/src/tls.cc",
+		"/C/Users/Alex/Desktop/Hive/main.js",
+		"/C/Users/Alex/Desktop/Hive/app/js/index.js",
+		"/C/Users/Alex/AppData/Local/Temp/e69b9fb8-3ec8-4bd5-a7d9-aefdc2c83381/home/u93/ageier/cs252/lab5-src/src/tls.cc",
+		"/C/Users/Alex/Desktop/edits.js",
+		"/C/Users/Alex/Desktop/concurrency.js",
+		"/C/Users/Alex/Desktop/Hive/ace-builds/src-noconflict/ace.js",
+		"/C/Users/Alex/Desktop/hive3/HiveText/app/js/concurrency.js",
+		"/C/Users/Alex/Desktop/hive3/HiveText/app/js/localFile.js",
+		"/C/Users/Alex/Desktop/Hive/app/js/comment.js",
+		"/C/Users/Alex/Desktop/hive3/HiveText/app/js/link.js",
+		"/C/Users/Alex/Desktop/Hive/ALEX.txt",
+		"/C/Users/Alex/Desktop/Hive/app/js/userSettings.js",
+		"/C/Users/Alex/Documents/College/Future CS/cs252/lab05/myhttpd.cc",
+		"/C/Users/Alex/Desktop/HiveText/app/js/userSettings.js",
+		"/C/Users/Alex/Desktop/HiveText/app/js/chatbox.js",
+		"/C/Users/Alex/Desktop/HiveText/app/js/auth.js",
+		"/C/Users/Alex/Desktop/HiveText/app/js/aceStart.js",
+		"/C/Users/Alex/Desktop/HiveText/app/js/localFile.js",
+		"/C/Users/Alex/Desktop/HiveText/temp.txt",
+		"/C/Users/Alex/Documents/College/Future CS/cs252/lab05/daytime-server.cc",
+		"/C/Windows/System32/AppxProvisioning.xml",
+		"/C/Users/Alex/Desktop/HiveText/app/css/auth.css",
+		"/C/Users/Alex/Desktop/HiveText/app/js/users.js",
+		"/C/Users/Alex/Downloads/HiveText-master/app/js/userSettings.js",
+		"/C/Users/Alex/Downloads/Game.Of.Thrones.S01.E03.2011.1080p.BluRay.x264.DTS-HDChina.Dothraki.srt",
+		"/C/Users/Alex/Downloads/Game.Of.Thrones.S01.E03.2011.1080p.BluRay.x264.DTS-HDChina.srt",
+		"/C/Users/Alex/Desktop/package.json",
+		"/C/Users/Alex/HiveText/app/js/test.js",
+		"/C/Users/Alex/Videos/Movies/Pulp Fiction [1994] [720p] - Copy.mp4",
+		"/C/Users/Alex/HiveText/docs/Sprint 1 Plan.pdf",
+		"/C/Users/Alex/HiveText/docs/HiveText Project Charter.txt",
+		"/C/Users/Alex/HiveText/docs/HiveText Product Backlog.txt",
+		"/C/Users/Alex/HiveText/docs/Design Document.pdf",
+		"/C/Users/Alex/Desktop/README.md",
+		"/C/Users/Alex/Desktop/myStuffHiveText.txt",
+		"/C/Users/Alex/HiveText/app/img/Icon.png",
+		"/C/Users/Alex/HiveText/node_modules/dashdash/newFile.txt",
+		"/C/Users/Alex/HiveText/fileTypes.txt",
+		"/C/Users/Alex/HiveText/Icon.png",
+		"/C/Users/Alex/HiveText/app/css/index.css",
+		"/C/Users/Alex/Documents/College/Future CS/252Shell-master/command.cc",
+		"/C/Users/Alex/Documents/College/Future CS/252Shell-master/shell.l",
+		"/C/Users/Alex/Documents/College/Future CS/252Shell-master/shell.y",
+		"/C/Users/Alex/Downloads/TextFilter.java",
+		"/C/Users/Alex/Downloads/TextFilterPracticeTest.java",
+		"/C/Users/Alex/HiveText/app/js/userSettings.js",
+		"/C/Users/Alex/HiveText/app/js/aceStart.js",
+		"/C/Users/Alex/HiveText/app/js/localFile.js",
+		"/C/Users/Alex/HiveText/app/js/auth.js",
+		"/C/Users/Alex/HiveText/app/index.html",
+		"/C/Users/Alex/Downloads/GroupMe-master/readme.md",
+		"/C/Users/Alex/HiveText/ace-builds/src-min-noconflict/ace.js",
+		"/C/Users/Alex/HiveText/C",
+		"/C/Users/Alex/HiveText/app/css/temp4",
+		"/C/Users/Alex/HiveText/app/css/temp.txt",
+		"/C/Users/Alex/HiveText/app/js/index.js",
+		"/C/Users/Alex/HiveText/package-lock.json",
+		"/C/Users/Alex/HiveText/package.json",
+		"/C/Users/Alex/Desktop/HiveText/app/js/index.js",
+		"/C/Users/Alex/Desktop/HiveText/app/index.html",
+		"/C/Users/Alex/Desktop/HiveText/main.js",
+		"/C/Users/Alex/Desktop/temp/HiveText/app/index.html",
+		"/C/Users/Alex/Desktop/temp/HiveText/app/js/localFile.js",
+		"/C/Users/Alex/Desktop/HiveText/README.md",
+		"/C/Users/Alex/Desktop/oldOpen",
+		"/C/Users/Alex/Desktop/HiveText/NOT_PORN",
+		"/C/Users/Alex/Desktop/HiveText/app/python_scripts/saveFile.py",
+		"/C/Users/Alex/Desktop/HiveText/app/python_scripts/openFile.py",
+		"/C/Users/Alex/Desktop/HiveText/app/css/index.css",
+		"/C/Users/Alex/Desktop/HiveText/app/js/errorMessage.js",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/js/auth.js",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/js/localFile.js",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/index.html",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/js/index.js",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/auth.html",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/js/userSettings.js",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/css/index.css",
+		"/C/Users/Alex/Desktop/new2/HiveText/main.js",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/js/errorMessage.js",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/img/back.png",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/img/close.png",
+		"/C/Users/Alex/Desktop/back.png",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/python_scripts/openFile.py",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/python_scripts/saveFile.py",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/css/temp.txt",
+		"/C/Users/Alex/Desktop/new2/HiveText/app/python_scripts/test.py",
+		"/C/Users/Alex/Desktop/newHIve/HiveText/main.js",
+		"/C/Users/Alex/Desktop/Individual Report.txt",
+		"/C/Users/Alex/Desktop/npm-debug.log",
+		"/C/Users/Alex/Desktop/newHIve/HiveText/app/auth.html",
+		"/C/Users/Alex/Downloads/README.md",
+		"/C/Users/Alex/Downloads/this thenew style doc.css",
+		"/C/Users/Alex/Desktop/newHIve/HiveText/app/js/auth.js",
+		"/C/Users/Alex/Desktop/newHIve/HiveText/app/js/index.js",
+		"/C/Users/Alex/Desktop/newHIve/HiveText/app/css/auth.css",
+		"/C/Users/Alex/Desktop/index.html",
+		"/C/Users/Alex/Desktop/HiveText/index.html",
+		"/C/Users/Alex/Desktop/HiveText/app/auth.html",
+		"/C/Users/Alex/Desktop/HiveText/app/js/openFile.js"
+	],
+	"find":
+	{
+		"height": 29.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 187,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								106,
+								106
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										114,
+										115
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"region.greenish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										99,
+										100
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										114,
+										115
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"region.greenish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										99,
+										100
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"git_gutter_is_enabled": true,
+							"incomplete_sync": null,
+							"origPos":
+							[
+								0.0,
+								0.0
+							],
+							"remote_loading": false,
+							"syncScroll": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/Alex/Desktop/252/src/js/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 309,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								292,
+								292
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"git_gutter_is_enabled": true,
+							"incomplete_sync": null,
+							"origPos":
+							[
+								0.0,
+								0.0
+							],
+							"remote_loading": false,
+							"syncScroll": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 29.0
+	},
+	"input":
+	{
+		"height": 45.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 148.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 142.0
+	},
+	"pinned_build_system": "Packages/User/chrome.sublime-build",
+	"project": "252-project.sublime-project",
+	"replace":
+	{
+		"height": 54.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Alex\\Desktop\\252-project.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 214.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
