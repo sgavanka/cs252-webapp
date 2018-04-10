@@ -3,11 +3,9 @@ Sanchit Gavankar sgavanka@purdue.edu
 Alex Geier ageier@purdue.edu
 Paramesh Pradeep pradeepp@purdue.edu
 
-Project Name:
+Project Name: GrouPay
 
-Description: Webapp used for accounting and tracking payments due or owed. Target audience is college students, young adults with pathetic weak ass memory. 
-
+Description: Webapp used for accounting and tracking payments due or owed within groups of people.
 
 Technologies:
-JavaScript, HTML, FirebAse
-                                  
+JavaScript, HTML, Firebase
