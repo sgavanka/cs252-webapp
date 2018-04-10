@@ -1,6 +1,6 @@
-var loginEmail;
-var loginPassword;
-var loginButton
+let loginEmail;
+let loginPassword;
+let loginButton
 
 window.onload = function() {
     loginEmail = document.getElementById("login-email");
@@ -13,10 +13,10 @@ window.onload = function() {
 
 login = function() {
     firebase.auth().signInWithEmailAndPassword(loginEmail.value, loginPassword.value).then(function() {
-    window.location.assign("main.html");
+        window.location.assign("main.html");
     }).catch(function(error) {
         if (error != null) {
             alert(error.message);
         }
     });
-}   
+}

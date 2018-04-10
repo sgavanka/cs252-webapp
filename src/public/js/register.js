@@ -1,8 +1,8 @@
-var registerEmail;
-var registerName;
-var registerPassword;
-var registerConfirmPassword;
-var registerButton;
+let registerEmail;
+let registerName;
+let registerPassword;
+let registerConfirmPassword;
+let registerButton;
 
 window.onload = function() {
     registerEmail = document.getElementById("register-email");
@@ -20,8 +20,7 @@ register = function() {
         var user = firebase.auth().currentUser;
         if (user) {
             firebase.database().ref().child("users").child(user.uid).set({ email: registerEmail.value, fullName: registerName.value });
-        } else {
-            alert("Error registering account");
+            window.location.assign("main.html");
         }
     }).catch(function(error) {
         if (error != null) {
