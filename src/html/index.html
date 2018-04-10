@@ -9,11 +9,11 @@
     // Initialize Firebase
     // TODO: Replace with your project's customized code snippet
     var config = {
-        apiKey: "<API_KEY>",
-        authDomain: "<PROJECT_ID>.firebaseapp.com",
+        apiKey: "AIzaSyB8Hn2710aW8nRLosghnPCusXoegD2xSC8",
+        authDomain: "cs252-project.firebaseapp.com",
         databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
-        storageBucket: "<BUCKET>.appspot.com",
-        messagingSenderId: "<SENDER_ID>",
+        storageBucket: "gs://cs252-project.appspot.com",
+        messagingSenderId: "26384019573",
     };
     firebase.initializeApp(config);
     </script>
@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <span>Hello World</span>
+    <button onclick="writeToDatabase()">Write</button>
 </body>
 
 </html>
