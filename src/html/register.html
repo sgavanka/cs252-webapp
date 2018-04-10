@@ -16,15 +16,23 @@
     };
     firebase.initializeApp(config);
     </script>
-    <script src="../js/index.js"></script>
+    <script src="../js/register.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
 
 <body>
-    <div id="index-wrapper">
-        <button onclick="showLogin()">Login</button>
+    <div id="register-wrapper">
+        <span id="logo-text">GrouPay</span>
         <br>
-        <button onclick="showRegister()">Register</button>
+        <input id="register-email" type="text" name="register-email" placeholder="Email">
+        <br>
+        <input id="register-name" type="text" name="register-name" placeholder="Full Name">
+        <br>
+        <input id="register-password" type="password" name="register-password" placeholder="Password">
+        <br>
+        <input id="register-confirm-password" type="password" name="register-confirm-password" placeholder="Confirm Password">
+        <br>
+        <button onclick="register()">Register</button>
     </div>
 </body>
 
