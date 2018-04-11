@@ -17,8 +17,8 @@ window.onload = function() {
 
 register = function() {
     firebase.auth().createUserWithEmailAndPassword(registerEmail.value, registerPassword.value).then(function() {
-        if (firebaseUser) {
-            database.child("users").child(user.uid).set({ email: registerEmail.value, fullName: registerName.value });
+        if (firebase.auth().currentUser) {
+            databaseRef.child("users").child(firebase.auth().currentUser.uid).set({ email: registerEmail.value, fullName: registerName.value });
             window.location.assign("main.html");
         }
     }).catch(function(error) {

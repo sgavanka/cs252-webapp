@@ -3,7 +3,7 @@ let registerButton;
 
 window.onload = function() {
     // If logged in, redirect user to the main page (this will not work until login state persistence works)
-    if (firebaseUser) {
+    if (user) {
         window.location.assign("main.html");
     } else {
         loginButton = document.getElementById("login-button");
