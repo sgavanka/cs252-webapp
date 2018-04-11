@@ -2,9 +2,8 @@ let loginButton;
 let registerButton;
 
 window.onload = function() {
-    let user = firebase.auth().currentUser;
-    // If logged in, redirect user to the main page
-    if (user) {
+    // If logged in, redirect user to the main page (this will not work until login state persistence works)
+    if (firebaseUser) {
         window.location.assign("main.html");
     } else {
         loginButton = document.getElementById("login-button");

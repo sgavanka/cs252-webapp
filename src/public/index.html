@@ -3,17 +3,20 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/4.12.1/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/4.12.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/4.12.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/4.12.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/4.12.1/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+    <title>GrouPay</title>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyB8Hn2710aW8nRLosghnPCusXoegD2xSC8",
+        authDomain: "cs252-project.firebaseapp.com",
+        databaseURL: "https://cs252-project.firebaseio.com",
+        storageBucket: "gs://cs252-project.appspot.com",
+        messagingSenderId: "26384019573",
+    };
+    firebase.initializeApp(config);
+    </script>
+    <script src="js/global.js"></script>
     <script src="js/index.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
@@ -24,16 +27,6 @@
         <br>
         <button id="register-button">Register</button>
     </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        try {
-            let app = firebase.app();
-            let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-        } catch (e) {
-            console.error(e);
-        }
-    });
-    </script>
 </body>
 
 </html>
