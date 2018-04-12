@@ -12,8 +12,11 @@ let groupsList;
 let groupNameInput;
 let logoutButton;
 let submitGroupButton;
+let totalIncomingSpan;
+let totalOutgoingSpan;
 let usersToAddToGroupList;
 let userToAddToGroupInput;
+let currency = "$";
 
 window.onload = function() {
     addUserToGroupButton = document.getElementById("add-user-to-group-button");
@@ -38,9 +41,15 @@ window.onload = function() {
     submitGroupButton.addEventListener("click", function() {
         submitGroup();
     });
+    totalOutgoingSpan = document.getElementById("total-owed-span");
+    totalIncomingSpan = document.getElementById("total-owed-to-you-span");
     usersToAddToGroupList = document.getElementById("users-to-add-to-group-list");
     userToAddToGroupInput = document.getElementById("user-to-add-to-group-input");
     groupDetailsWrapper = document.getElementById("group-details-wrapper");
+    let currencyList = document.getElementsByClassName("currency");
+    for (var i = 0; i < currencyList.length; i++) {
+        currencyList[i].innerHTML = currency;
+    }
 }
 
 // Checks for user with the specified email in the database.
@@ -170,6 +179,8 @@ firebase.auth().onAuthStateChanged(function(changedUser) {
         user.databaseRef.on('value', function(snapshot) {
             user.email = snapshot.val().email;
             user.fullName = snapshot.val().fullName;
+            totalOutgoingSpan.innerHTML = snapshot.val().totalOutgoing;
+            totalIncomingSpan.innerHTML = snapshot.val().totalIncoming;
 
             // Setup all of the users groups stored in the database and store that data locally
             user.groups = new Array();
