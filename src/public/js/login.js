@@ -13,8 +13,12 @@ window.onload = function() {
 
 login = function() {
     firebase.auth().signInWithEmailAndPassword(loginEmail.value, loginPassword.value).then(function() {
-        // If login successful, redirect the user to the main.html page
-        window.location.assign("main.html");
+        // // If login successful, redirect the user to the main.html page
+        if (firebase.auth().currentUser) {
+            window.location.assign("main.html");
+        } else {
+            alert("user null");
+        }
     }).catch(function(error) {
         if (error != null) {
             alert(error.message);
