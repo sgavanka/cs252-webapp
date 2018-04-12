@@ -11,13 +11,11 @@ firebase.auth().onAuthStateChanged(function(changedUser) {
         user = new Object();
 
         // firebaseUser is the same as firebase.auth().currentuser.
-        // Can do user.firebaseUser.uid to get this users uid.
         user.firebaseUser = changedUser;
         user.key = changedUser.key;
         // databaseRef is the reference to this user's node in the database.
         user.databaseRef = usersRef.child(user.firebaseUser.uid);
-        myGroupsRef = user.databaseRef.child("groups");
-
+        
         // Sets the email and full name of this user to the values stored in the database.
         // TODO - Eventually will set more values here such as amount owed, groups, friends, etc.
         user.databaseRef.on('value', function(snapshot) {

@@ -34,43 +34,57 @@ window.onload = function() {
     userToAddToGroupInput = document.getElementById("user-to-add-to-group-input");
     groupDetailsWrapper = document.getElementById("group-details-wrapper");
 
+    // When the user is added to a group
     myGroupsRef.on("child_added", function(snapshot) {
         alert("group added");
     });
 
+    // When something in an existing group changes
     myGroupsRef.on("child_changed", function(snapshot) {
         alert("group changed");
     });
 }
 
-//adds the user specified by userToAddToGroupInput to the usersToAddToGroupList
+// Checks for user with the specified email in the database.
+// If the user exists, add that user's full name to the usersToAddToGroup list.
 addUserToGroup = function() {
-    // TODO validate that it's a valid user, then get their full name from the database.
-    // createTextNode(fullName) instead of userToAddToGroupInput.value. Also check that the user isn't in the list already
     usersRef.orderByChild('email').equalTo(userToAddToGroupInput.value).once('value', function(snapshot) {
-        if (!document.getElementById(Object.keys(snapshot.val())[0])) {
-            if (user.firebaseUser.uid != Object.keys(snapshot.val())[0]) {
-                usersRef.child(Object.keys(snapshot.val())[0]).once('value', function(childSnapshot) {
-                    let userToAdd = document.createElement("li");
-                    userToAdd.id = Object.keys(snapshot.val())[0];
-                    userToAdd.appendChild(document.createTextNode(childSnapshot.val().fullName));
-                    usersToAddToGroupList.appendChild(userToAdd);
-                    userToAddToGroupInput.value = "";
-                });
+        if (snapshot.val()) {
+            if (!document.getElementById(Object.keys(snapshot.val())[0])) {
+                if (user.firebaseUser.uid != Object.keys(snapshot.val())[0]) {
+                    usersRef.child(Object.keys(snapshot.val())[0]).once('value', function(childSnapshot) {
+                        let userToAdd = document.createElement("li");
+                        userToAdd.id = Object.keys(snapshot.val())[0];
+                        userToAdd.appendChild(document.createTextNode(childSnapshot.val().fullName));
+                        let deleteButton = document.createElement("BUTTON");
+                        let deleteButtonText = document.createTextNode("x");
+                        deleteButton.appendChild(deleteButtonText);
+                        deleteButton.addEventListener("click", function() {
+                            usersToAddToGroupList.removeChild(userToAdd);
+                        });
+                        userToAdd.appendChild(deleteButton);
+                        usersToAddToGroupList.appendChild(userToAdd);
+                        userToAddToGroupInput.value = "";
+                    });
+                } else {
+                    alert("You cannot add yourself to the group.");
+                }
             } else {
-                alert("You cannot add yourself to the group.");
+                alert("You have already added this person to the group.");
             }
         } else {
-            alert("You have already added this person to the group.");
+            alert("The specified user does not exist.");
         }
     });
 }
 
-// hides the group details wrapper and resets any values within it.
+// Hides the group details wrapper and resets any values within it.
 cancelCreateGroup = function() {
     groupDetailsWrapper.classList.add("hidden");
     groupNameInput.value = "";
     userToAddToGroupInput.value = "";
+
+    // Remove all items from the usersToAddToGroup list
     while (usersToAddToGroupList.firstChild) {
         usersToAddToGroupList.removeChild(usersToAddToGroupList.firstChild);
     }
@@ -81,7 +95,7 @@ createGroup = function() {
     groupDetailsWrapper.classList.remove("hidden");
 }
 
-// Called when user clicks the logout button in main.js. Logs the user out and brings them to index.html
+// Called when the user clicks the logout button. Logs the user out and brings them to index.html
 // The function firebase.auth().onAuthStateChanged in global.js is automatically called when the user's state changes.
 logout = function() {
     firebase.auth().signOut().then(function() {
@@ -98,10 +112,14 @@ submitGroup = function() {
         if (groupNameInput.value != "") {
             let group = groupsRef.push();
             group.set({ groupName: groupNameInput.value });
+
+            // Add this user to the newly created group.
             user.databaseRef.child("groups").child(group.key).set({ groupName: groupNameInput.value });
             group.child('users').child(user.firebaseUser.uid).set({ fullName: user.fullName });
+
             for (var i = 0; i < usersToAddToGroupList.childNodes.length; i++) {
-                group.child('users').child(usersToAddToGroupList.childNodes[i].id).set({ fullName: usersToAddToGroupList.childNodes[i].value });
+                // Add the ith user in the list of users to add to the group.
+                group.child('users').child(usersToAddToGroupList.childNodes[i].id).set({ fullName: document.getElementById(usersToAddToGroupList.childNodes[i].id).value });
                 usersRef.child(usersToAddToGroupList.childNodes[i].id).child("groups").child(group.key).set({ groupName: groupNameInput.value });
             }
             groupDetailsWrapper.classList.add("hidden");
