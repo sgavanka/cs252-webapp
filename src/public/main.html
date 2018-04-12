@@ -22,9 +22,23 @@
 </head>
 
 <body>
-    THIS IS THE MAIN PAGE
-    <br>
     <button id="logout-button">Logout</button>
+    <br>
+    <div id="create-group-wrapper">
+        <button id="create-group-button">Create Group</button>
+        <div id="group-details-wrapper" class="hidden">
+            <input id="group-name-input" type="text" name="group-name-input" placeholder="Group Name">
+            <ul id="users-to-add-to-group-list"></ul>
+            <input id="user-to-add-to-group-input" type="text" name="user-to-add-to-group-input" placeholder="Email of user to add">
+            <button id="add-user-to-group-button">Add User</button>
+            <button id="cancel-create-group-button">Cancel</button>
+            <button id="submit-group-button">Confirm</button>
+        </div>
+    </div>
+    <br>
+    <div id="groups-wrapper">
+        <ul id="groups-list"></ul>
+    </div>
 </body>
 
 </html>

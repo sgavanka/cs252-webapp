@@ -2,6 +2,7 @@ var databaseRef = firebase.database().ref();
 var groupsRef = databaseRef.child("groups");
 var paymentsRef = databaseRef.child("payments");
 var usersRef = databaseRef.child("users");
+var myGroupsRef;
 var user;
 
 // When user changes, reset user properties to the values corresponding to that user from the database.
@@ -12,9 +13,10 @@ firebase.auth().onAuthStateChanged(function(changedUser) {
         // firebaseUser is the same as firebase.auth().currentuser.
         // Can do user.firebaseUser.uid to get this users uid.
         user.firebaseUser = changedUser;
-
+        user.key = changedUser.key;
         // databaseRef is the reference to this user's node in the database.
         user.databaseRef = usersRef.child(user.firebaseUser.uid);
+        myGroupsRef = user.databaseRef.child("groups");
 
         // Sets the email and full name of this user to the values stored in the database.
         // TODO - Eventually will set more values here such as amount owed, groups, friends, etc.
@@ -35,7 +37,6 @@ firebase.auth().onAuthStateChanged(function(changedUser) {
                     user.groups.push(group);
                 })
             })
-            console.log(user);
         });
     } else {
         // If the user logged out, set the user object to null.
