@@ -27,7 +27,7 @@ p.big {
 }
 
 .container {
-    width: 300px;
+    width: 250px;
     margin: auto;
 
 }
@@ -52,25 +52,55 @@ p.big {
     float: left;
     height: 300px;
 }
+#registerA {
+    width: 100px;
+    float: center;
+    height: 300px;
+}
 
 .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 1px;
-    cursor: pointer;
-    border-radius: 12px;
-}
+    position:relative;
+    width: auto;
+    color:#ecf0f1;
+    text-decoration:none;
+    border-radius:5px;
+    border:solid 1px green;
+    background:green;
+    text-align:center;
+    padding:10px 15px 10px;
+    
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+    
+    -webkit-box-shadow: 1px 4px 1px green;
+    -moz-box-shadow: 1px 4px 1px lightgreen;
+    box-shadow: 1px 4px 1px lightgreen;
+   }
 
 #login-email, #login-password, #register-email, #register-name, #register-password, #register-confirm-password {
     border-radius: 5px;
     border: 3px solid green;
     background-color: lightblue;
     width: 200px;
-    height: 20px;
+    height: 24px;
 }
+.spacing {
+    margin-bottom: 4px;
+}
+.topspacing{
+    margin-top : 9px;
+}
+.button:hover{
+    background-color: darkgreen;
+    -webkit-box-shadow: 0px 6px 0px darkgreen;
+    -moz-box-shadow: 0px 6px 0px darkgreen;
+    cursor: pointer;
+}
+.button:active{
+    -webkit-box-shadow: 0px 2px 0px darkgreen;
+    -moz-box-shadow: 0px 2px 0px darkgreen;
+    box-shadow: 0px 2px 0px darkgreen;
+    position:relative;
+    top:4px;
+   }
