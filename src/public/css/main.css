@@ -3,17 +3,74 @@
     padding: 0;
 }
 
-body {
-    background-color: lightblue;
-}
-
-#index-wrapper, #register-wrapper, #login-wrapper {
-    background-color: white;
-    text-align: center;
-    margin: 50px 200px 50px 200px;
-    padding: 50px 0 50px 0;
-}
-
 .hidden {
     display: none;
+}
+
+body {
+    background-color: lightblue;
+    background-image: url("geometric_wallpaper.jpg");  
+}
+
+#login-wrapper {
+    border-radius: 10px;
+    background: white;
+    padding: 30px; 
+    width: 200px;
+    height: 150px; 
+    opacity: 0.8;
+    border: 3px solid green;
+}
+
+p.big {
+    line-height: .5;
+}
+
+.container {
+    width: 300px;
+    margin: auto;
+
+}
+
+#bod {
+    border-radius: 6px;
+    background: white;
+    padding: 40px; 
+    width: 200px;
+    height: 150px; 
+    opacity: 0.1;
+}
+
+#register-wrapper {
+    width: 100px;
+    float: right;
+    height: 300px;
+}
+
+#loginB, #registerB {
+    width: 100px;
+    float: left;
+    height: 300px;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 1px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+#login-email, #login-password, #register-email, #register-name, #register-password, #register-confirm-password {
+    border-radius: 5px;
+    border: 3px solid green;
+    background-color: lightblue;
+    width: 200px;
+    height: 20px;
 }
