@@ -21,27 +21,27 @@
 </head>
 
 <body>
-    <button id="logout-button">Logout</button>
-    <br>
-    <div id="total-payments-wrapper">
-        <span>You Owe: </span><span class="currency"></span><span id="total-owed-span"></span>
-        <br>
-        <span>You Are Owed: </span><span class="currency"></span><span id="total-owed-to-you-span"></span>
+    <div id="groups-wrapper" class="btn-group">
+        <button>Samsung</button>
+        <button>Sony</button>
     </div>
-    <div id="create-group-wrapper">
-        <button id="create-group-button">Create Group</button>
-        <div id="group-details-wrapper" class="hidden">
-            <input id="group-name-input" type="text" name="group-name-input" placeholder="Group Name">
-            <ul id="users-to-add-to-group-list"></ul>
-            <input id="user-to-add-to-group-input" type="text" name="user-to-add-to-group-input" placeholder="Email of user to add">
-            <button id="add-user-to-group-button">Add User</button>
-            <button id="cancel-create-group-button">Cancel</button>
-            <button id="submit-group-button">Confirm</button>
+        <button id="logout-button">Logout</button>
+        <div id="total-payments-wrapper">
+            <span>You Owe: </span><span class="currency"></span><span id="total-owed-span"></span>
+            <br>
+            <span>You Are Owed: </span><span class="currency"></span><span id="total-owed-to-you-span"></span>
         </div>
-    </div>
-    <br>
-    <div id="groups-wrapper">
-        <ul id="groups-list"></ul>
+        <div id="create-group-wrapper">
+            <button id="create-group-button">Create Group</button>
+            <div id="group-details-wrapper" class="hidden">
+                <input id="group-name-input" type="text" name="group-name-input" placeholder="Group Name">
+                <ul id="users-to-add-to-group-list"></ul>
+                <input id="user-to-add-to-group-input" type="text" name="user-to-add-to-group-input" placeholder="Email of user to add">
+                <button id="add-user-to-group-button">Add User</button>
+                <button id="cancel-create-group-button">Cancel</button>
+                <button id="submit-group-button">Confirm</button>
+            </div>
+        </div>
     </div>
 </body>
 

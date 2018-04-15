@@ -106,3 +106,30 @@ p.big {
     position: relative;
     top: 4px;
 }
+
+.btn-group {
+    height: 100%;
+    position: absolute;
+    width: 20%;
+    background-color: white;
+}
+
+.btn-group button {
+    /*background-color: #4CAF50; /* Green background */*/
+    background-color: #DDD;
+    border: 1px solid black; /* Green border */
+    color: black; /* White text */
+    padding: 10px 24px; /* Some padding */
+    width: 100%;
+    cursor: pointer; /* Pointer/hand icon */
+    display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #CCC;
+}
