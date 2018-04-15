@@ -14,6 +14,18 @@ window.onload = function() {
     registerButton.addEventListener('click', function() {
         window.location.assign("register.html");
     });
+    loginEmail.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            login();
+        }
+    });
+    loginPassword.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            login();
+        }
+    });
 }
 
 login = function() {

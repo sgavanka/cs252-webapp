@@ -13,6 +13,30 @@ window.onload = function() {
     registerButton.addEventListener("click", function() {
         register();
     });
+    registerEmail.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            register();
+        }
+    });
+    registerName.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            register();
+        }
+    });
+    registerPassword.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            register();
+        }
+    });
+    registerConfirmPassword.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            register();
+        }
+    });
 }
 
 register = function() {
