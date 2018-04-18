@@ -8,8 +8,8 @@
 }
 
 body {
-    background-color: lightblue;
-    background-image: url("geometric_wallpaper.jpg");
+    background-color: white;
+    /*background-image: url("geometric_wallpaper.jpg");*/
 }
 
 #login-wrapper {
@@ -110,26 +110,61 @@ p.big {
 .btn-group {
     height: 100%;
     position: absolute;
-    width: 20%;
+    width: 15%;
     background-color: white;
+    border-right: 1px solid black;
 }
 
 .btn-group button {
-    /*background-color: #4CAF50; /* Green background */*/
     background-color: #DDD;
-    border: 1px solid black; /* Green border */
-    color: black; /* White text */
-    padding: 10px 24px; /* Some padding */
+    border: 1px solid black;
+    border-right: 0;
+    color: black;
+    padding: 10px 24px;
     width: 100%;
-    cursor: pointer; /* Pointer/hand icon */
-    display: block; /* Make the buttons appear below each other */
+    cursor: pointer;
+    display: block;
 }
 
 .btn-group button:not(:last-child) {
-    border-bottom: none; /* Prevent double borders */
+    border-bottom: none;
 }
 
-/* Add a background color on hover */
 .btn-group button:hover {
     background-color: #CCC;
+}
+
+.logoutPos{
+   position:fixed;
+   right:10px;
+   top:0px;
+   font-size: 17px;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
 }

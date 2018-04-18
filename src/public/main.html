@@ -21,10 +21,17 @@
 </head>
 
 <body>
-    <div id="groups-wrapper" class="btn-group">
-        <button>Samsung</button>
-        <button>Sony</button>
+    <div class="topnav">
+        <a class="active" href="main.html">Home</a>
+        <a id="logout-button" class="logoutPos">Logout</a>
     </div>
+    <div>
+        <div id="groups-wrapper" class="btn-group">
+            <span>Groups:</span>
+            <button>+</button>
+            <button>Samsung</button>
+            <button>Sony</button>
+        </div>
         <button id="logout-button">Logout</button>
         <div id="total-payments-wrapper">
             <span>You Owe: </span><span class="currency"></span><span id="total-owed-span"></span>
