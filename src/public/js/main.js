@@ -11,6 +11,7 @@ let currentGroupKey;
 let groupDetailsWrapper;
 let groupsList;
 let groupNameInput;
+let groupWrapper;
 let logoutButton;
 let submitGroupButton;
 let totalIncomingSpan;
@@ -47,6 +48,7 @@ window.onload = function() {
     usersToAddToGroupList = document.getElementById("users-to-add-to-group-list");
     userToAddToGroupInput = document.getElementById("user-to-add-to-group-input");
     groupDetailsWrapper = document.getElementById("group-details-wrapper");
+    groupWrapper = document.getElementById("group-wrapper");
     let currencyList = document.getElementsByClassName("currency");
     for (var i = 0; i < currencyList.length; i++) {
         currencyList[i].innerHTML = currency;
@@ -206,14 +208,36 @@ window.onload = function() {
         }
     });
 
-    var showGroup = function(groupKey) {
-        alert("would show group with id of " + groupKey);
+    var showGroup = function(groupKey, groupName, deleteButton) {
+        if (currentGroupKey && currentGroupKey != groupKey) {
+            closeGroup(currentGroupKey);
+        } else if (currentGroupKey && currentGroupKey == groupKey) {
+            return;
+        }
+        console.log("Would open group with id of " + groupKey);
+        groupWrapper.appendChild(document.createTextNode(groupName));
+        if (deleteButton) {
+            groupWrapper.appendChild(deleteButton);
+        }
+        let closeButton = document.createElement("button");
+        closeButton.classList.add("group-button");
+        closeButton.appendChild(document.createTextNode("Close"));
+        closeButton.addEventListener("click", function() {
+            closeGroup(groupKey);
+        })
+        groupWrapper.appendChild(closeButton);
+        groupWrapper.classList.remove("hidden");
         currentGroupKey = groupKey;
     }
 
     var closeGroup = function(groupKey) {
         if (currentGroupKey == groupKey) {
-            alert("Would close group with id of " + groupKey);
+            console.log("Would close group with id of " + groupKey);
+            currentGroupKey = null;
+            groupWrapper.classList.add("hidden");
+            while (groupWrapper.firstChild) {
+                groupWrapper.removeChild(groupWrapper.firstChild);
+            }
         }
     }
 
@@ -233,21 +257,19 @@ window.onload = function() {
         groupToAdd.id = snapshot.key;
         groupToAdd.classList.add("group-button");
         groupToAdd.appendChild(document.createTextNode(snapshot.val().groupName));
-        groupToAdd.addEventListener("click", function() {
-            showGroup(snapshot.key);
-        });
-        groupsList.appendChild(groupToAdd);
+        let deleteButton;
         if (snapshot.val().owner == "true") {
-            let deleteButton = document.createElement("button");
-            groupToAdd.style.width = "80%";
+            deleteButton = document.createElement("button");
             deleteButton.classList.add("group-button");
-            deleteButton.style.width = "20%";
-            deleteButton.appendChild(document.createTextNode("X"));
+            deleteButton.appendChild(document.createTextNode("Delete Group"));
             deleteButton.addEventListener("click", function() {
                 deleteGroup(snapshot.key);
                 deleteButton.remove();
             });
-            groupsList.appendChild(deleteButton);
         }
+        groupToAdd.addEventListener("click", function() {
+            showGroup(snapshot.key, snapshot.val().groupName, deleteButton);
+        });
+        groupsList.appendChild(groupToAdd);
     }
 }
