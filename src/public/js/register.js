@@ -7,6 +7,7 @@ let registerButton;
 
 window.onload = function() {
     registerEmail = document.getElementById("register-email");
+    registerEmail.focus();
     registerName = document.getElementById("register-name");
     registerPassword = document.getElementById("register-password");
     registerConfirmPassword = document.getElementById("register-confirm-password");
