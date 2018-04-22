@@ -227,7 +227,7 @@ p.big {
 #search {
     background-color: lightgrey;
     height: 45px;
-    width: 381px;
+    width: 100%;
 }
 #searchButton{
     display:inline-block;
