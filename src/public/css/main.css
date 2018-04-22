@@ -293,7 +293,7 @@ p.big {
 #users-to-add-to-group-list {
     overflow:visible; 
     overflow-y:scroll;
-    height:100px; width:25%;
+    height:130px; width:30%;
     margin: auto;
     border-style: solid;
     border-color: black;
