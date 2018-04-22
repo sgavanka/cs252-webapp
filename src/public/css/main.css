@@ -241,14 +241,15 @@ p.big {
     background-color: green;
     display: inline-block;
 }
+
 #search-button:hover {
     background-color: darkgreen;
 }
 
-#group-details-wrapper {
+#current-group-wrapper {
     height: 100%;
     position: fixed;
+    text-align: center;
     left: 20%;
     width: 80%;
-    background-color: lightgrey;
 }

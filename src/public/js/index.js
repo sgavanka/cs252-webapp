@@ -5,6 +5,7 @@ let loginPassword;
 
 window.onload = function() {
     loginEmail = document.getElementById("login-email");
+    loginEmail.focus();
     loginPassword = document.getElementById("login-password");
     loginButton = document.getElementById("login-button");
     registerButton = document.getElementById("register-button");
