@@ -17,7 +17,6 @@
     firebase.initializeApp(config);
     </script>
     <script src="js/main.js"></script>
-    <script src="js/search.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
@@ -33,24 +32,24 @@
     </div>
     <div>
         <div id="groups-wrapper" class="groups-wrapper">
-            <div id = "search">
-            <button id="create-group-button">Create Group</button>
-            <button id="search-button">Go</button>
-            <input id="search-input" type="text" name="search-input" placeholder="Search Input">
-        </div>
+            <div id="search">
+                <button id="create-group-button">Create Group</button>
+                <input id="search-input" type="text" name="search-input" placeholder="Search Input">
+                <button id="search-button">Go</button>
+            </div>
         </div>
         <div id="current-group-wrapper" class="current-group-wrapper">
             <div id="group-details-wrapper" class="hidden">
                 <span>Group Name:</span>
-                <input id="group-name-input" type="text" name="group-name-input" placeholder="Group Name" class= "grouptxt">
+                <input id="group-name-input" type="text" name="group-name-input" placeholder="Group Name" class="grouptxt">
                 <br>
                 <span>Users:</span>
                 <ul id="users-to-add-to-group-list"></ul>
-                <input id="user-to-add-to-group-input" type="text" name="user-to-add-to-group-input" placeholder="Email of user to add" class = "grouptxt">
-                <button id="add-user-to-group-button" class = "grouping">Add User</button>
+                <input id="user-to-add-to-group-input" type="text" name="user-to-add-to-group-input" placeholder="Email of user to add" class="grouptxt">
+                <button id="add-user-to-group-button" class="grouping">Add User</button>
                 <br>
-                <button id="cancel-create-group-button" class = "grouping">Cancel</button>
-                <button id="submit-group-button" class = "grouping">Confirm</button>
+                <button id="cancel-create-group-button" class="grouping">Cancel</button>
+                <button id="submit-group-button" class="grouping">Confirm</button>
             </div>
             <div id="group-wrapper" class="hidden">
             </div>

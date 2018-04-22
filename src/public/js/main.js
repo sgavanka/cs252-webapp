@@ -18,6 +18,8 @@ let totalIncomingSpan;
 let totalOutgoingSpan;
 let usersToAddToGroupList;
 let userToAddToGroupInput;
+let searchButton;
+let searchInput;
 
 window.onload = function() {
     addUserToGroupButton = document.getElementById("add-user-to-group-button");
@@ -48,6 +50,22 @@ window.onload = function() {
     userToAddToGroupInput = document.getElementById("user-to-add-to-group-input");
     groupDetailsWrapper = document.getElementById("group-details-wrapper");
     groupWrapper = document.getElementById("group-wrapper");
+
+    searchButton = document.getElementById("search-button");
+    searchInput = document.getElementById("search-input");
+    searchButton.addEventListener("click", function() {
+        searchForGroup();
+    });
+
+    var searchForGroup = function() {
+        user.databaseRef.child("groups").orderByChild("groupName").equalTo(searchInput.value).once('value', function(snapshot) {
+            console.log(snapshot.val());
+            if (snapshot.val()) {
+                let foundGroup = document.getElementById(Object.keys(snapshot.val())[0]);
+                foundGroup.click();
+            }
+        });
+    }
 
     // Checks for user with the specified email in the database.
     // If the user exists, add that user's full name to the usersToAddToGroup list.
@@ -129,7 +147,7 @@ window.onload = function() {
 
                 for (var i = 1; i < usersToAddToGroupList.childNodes.length; i++) {
                     // Add the ith user in the list of users to add to the group.
-                    group.child('users').child(usersToAddToGroupList.childNodes[i].id).set({ fullName: document.getElementById(usersToAddToGroupList.childNodes[i].id).value });
+                    group.child('users').child(usersToAddToGroupList.childNodes[i].id).set({ fullName: usersToAddToGroupList.childNodes[i].innerText.slice(0, -1) });
                     usersRef.child(usersToAddToGroupList.childNodes[i].id).child("groups").child(group.key).set({ groupName: groupNameInput.value });
                 }
                 groupDetailsWrapper.classList.add("hidden");
