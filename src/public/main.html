@@ -40,16 +40,22 @@
         </div>
         <div id="current-group-wrapper" class="current-group-wrapper">
             <div id="group-details-wrapper" class="hidden">
-                <span>Group Name:</span>
-                <input id="group-name-input" type="text" name="group-name-input" placeholder="Group Name" class="grouptxt">
+                <div id = "groupTitle">
+                <span>Group Creation</span>
+                </div>
+                <input id="group-name-input" type="text" name="group-name-input" placeholder="Group Name" class= "grouptxt">
                 <br>
                 <span>Users:</span>
                 <ul id="users-to-add-to-group-list"></ul>
-                <input id="user-to-add-to-group-input" type="text" name="user-to-add-to-group-input" placeholder="Email of user to add" class="grouptxt">
-                <button id="add-user-to-group-button" class="grouping">Add User</button>
+                <div id = "addingGroup">
+                <input id="user-to-add-to-group-input" type="text" name="user-to-add-to-group-input" placeholder="Email of user to add" class = "grouptxt">
+                <button id="add-user-to-group-button" class = "grouping">Add User</button>
+                </div>
                 <br>
-                <button id="cancel-create-group-button" class="grouping">Cancel</button>
-                <button id="submit-group-button" class="grouping">Confirm</button>
+                <div id = "confirmation">
+                <button id="cancel-create-group-button" class = "grouping">Cancel</button>
+                <button id="submit-group-button" class = "grouping">Create</button>
+                 </div>
             </div>
             <div id="group-wrapper" class="hidden">
             </div>
