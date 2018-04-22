@@ -169,6 +169,9 @@ window.onload = function() {
                 let groupToRemove = document.getElementById(snapshot.key);
                 groupsList.removeChild(groupToRemove);
 
+                if (currentGroupKey != null && currentGroupKey == snapshot.key) {
+                    closeGroup(currentGroupKey);
+                }
                 // TODO delete all of the payments from the group
             });
 
@@ -218,11 +221,10 @@ window.onload = function() {
             groupWrapper.appendChild(deleteButton);
         }
         let closeButton = document.createElement("button");
-        // closeButton.classList.add("group-button");
         closeButton.appendChild(document.createTextNode("Close"));
         closeButton.addEventListener("click", function() {
             closeGroup(groupKey);
-        })
+        });
         groupWrapper.appendChild(closeButton);
         groupWrapper.classList.remove("hidden");
         currentGroupKey = groupKey;
@@ -258,7 +260,6 @@ window.onload = function() {
         let deleteButton;
         if (snapshot.val().owner == "true") {
             deleteButton = document.createElement("button");
-            // deleteButton.classList.add("group-button");
             deleteButton.appendChild(document.createTextNode("Delete Group"));
             deleteButton.addEventListener("click", function() {
                 deleteGroup(snapshot.key);
