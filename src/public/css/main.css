@@ -122,12 +122,11 @@ p.big {
     width: 20%;
     display: inline-block;
     background-color: white;
-    border-right: 2px solid black;
+    border-right: 1px solid black;
 }
 
 .group-button {
     background-color: #DDD;
-    border: 1px solid black;
     color: black;
     padding: 10px 24px;
     width: 100%;
@@ -228,10 +227,14 @@ p.big {
     background-color: lightgrey;
     height: 45px;
     width: 100%;
+<<<<<<< HEAD
 }
 #searchButton{
     display:inline-block;
+=======
+>>>>>>> 049b6874567301565dfd962564433ce7d0bbebfa
 }
+
 #search-button{
     float: right;
     height: 31px;
@@ -242,6 +245,7 @@ p.big {
     border-bottom-right-radius: 10px; 
     color:white;
     background-color: green;
+    display: inline-block;
 }
 #search-button:hover {
     background-color: darkgreen;
