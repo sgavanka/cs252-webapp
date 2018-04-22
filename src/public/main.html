@@ -17,38 +17,36 @@
     firebase.initializeApp(config);
     </script>
     <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
 <body>
     <div class="topnav">
         <a class="active" href="main.html">Home</a>
+        <div id="total-payments-wrapper">
+            <span>You Owe: </span><span class="currency"></span><span id="total-owed-span"></span>
+            <span>You Are Owed: </span><span class="currency"></span><span id="total-owed-to-you-span"></span>
+        </div>
         <a id="logout-button" class="logoutPos">Logout</a>
     </div>
     <div>
         <div id="groups-wrapper" class="btn-group">
-            <span>Groups:</span>
-            <button>+</button>
-            <button>Samsung</button>
-            <button>Sony</button>
+            <div id="create-group-wrapper">
+                <button id="create-group-button">Create Group</button>
+                <div id="group-details-wrapper" class="hidden">
+                    <input id="group-name-input" type="text" name="group-name-input" placeholder="Group Name">
+                    <ul id="users-to-add-to-group-list"></ul>
+                    <input id="user-to-add-to-group-input" type="text" name="user-to-add-to-group-input" placeholder="Email of user to add">
+                    <button id="add-user-to-group-button">Add User</button>
+                    <button id="cancel-create-group-button">Cancel</button>
+                    <button id="submit-group-button">Confirm</button>
+                </div>
+            </div>
+            <!-- <button id="search-button">Search</button> -->
+            <!-- <input id="search-input" type="text" name="search-input" placeholder="Search Input"> -->
         </div>
         <button id="logout-button">Logout</button>
-        <div id="total-payments-wrapper">
-            <span>You Owe: </span><span class="currency"></span><span id="total-owed-span"></span>
-            <br>
-            <span>You Are Owed: </span><span class="currency"></span><span id="total-owed-to-you-span"></span>
-        </div>
-        <div id="create-group-wrapper">
-            <button id="create-group-button">Create Group</button>
-            <div id="group-details-wrapper" class="hidden">
-                <input id="group-name-input" type="text" name="group-name-input" placeholder="Group Name">
-                <ul id="users-to-add-to-group-list"></ul>
-                <input id="user-to-add-to-group-input" type="text" name="user-to-add-to-group-input" placeholder="Email of user to add">
-                <button id="add-user-to-group-button">Add User</button>
-                <button id="cancel-create-group-button">Cancel</button>
-                <button id="submit-group-button">Confirm</button>
-            </div>
-        </div>
     </div>
 </body>
 
