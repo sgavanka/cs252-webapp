@@ -114,6 +114,9 @@ window.onload = function() {
 
     // Shows the group details wrapper
     createGroup = function() {
+        if (currentGroupKey) {
+            closeGroup(currentGroupKey);
+        }
         groupDetailsWrapper.classList.remove("hidden");
         while (usersToAddToGroupList.firstChild) {
             usersToAddToGroupList.removeChild(usersToAddToGroupList.firstChild);
@@ -247,6 +250,7 @@ window.onload = function() {
             closeGroup(groupKey);
         });
         groupWrapper.appendChild(closeButton);
+        groupDetailsWrapper.classList.add("hidden");
         groupWrapper.classList.remove("hidden");
         currentGroupKey = groupKey;
     }
