@@ -1,3 +1,4 @@
+let databaseRef = firebase.database().ref();
 let registerEmail;
 let registerName;
 let registerPassword;
@@ -37,9 +38,8 @@ window.onload = function() {
             register();
         }
     });
-}
 
-register = function() {
+    register = function() {
     firebase.auth().createUserWithEmailAndPassword(registerEmail.value, registerPassword.value).then(function() {
         if (firebase.auth().currentUser) {
             // Push the newly created user's name and email to the database under a node with the same key as the user's uid.
@@ -51,4 +51,5 @@ register = function() {
             alert(error.message);
         }
     });
+}
 }
