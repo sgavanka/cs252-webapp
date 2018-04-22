@@ -97,6 +97,9 @@ window.onload = function() {
     // Shows the group details wrapper
     createGroup = function() {
         groupDetailsWrapper.classList.remove("hidden");
+        while (usersToAddToGroupList.firstChild) {
+            usersToAddToGroupList.removeChild(usersToAddToGroupList.firstChild);
+        }
         let currentUserFullName = document.createElement("li");
         currentUserFullName.appendChild(document.createTextNode(user.fullName));
         usersToAddToGroupList.appendChild(currentUserFullName);
@@ -115,7 +118,7 @@ window.onload = function() {
 
     // Pushes the newly created group to the database
     submitGroup = function() {
-        if (usersToAddToGroupList.childNodes.length > 0) {
+        if (usersToAddToGroupList.childNodes.length > 1) {
             if (groupNameInput.value != "") {
                 let group = groupsRef.push();
                 group.set({ groupName: groupNameInput.value });
