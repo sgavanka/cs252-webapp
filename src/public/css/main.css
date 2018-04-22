@@ -273,6 +273,7 @@ p.big {
     border-width: 2px;
     border-style: solid;
     height: 35%;
+    transition: width 2s;
 }
 .grouping{
     background-color: green;
