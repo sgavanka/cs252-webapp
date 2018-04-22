@@ -18,7 +18,6 @@ let totalIncomingSpan;
 let totalOutgoingSpan;
 let usersToAddToGroupList;
 let userToAddToGroupInput;
-let currency = "$";
 
 window.onload = function() {
     addUserToGroupButton = document.getElementById("add-user-to-group-button");
@@ -49,10 +48,6 @@ window.onload = function() {
     userToAddToGroupInput = document.getElementById("user-to-add-to-group-input");
     groupDetailsWrapper = document.getElementById("group-details-wrapper");
     groupWrapper = document.getElementById("group-wrapper");
-    let currencyList = document.getElementsByClassName("currency");
-    for (var i = 0; i < currencyList.length; i++) {
-        currencyList[i].innerHTML = currency;
-    }
 
     // Checks for user with the specified email in the database.
     // If the user exists, add that user's full name to the usersToAddToGroup list.
@@ -102,6 +97,9 @@ window.onload = function() {
     // Shows the group details wrapper
     createGroup = function() {
         groupDetailsWrapper.classList.remove("hidden");
+        let currentUserFullName = document.createElement("li");
+        currentUserFullName.appendChild(document.createTextNode(user.fullName));
+        usersToAddToGroupList.appendChild(currentUserFullName);
     }
 
     // Called when the user clicks the logout button. Logs the user out and brings them to index.html
@@ -126,7 +124,7 @@ window.onload = function() {
                 user.databaseRef.child("groups").child(group.key).set({ groupName: groupNameInput.value, owner: "true" });
                 group.child('users').child(user.firebaseUser.uid).set({ fullName: user.fullName });
 
-                for (var i = 0; i < usersToAddToGroupList.childNodes.length; i++) {
+                for (var i = 1; i < usersToAddToGroupList.childNodes.length; i++) {
                     // Add the ith user in the list of users to add to the group.
                     group.child('users').child(usersToAddToGroupList.childNodes[i].id).set({ fullName: document.getElementById(usersToAddToGroupList.childNodes[i].id).value });
                     usersRef.child(usersToAddToGroupList.childNodes[i].id).child("groups").child(group.key).set({ groupName: groupNameInput.value });
@@ -220,7 +218,7 @@ window.onload = function() {
             groupWrapper.appendChild(deleteButton);
         }
         let closeButton = document.createElement("button");
-        closeButton.classList.add("group-button");
+        // closeButton.classList.add("group-button");
         closeButton.appendChild(document.createTextNode("Close"));
         closeButton.addEventListener("click", function() {
             closeGroup(groupKey);
@@ -260,7 +258,7 @@ window.onload = function() {
         let deleteButton;
         if (snapshot.val().owner == "true") {
             deleteButton = document.createElement("button");
-            deleteButton.classList.add("group-button");
+            // deleteButton.classList.add("group-button");
             deleteButton.appendChild(document.createTextNode("Delete Group"));
             deleteButton.addEventListener("click", function() {
                 deleteGroup(snapshot.key);
