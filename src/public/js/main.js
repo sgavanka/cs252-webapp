@@ -274,10 +274,23 @@ window.onload = function() {
     }
 
     var addGroup = function(snapshot) {
-        let groupToAdd = document.createElement("button");
+        let groupToAdd = document.createElement("div");
         groupToAdd.id = snapshot.key;
         groupToAdd.classList.add("group-button");
+        let br = document.createElement("br");
+        let innerDiv1 = document.createElement("span");
+        let innerDiv2 = document.createElement("span");
         groupToAdd.appendChild(document.createTextNode(snapshot.val().groupName));
+        groupToAdd.appendChild(br);
+        groupToAdd.appendChild(innerDiv1);        
+        groupToAdd.appendChild(innerDiv2);
+        innerDiv1.id = snapshot.key;
+        innerDiv1.classList.add("innerDiv1");
+        innerDiv2.id = snapshot.key;
+        innerDiv2.classList.add("innerDiv2");
+        innerDiv1.appendChild(document.createTextNode("You Owe: $0"));
+        innerDiv2.appendChild(document.createTextNode("You are Owed: $0"));
+        
         let deleteButton;
         if (snapshot.val().owner == "true") {
             deleteButton = document.createElement("button");
