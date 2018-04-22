@@ -7,6 +7,7 @@ var user;
 let addUserToGroupButton;
 let cancelCreateGroupButton;
 let createGroupButton;
+let currentGroupKey;
 let groupDetailsWrapper;
 let groupsList;
 let groupNameInput;
@@ -129,6 +130,13 @@ window.onload = function() {
                     usersRef.child(usersToAddToGroupList.childNodes[i].id).child("groups").child(group.key).set({ groupName: groupNameInput.value });
                 }
                 groupDetailsWrapper.classList.add("hidden");
+                groupNameInput.value = "";
+                userToAddToGroupInput.value = "";
+
+                // Remove all items from the usersToAddToGroup list
+                while (usersToAddToGroupList.firstChild) {
+                    usersToAddToGroupList.removeChild(usersToAddToGroupList.firstChild);
+                }
             } else {
                 alert("Group Name cannot be empty");
             }
@@ -194,31 +202,36 @@ window.onload = function() {
         } else {
             // If the user logged out, set the user object to null.
             user = null;
+            window.location.assign("index.html");
         }
     });
 
     var showGroup = function(groupKey) {
         alert("would show group with id of " + groupKey);
+        currentGroupKey = groupKey;
     }
 
-    var closeGroup = function() {
-        //in the main panel, clear all payment info etc.
+    var closeGroup = function(groupKey) {
+        if (currentGroupKey == groupKey) {
+            alert("Would close group with id of " + groupKey);
+        }
     }
 
     var deleteGroup = function(groupKey) {
         groupsRef.child(groupKey).child("users").once("value", function(snapshot) {
+            closeGroup(groupKey);
             snapshot.forEach(function(childSnapshot) {
-                console.log(childSnapshot.key);
                 usersRef.child(childSnapshot.key).child("groups").child(groupKey).remove();
             });
+        }).then(function() {
+            groupsRef.child(groupKey).remove();
         });
-        groupsRef.child(groupKey).remove();
     }
 
     var addGroup = function(snapshot) {
         let groupToAdd = document.createElement("button");
         groupToAdd.id = snapshot.key;
-        groupToAdd.classList.add("groupButton");
+        groupToAdd.classList.add("group-button");
         groupToAdd.appendChild(document.createTextNode(snapshot.val().groupName));
         groupToAdd.addEventListener("click", function() {
             showGroup(snapshot.key);
@@ -226,12 +239,14 @@ window.onload = function() {
         groupsList.appendChild(groupToAdd);
         if (snapshot.val().owner == "true") {
             let deleteButton = document.createElement("button");
+            groupToAdd.style.width = "80%";
+            deleteButton.classList.add("group-button");
+            deleteButton.style.width = "20%";
             deleteButton.appendChild(document.createTextNode("X"));
             deleteButton.addEventListener("click", function() {
-                closeGroup();
                 deleteGroup(snapshot.key);
                 deleteButton.remove();
-            })
+            });
             groupsList.appendChild(deleteButton);
         }
     }

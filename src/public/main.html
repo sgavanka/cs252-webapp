@@ -22,31 +22,35 @@
 </head>
 
 <body>
-    <div class="topnav">
+    <div id="nav-wrapper" class="nav-wrapper">
         <a class="active" href="main.html">Home</a>
         <div id="total-payments-wrapper">
             <span>You Owe: </span><span class="currency"></span><span id="total-owed-span"></span>
             <span>You Are Owed: </span><span class="currency"></span><span id="total-owed-to-you-span"></span>
         </div>
-        <a id="logout-button" class="logoutPos">Logout</a>
+        <a id="logout-button" class="logout-button">Logout</a>
     </div>
     <div>
-        <div id="groups-wrapper" class="btn-group">
-            <div id="create-group-wrapper">
-                <button id="create-group-button">Create Group</button>
-                <div id="group-details-wrapper" class="hidden">
-                    <input id="group-name-input" type="text" name="group-name-input" placeholder="Group Name">
-                    <ul id="users-to-add-to-group-list"></ul>
-                    <input id="user-to-add-to-group-input" type="text" name="user-to-add-to-group-input" placeholder="Email of user to add">
-                    <button id="add-user-to-group-button">Add User</button>
-                    <button id="cancel-create-group-button">Cancel</button>
-                    <button id="submit-group-button">Confirm</button>
-                </div>
-            </div>
-            <!-- <button id="search-button">Search</button> -->
-            <!-- <input id="search-input" type="text" name="search-input" placeholder="Search Input"> -->
+        <div id="groups-wrapper" class="groups-wrapper">
+            <button id="search-button">Search</button>
+            <input id="search-input" type="text" name="search-input" placeholder="Search Input">
+            <button id="create-group-button">Create Group</button>
         </div>
-        <button id="logout-button">Logout</button>
+        <div id="current-group-wrapper" class="current-group-wrapper">
+            <div id="group-details-wrapper" class="hidden">
+                <span>Group Name:</span>
+                <input id="group-name-input" type="text" name="group-name-input" placeholder="Group Name">
+                <br>
+                <span>Users:</span>
+                <span><i>none yet</i></span>
+                <ul id="users-to-add-to-group-list"></ul>
+                <input id="user-to-add-to-group-input" type="text" name="user-to-add-to-group-input" placeholder="Email of user to add">
+                <button id="add-user-to-group-button">Add User</button>
+                <br>
+                <button id="cancel-create-group-button">Cancel</button>
+                <button id="submit-group-button">Confirm</button>
+            </div>
+        </div>
     </div>
 </body>
 

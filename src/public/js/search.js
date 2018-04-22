@@ -10,9 +10,9 @@
 // }
 
 // var searchForGroup = function() {
-//         user.firebaseUser.child("groups").orderByChild("groupName").equalTo(searchInput.value).once('value', function(snapshot) {
-//         if (snapshot.val()) {
-//             console.log(snapshot.val.groupName);
+//     user.firebaseUser.child("groups").orderByChild("groupName").equalTo(searchInput.value).once('value', function(snapshot) {
+//         if (snapshot.key) {
+//             showGroup(snapshot.key);
 //         }
 //     });
 // }
