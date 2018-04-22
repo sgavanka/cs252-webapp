@@ -202,7 +202,7 @@ window.onload = function() {
         } else {
             // If the user logged out, set the user object to null.
             user = null;
-            window.location.assign("index.html");
+            // window.location.assign("index.html");
         }
     });
 
