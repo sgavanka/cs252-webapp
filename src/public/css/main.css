@@ -119,7 +119,7 @@ p.big {
 .groups-wrapper {
     height: 100%;
     position: fixed;
-    width: 15%;
+    width: 20%;
     display: inline-block;
     background-color: white;
     border-right: 2px solid black;
@@ -181,7 +181,7 @@ p.big {
     color: white;
 }
 
-#newGroup{
+#create-group-button{
     float: left;
     color: white;
     background-color: green;
@@ -200,14 +200,14 @@ p.big {
     box-shadow: 1px 4px 1px green;
 
 }
-#newGroup:hover{
+#create-group-button:hover{
     background-color: darkgreen;
     -webkit-box-shadow: 1px 4px 1px darkgreen;
     -moz-box-shadow: 1px 4px 1px darkgreen;
     box-shadow: 1px 4px 1px darkgreen;
 }
 
-#searchBox{
+#search-input{
     float: left;
     width: 230px;
     height: 25px;
@@ -232,7 +232,7 @@ p.big {
 #searchButton{
     display:inline-block;
 }
-#searchB{
+#search-button{
     float: right;
     height: 31px;
     width: 26px;
@@ -243,15 +243,14 @@ p.big {
     color:white;
     background-color: green;
 }
-#searchB:hover {
+#search-button:hover {
     background-color: darkgreen;
 }
 
 #group-details-wrapper {
     height: 100%;
     position: fixed;
-    left: 15%;
-    width: 85%;
+    left: 20%;
+    width: 80%;
     background-color: lightgrey;
-    /*float: right;*/
 }
