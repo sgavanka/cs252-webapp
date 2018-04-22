@@ -227,12 +227,9 @@ p.big {
     background-color: lightgrey;
     height: 45px;
     width: 100%;
-<<<<<<< HEAD
 }
 #searchButton{
     display:inline-block;
-=======
->>>>>>> 049b6874567301565dfd962564433ce7d0bbebfa
 }
 
 #search-button{
@@ -254,6 +251,7 @@ p.big {
 #group-details-wrapper {
     height: 100%;
     position: fixed;
+    float: center;
     left: 20%;
     width: 80%;
     background-color: lightgrey;
