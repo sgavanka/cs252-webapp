@@ -62,7 +62,7 @@ var addPayment = function(groupKey) {
 };
 var displayPayments = function(groupKey) {
     var lineBreak = document.createElement("br");
-    groupPaymentsDiv = document.createElement("div");
+    groupPaymentsDiv = document.createElement("ul");
     groupWrapper.appendChild(lineBreak);
     //Iterates through the database when a child is added and displays list of payments
     //TODO: child_removed
