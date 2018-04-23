@@ -234,10 +234,10 @@ p.big {
 
 }
 #create-group-button:hover{
-    background-color: darkgreen;
-    -webkit-box-shadow: 1px 4px 1px darkgreen;
-    -moz-box-shadow: 1px 4px 1px darkgreen;
-    box-shadow: 1px 4px 1px darkgreen;
+    background-color: darkblue;
+    -webkit-box-shadow: 1px 4px 1px darkblue;
+    -moz-box-shadow: 1px 4px 1px darkblue;
+    box-shadow: 1px 4px 1px darkblue;
 }
 
 #search-input{
@@ -246,7 +246,7 @@ p.big {
     height: 25px;
     border-radius: 5px;
     border-color: black;
-    background: lightblue;
+    background: whitesmoke;
     color: black;   
     margin-top: 8px;
     margin-left: 12px;
@@ -315,7 +315,7 @@ p.big {
     width: 230px;
     height: 25px;
     border-color: black;
-    background: lightblue;
+    background: whitesmoke;
     color: black; 
     font-family: 'Roboto', sans-serif;
 }
