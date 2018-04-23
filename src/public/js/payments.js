@@ -1,3 +1,4 @@
+let groupPaymentsDiv;
 var addPayment = function(groupKey) {
     //TODO: fix selection box for fromUser
     //functionality to add a payment to a group
@@ -62,7 +63,7 @@ var addPayment = function(groupKey) {
 };
 var displayPayments = function(groupKey) {
     var lineBreak = document.createElement("br");
-    var groupPaymentsDiv = document.createElement("div");
+    groupPaymentsDiv = document.createElement("div");
     groupWrapper.appendChild(lineBreak);
     //Iterates through the database when a child is added and displays list of payments
     //TODO: child_removed
@@ -72,10 +73,16 @@ var displayPayments = function(groupKey) {
         paymentsRef.child(currKey).on("value", function(childSnapshot) {
             var payment = childSnapshot.val();
             var paymentDiv = document.createElement("li");
+            paymentDiv.setAttribute("id", childSnapshot.key);
             paymentDiv.appendChild(document.createTextNode(payment.fromUser + " owes " + payment.toUser + ": " + payment.amount));
             groupPaymentsDiv.appendChild(paymentDiv);
         });
     });
     groupWrapper.appendChild(groupPaymentsDiv);
-
+};
+//functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
+var deletePayment = function(groupKey, paymentId) {
+    databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).removeValue();
+    groupPaymentsDiv.removeChild(paymentId);
+    paymentsRef.child(paymentId).removeValue();
 };
