@@ -5,15 +5,19 @@ var addPayment = function(groupKey) {
     console.log("button clicked!! functionality to add a payment");
     var fromUserInput = document.createElement("select");
     var toUserInput = document.createElement("select");
+    var option1;
+    var option2;
     fromUserInput.setAttribute("id", "fromUser");
     toUserInput.setAttribute("id", "toUser");
     databaseRef.child("groups").child(groupKey).child("users").on("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
-            var username = childSnapshot.val();
-            var option1 = document.createElement("option");
-            var option2 = document.createElement("option");
-            option1.text = username.fullName;
-            option2.text = username.fullName;
+            var user = childSnapshot.val();
+            option1 = document.createElement("option");
+            option2 = document.createElement("option");
+            option1.setAttribute("id", (childSnapshot.key + "option1"));
+            option2.setAttribute("id", (childSnapshot.key + "option2"));
+            option1.text = user.fullName;
+            option2.text = user.fullName;
             fromUserInput.add(option1);
             toUserInput.add(option2);
         });
@@ -24,6 +28,7 @@ var addPayment = function(groupKey) {
     var submitPaymentButton = document.createElement("button");
     submitPaymentButton.appendChild(document.createTextNode("Add payment"));
     //pushes to the database
+    var thisPayment = document.createElement("div");
     submitPaymentButton.addEventListener("click", function() {
         var fUser = document.getElementById("fromUser").value;
         var tUser = document.getElementById("toUser").value;
@@ -41,7 +46,18 @@ var addPayment = function(groupKey) {
         databasePayment.child(lastPushed.key).set({ amount: amt });
         databaseRef.child("users").once("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
-                if (childSnapshot.val().fullName == fUser) {
+                if (document.getElementById("fromUser").id.includes(childSnapshot.key)) {
+                    var prevTotal = childSnapshot.val().totalOutgoing;
+                    var newTotal = +prevTotal + +amt;
+                    console.log("new total is: " + newTotal);
+                    childSnapshot.getRef().update({ totalOutgoing: newTotal });
+                } else if (document.getElementById("toUser").id.includes(childSnapshot.key)) {
+                    var prevTotal = childSnapshot.val().totalIncoming;
+                    var newTotal = +prevTotal + +amt;
+                    console.log("new total is: " + newTotal);
+                    childSnapshot.getRef().update({ totalIncoming: newTotal });
+                }
+                /*if (childSnapshot.val().fullName == fUser) {
                     var prevTotal = childSnapshot.val().totalOutgoing;
                     var newTotal = +prevTotal + +amt;
                     console.log("new total is: " + newTotal);
@@ -51,14 +67,15 @@ var addPayment = function(groupKey) {
                     var newTotal = +prevTotal + +amt;
                     console.log("new total is: " + newTotal);
                     childSnapshot.getRef().update({ totalIncoming: newTotal });
-                }
+                }*/
             });
         });
+        thisPayment.appendChild(fromUserInput);
+        thisPayment.appendChild(toUserInput);
+        thisPayment.appendChild(amountInput);
+        thisPayment.appendChild(submitPaymentButton);
     });
-    groupWrapper.appendChild(fromUserInput);
-    groupWrapper.appendChild(toUserInput);
-    groupWrapper.appendChild(amountInput);
-    groupWrapper.appendChild(submitPaymentButton);
+    groupWrapper.appendChild(thisPayment);
 };
 var displayPayments = function(groupKey) {
     var lineBreak = document.createElement("br");
@@ -89,5 +106,5 @@ var displayPayments = function(groupKey) {
 var deletePayment = function(groupKey, paymentId) {
     groupPaymentsDiv.removeChild(document.getElementById(paymentId));
     //paymentsRef.child(paymentId).remove();
-    // databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
+    //databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
 };

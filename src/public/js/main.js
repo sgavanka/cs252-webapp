@@ -257,7 +257,9 @@ window.onload = function() {
         paymentButton.appendChild(document.createTextNode("Add payment"));
         paymentButton.addEventListener("click", function() {
             //payments.js
+            paymentButton.disabled = true;
             addPayment(groupKey);
+            paymentButton.enabled = true;
         });
 
         groupWrapper.appendChild(paymentButton);
