@@ -145,13 +145,13 @@ window.onload = function() {
                 group.set({ groupName: groupNameInput.value });
 
                 // Add this user to the newly created group.
-                user.databaseRef.child("groups").child(group.key).set({ groupName: groupNameInput.value, owner: "true" });
+                user.databaseRef.child("groups").child(group.key).set({ groupName: groupNameInput.value, owner: "true", totalIncoming: "0", totalOutgoing: "0" });
                 group.child('users').child(user.firebaseUser.uid).set({ fullName: user.fullName });
 
                 for (var i = 1; i < usersToAddToGroupList.childNodes.length; i++) {
                     // Add the ith user in the list of users to add to the group.
                     group.child('users').child(usersToAddToGroupList.childNodes[i].id).set({ fullName: usersToAddToGroupList.childNodes[i].innerText.slice(0, -1) });
-                    usersRef.child(usersToAddToGroupList.childNodes[i].id).child("groups").child(group.key).set({ groupName: groupNameInput.value });
+                    usersRef.child(usersToAddToGroupList.childNodes[i].id).child("groups").child(group.key).set({ groupName: groupNameInput.value, totalIncoming: "0", totalOutgoing: "0" });
                 }
                 groupDetailsWrapper.classList.add("hidden");
                 groupNameInput.value = "";
@@ -185,10 +185,9 @@ window.onload = function() {
             // When the user is added to a group
             myGroupsRef.on("child_added", function(snapshot) {
                 addGroup(snapshot);
-                console.log(snapshot.key);
-                groupsRef.child(snapshot.key).child("payments").on("child_added", function(childSnapshot) {
-                    console.log("payment added");
-                });
+                // groupsRef.child(snapshot.key).child("payments").on("child_added", function(childSnapshot) {
+                // console.log("payment added");
+                // });
             });
 
             // When a group is removed
@@ -290,7 +289,7 @@ window.onload = function() {
         let innerDiv2 = document.createElement("span");
         groupToAdd.appendChild(document.createTextNode(snapshot.val().groupName));
         groupToAdd.appendChild(br);
-        groupToAdd.appendChild(innerDiv1);        
+        groupToAdd.appendChild(innerDiv1);
         groupToAdd.appendChild(innerDiv2);
         innerDiv1.id = snapshot.key;
         innerDiv1.classList.add("innerDiv1");
@@ -298,7 +297,21 @@ window.onload = function() {
         innerDiv2.classList.add("innerDiv2");
         innerDiv1.appendChild(document.createTextNode("You Owe: $0"));
         innerDiv2.appendChild(document.createTextNode("You are Owed: $0"));
-        
+
+        groupsRef.child(snapshot.key).child("payments").on("child_added", function(childSnapshot) {
+            user.databaseRef.child("groups").child(snapshot.key).once("value", function(childChildSnapshot) {
+                innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
+                innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
+            });
+        });
+
+        groupsRef.child(snapshot.key).child("payments").on("child_removed", function(childSnapshot) {
+            user.databaseRef.child("groups").child(snapshot.key).once("value", function(childChildSnapshot) {
+                innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
+                innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
+            });
+        });
+
         let deleteButton;
         if (snapshot.val().owner == "true") {
             deleteButton = document.createElement("button");
