@@ -185,6 +185,10 @@ window.onload = function() {
             // When the user is added to a group
             myGroupsRef.on("child_added", function(snapshot) {
                 addGroup(snapshot);
+                console.log(snapshot.key);
+                groupsRef.child(snapshot.key).child("payments").on("child_added", function(childSnapshot) {
+                    console.log("payment added");
+                });
             });
 
             // When a group is removed
