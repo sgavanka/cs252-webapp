@@ -237,6 +237,7 @@ window.onload = function() {
     });
 
     var showGroup = function(groupKey, groupName, deleteButton) {
+        //displayPayments(groupKey);
         if (currentGroupKey && currentGroupKey != groupKey) {
             closeGroup(currentGroupKey);
         } else if (currentGroupKey && currentGroupKey == groupKey) {
