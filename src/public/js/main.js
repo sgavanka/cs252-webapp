@@ -145,7 +145,7 @@ window.onload = function() {
                 group.set({ groupName: groupNameInput.value, payments: false });
 
                 // Add this user to the newly created group.
-                user.databaseRef.child("groups").child(group.key).set({ groupName: groupNameInput.value, owner: "true", totalIncoming: "0", totalOutgoing: "0" });
+                user.databaseRef.child("groups").child(group.key).set({ groupName: groupNameInput.value, owner: "true", totalIncoming: 0, totalOutgoing: 0 });
                 group.child('users').child(user.firebaseUser.uid).set({ fullName: user.fullName });
 
                 for (var i = 1; i < usersToAddToGroupList.childNodes.length; i++) {
@@ -310,8 +310,10 @@ window.onload = function() {
 
         groupsRef.child(snapshot.key).child("payments").on("child_added", function(childSnapshot) {
             user.databaseRef.child("groups").child(snapshot.key).once("value", function(childChildSnapshot) {
-                innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
-                innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
+                if (childChildSnapshot.val().totalOutgoing != undefined)
+                    innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
+                if (childChildSnapshot.val().totalOutgoing != undefined)
+                    innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
             });
         });
 
