@@ -18,6 +18,7 @@ var addPayment = function(groupKey) {
     });
     var amountInput = document.createElement("input");
     amountInput.setAttribute("id", "amount");
+    amountInput.setAttribute("type", "number");
     var submitPaymentButton = document.createElement("button");
     submitPaymentButton.appendChild(document.createTextNode("Add payment"));
     //pushes to the database
@@ -36,6 +37,21 @@ var addPayment = function(groupKey) {
         //Key of node in payments and the one in group are the same for ease of access
         var lastPushed = paymentsRef.push(payment);
         databasePayment.child(lastPushed.key).set({ amount: amt });
+        databaseRef.child("users").once("value", function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                if (childSnapshot.val().fullName == fUser) {
+                    var prevTotal = childSnapshot.val().totalOutgoing;
+                    var newTotal = +prevTotal + +amt;
+                    console.log("new total is: " + newTotal);
+                    childSnapshot.getRef().update({ totalOutgoing: newTotal });
+                } else if (childSnapshot.val().fullName == tUser) {
+                    var prevTotal = childSnapshot.val().totalIncoming;
+                    var newTotal = +prevTotal + +amt;
+                    console.log("new total is: " + newTotal);
+                    childSnapshot.getRef().update({ totalIncoming: newTotal });
+                }
+            });
+        });
     });
     groupWrapper.appendChild(fromUserInput);
     groupWrapper.appendChild(toUserInput);
