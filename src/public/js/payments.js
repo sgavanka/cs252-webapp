@@ -1,4 +1,6 @@
 var addPayment = function(groupKey) {
+    //TODO: fix selection box for fromUser
+    //functionality to add a payment to a group
     console.log("button clicked!! functionality to add a payment");
     var fromUserInput = document.createElement("select");
     var toUserInput = document.createElement("select");
@@ -18,6 +20,7 @@ var addPayment = function(groupKey) {
     amountInput.setAttribute("id", "amount");
     var submitPaymentButton = document.createElement("button");
     submitPaymentButton.appendChild(document.createTextNode("Add payment"));
+    //pushes to the database
     submitPaymentButton.addEventListener("click", function() {
         var fUser = document.getElementById("fromUser").value;
         var tUser = document.getElementById("toUser").value;
@@ -29,6 +32,8 @@ var addPayment = function(groupKey) {
             toUser: tUser,
             amount: amt
         };
+        //main payment is stored in the payments node, only amount is stored in the group. 
+        //Key of node in payments and the one in group are the same for ease of access
         var lastPushed = paymentsRef.push(payment);
         databasePayment.child(lastPushed.key).set({ amount: amt });
     });
@@ -41,19 +46,8 @@ var displayPayments = function(groupKey) {
     var lineBreak = document.createElement("br");
     var groupPaymentsDiv = document.createElement("div");
     groupWrapper.appendChild(lineBreak);
-    /*databaseRef.child("groups").child(groupKey).child("payments").once("value", function(snapshot) {
-        groupPaymentsDiv.setAttribute("id", "group-payments");
-        snapshot.forEach(function(childSnapshot) {
-            var currKey = childSnapshot.key;
-            paymentsRef.child(currKey).on("value", function(childSnapshot) {
-                var payment = childSnapshot.val();
-                var paymentDiv = document.createElement("li");
-                paymentDiv.appendChild(document.createTextNode(payment.fromUser + " owes " + payment.toUser + ": " + payment.amount));
-                groupPaymentsDiv.appendChild(paymentDiv);
-            });
-        });
-        groupWrapper.appendChild(groupPaymentsDiv);
-    });*/
+    //Iterates through the database when a child is added and displays list of payments
+    //TODO: child_removed
     databaseRef.child("groups").child(groupKey).child("payments").on("child_added", function(snapshot) {
         console.log("child added!");
         var currKey = snapshot.key;
