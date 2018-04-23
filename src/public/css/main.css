@@ -145,9 +145,9 @@ p.big {
     font-size: 10pt;
     background-color: whitesmoke;
     border-radius: 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
+    height: 5px;
+    font-weight: normal;
+   
 }
 .innerDiv2 {
   color: green;
@@ -155,9 +155,9 @@ p.big {
   margin-left: 3%;
   background-color: whitesmoke;
   border-radius: 5px;
-  border-style: solid;
-    border-width: 1px;
-    border-color: black;
+  height: 5px;
+  font-weight: normal;
+ 
   
 }
 
@@ -177,7 +177,7 @@ p.big {
 /* Add a black background color to the top navigation */
 
 .nav-wrapper {
-    background-color: #333;
+    background-color: #4c8abd;
     overflow: hidden;
 }
 
@@ -197,7 +197,7 @@ p.big {
 /* Change the color of links on hover */
 
 .nav-wrapper a:hover {
-    background-color: #ddd;
+    background-color: #CCC;
     color: black;
 }
 
@@ -205,7 +205,7 @@ p.big {
 /* Add a color to the active/current link */
 
 .nav-wrapper a.active {
-    background-color: #4CAF50;
+    background-color: #06619e;
     color: white;
 }
 .nav-wrapper a.actived {
@@ -216,7 +216,7 @@ p.big {
 #create-group-button{
     float: left;
     color: white;
-    background-color: green;
+    background-color: #06619e;
     border-radius: 5px;
     width: 100px;
     height: 30px;
@@ -227,9 +227,9 @@ p.big {
     -moz-transition: all 0.1s;
     transition: all 0.1s;
     
-    -webkit-box-shadow: 1px 4px 1px green;
-    -moz-box-shadow: 1px 4px 1px green;
-    box-shadow: 1px 4px 1px green;
+    -webkit-box-shadow: 1px 4px 1px #06619e;
+    -moz-box-shadow: 1px 4px 1px #06619e;
+    box-shadow: 1px 4px 1px #06619e;
     font-family: 'Roboto', sans-serif;
 
 }
@@ -275,7 +275,7 @@ p.big {
     border-top-right-radius: 10px; 
     border-bottom-right-radius: 10px; 
     color:white;
-    background-color: green;
+    background-color: #06619e;
     display: inline-block;
 }
 
