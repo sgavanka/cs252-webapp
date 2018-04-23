@@ -256,12 +256,14 @@ window.onload = function() {
         let paymentButton = document.createElement("button");
         paymentButton.appendChild(document.createTextNode("Add payment"));
         paymentButton.addEventListener("click", function() {
+            //payments.js
             addPayment(groupKey);
         });
 
         groupWrapper.appendChild(paymentButton);
         groupDetailsWrapper.classList.add("hidden");
         groupWrapper.classList.remove("hidden");
+        //functionality in payments.js
         displayPayments(groupKey);
         currentGroupKey = groupKey;
     }
