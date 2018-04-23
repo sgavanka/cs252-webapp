@@ -9,10 +9,12 @@ var addPayment = function(groupKey) {
     databaseRef.child("groups").child(groupKey).child("users").on("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var username = childSnapshot.val();
-            var option = document.createElement("option");
-            option.text = username.fullName;
-            fromUserInput.add(option);
-            toUserInput.add(option);
+            var option1 = document.createElement("option");
+            var option2 = document.createElement("option");
+            option1.text = username.fullName;
+            option2.text = username.fullName;
+            fromUserInput.add(option1);
+            toUserInput.add(option2);
             console.log("username is: " + option.text);
         });
     });
