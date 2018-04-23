@@ -142,7 +142,7 @@ window.onload = function() {
         if (usersToAddToGroupList.childNodes.length > 1) {
             if (groupNameInput.value != "") {
                 let group = groupsRef.push();
-                group.set({ groupName: groupNameInput.value });
+                group.set({ groupName: groupNameInput.value, payments: false });
 
                 // Add this user to the newly created group.
                 user.databaseRef.child("groups").child(group.key).set({ groupName: groupNameInput.value, owner: "true", totalIncoming: "0", totalOutgoing: "0" });
@@ -252,9 +252,17 @@ window.onload = function() {
         closeButton.addEventListener("click", function() {
             closeGroup(groupKey);
         });
-        groupWrapper.appendChild(closeButton);
+
+        let paymentButton = document.createElement("button");
+        paymentButton.appendChild(document.createTextNode("Add payment"));
+        paymentButton.addEventListener("click", function() {
+            addPayment(groupKey);
+        });
+
+        groupWrapper.appendChild(paymentButton);
         groupDetailsWrapper.classList.add("hidden");
         groupWrapper.classList.remove("hidden");
+        displayPayments(groupKey);
         currentGroupKey = groupKey;
     }
 
