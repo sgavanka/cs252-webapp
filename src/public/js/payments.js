@@ -46,11 +46,17 @@ var addPayment = function(groupKey) {
                     var newTotal = +prevTotal + +amt;
                     console.log("new total is: " + newTotal);
                     childSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    });
                 } else if (childSnapshot.val().fullName == tUser) {
                     var prevTotal = childSnapshot.val().totalIncoming;
                     var newTotal = +prevTotal + +amt;
                     console.log("new total is: " + newTotal);
                     childSnapshot.getRef().update({ totalIncoming: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalIncoming: newTotal });
+                    });
                 }
             });
         });
