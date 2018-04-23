@@ -130,7 +130,7 @@ p.big {
 }
 
 .group-button {
-    background-color: #DDD;
+    background-color: #dae8ec;
     color: black;
     padding: 10px 24px;
     border-style: solid;
@@ -143,11 +143,22 @@ p.big {
 .innerDiv1 {
     color:red;
     font-size: 10pt;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+
 }
 .innerDiv2 {
   color: green;
   font-size: 10pt;
   margin-left: 3%;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  border-style: solid;
+    border-width: 1px;
+    border-color: black;
 }
 
 .group-button:hover {
@@ -290,7 +301,6 @@ p.big {
     border-width: 2px;
     border-style: solid;
     height: 35%;
-    transition: width 2s;
 }
 .grouping{
     background-color: green;
