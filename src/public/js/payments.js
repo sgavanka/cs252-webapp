@@ -16,7 +16,6 @@ var addPayment = function(groupKey) {
             option2.text = username.fullName;
             fromUserInput.add(option1);
             toUserInput.add(option2);
-            console.log("username is: " + option.text);
         });
     });
     var amountInput = document.createElement("input");
@@ -75,6 +74,12 @@ var displayPayments = function(groupKey) {
             var paymentDiv = document.createElement("li");
             paymentDiv.setAttribute("id", childSnapshot.key);
             paymentDiv.appendChild(document.createTextNode(payment.fromUser + " owes " + payment.toUser + ": " + payment.amount));
+            let paymentDivButton = document.createElement("button");
+            paymentDivButton.appendChild(document.createTextNode("Clear payment"));
+            paymentDivButton.addEventListener("click", function() {
+                deletePayment(groupKey, childSnapshot.key);
+            });
+            paymentDiv.appendChild(paymentDivButton);
             groupPaymentsDiv.appendChild(paymentDiv);
         });
     });
@@ -82,7 +87,7 @@ var displayPayments = function(groupKey) {
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
 var deletePayment = function(groupKey, paymentId) {
-    databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).removeValue();
-    groupPaymentsDiv.removeChild(paymentId);
-    paymentsRef.child(paymentId).removeValue();
+    groupPaymentsDiv.removeChild(document.getElementById(paymentId));
+    //paymentsRef.child(paymentId).remove();
+    // databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
 };
