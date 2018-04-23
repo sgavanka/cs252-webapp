@@ -143,14 +143,11 @@ p.big {
 .innerDiv1 {
     color:red;
     font-size: 10pt;
-    background-color: whitesmoke;
 }
 .innerDiv2 {
   color: green;
   font-size: 10pt;
   margin-left: 3%;
-  background-color: whitesmoke;
-  
 }
 
 .group-button:hover {
