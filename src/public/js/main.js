@@ -151,7 +151,7 @@ window.onload = function() {
                 for (var i = 1; i < usersToAddToGroupList.childNodes.length; i++) {
                     // Add the ith user in the list of users to add to the group.
                     group.child('users').child(usersToAddToGroupList.childNodes[i].id).set({ fullName: usersToAddToGroupList.childNodes[i].innerText.slice(0, -1) });
-                    usersRef.child(usersToAddToGroupList.childNodes[i].id).child("groups").child(group.key).set({ groupName: groupNameInput.value, totalIncoming: "0", totalOutgoing: "0" });
+                    usersRef.child(usersToAddToGroupList.childNodes[i].id).child("groups").child(group.key).set({ groupName: groupNameInput.value, totalIncoming: 0, totalOutgoing: 0 });
                 }
                 groupDetailsWrapper.classList.add("hidden");
                 groupNameInput.value = "";
@@ -204,7 +204,7 @@ window.onload = function() {
 
             // When something in an existing group changes -- i think this would include if the name changes, if a user is added, or if a payment is made
             myGroupsRef.on("child_changed", function(snapshot) {
-                alert("group changed");
+                // alert("group changed");
             });
 
             // Sets the email and full name of this user to the values stored in the database.
@@ -259,7 +259,7 @@ window.onload = function() {
             //payments.js
             addPayment(groupKey);
         });
-
+        groupWrapper.appendChild(closeButton);
         groupWrapper.appendChild(paymentButton);
         groupDetailsWrapper.classList.add("hidden");
         groupWrapper.classList.remove("hidden");
@@ -309,16 +309,14 @@ window.onload = function() {
         innerDiv2.appendChild(document.createTextNode("You are Owed: $0"));
 
         groupsRef.child(snapshot.key).child("payments").on("child_added", function(childSnapshot) {
-            user.databaseRef.child("groups").child(snapshot.key).once("value", function(childChildSnapshot) {
-                if (childChildSnapshot.val().totalOutgoing != undefined)
-                    innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
-                if (childChildSnapshot.val().totalOutgoing != undefined)
-                    innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
+            user.databaseRef.child("groups").child(snapshot.key).on("value", function(childChildSnapshot) {
+                innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
+                innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
             });
         });
 
         groupsRef.child(snapshot.key).child("payments").on("child_removed", function(childSnapshot) {
-            user.databaseRef.child("groups").child(snapshot.key).once("value", function(childChildSnapshot) {
+            user.databaseRef.child("groups").child(snapshot.key).on("value", function(childChildSnapshot) {
                 innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
                 innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
             });
