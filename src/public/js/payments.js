@@ -39,10 +39,31 @@ var addPayment = function(groupKey) {
 };
 var displayPayments = function(groupKey) {
     var lineBreak = document.createElement("br");
+    var groupPaymentsDiv = document.createElement("div");
     groupWrapper.appendChild(lineBreak);
-    /*var paymentDiv = document.createElement("div");
-    paymentDiv.id = "list-of-payments";
-    var text = document.createTextNode("from user => amount => to user");
-    console.log("from user => amount => to user");
-    paymentDiv.appendChild(text);*/
+    /*databaseRef.child("groups").child(groupKey).child("payments").once("value", function(snapshot) {
+        groupPaymentsDiv.setAttribute("id", "group-payments");
+        snapshot.forEach(function(childSnapshot) {
+            var currKey = childSnapshot.key;
+            paymentsRef.child(currKey).on("value", function(childSnapshot) {
+                var payment = childSnapshot.val();
+                var paymentDiv = document.createElement("li");
+                paymentDiv.appendChild(document.createTextNode(payment.fromUser + " owes " + payment.toUser + ": " + payment.amount));
+                groupPaymentsDiv.appendChild(paymentDiv);
+            });
+        });
+        groupWrapper.appendChild(groupPaymentsDiv);
+    });*/
+    databaseRef.child("groups").child(groupKey).child("payments").on("child_added", function(snapshot) {
+        console.log("child added!");
+        var currKey = snapshot.key;
+        paymentsRef.child(currKey).on("value", function(childSnapshot) {
+            var payment = childSnapshot.val();
+            var paymentDiv = document.createElement("li");
+            paymentDiv.appendChild(document.createTextNode(payment.fromUser + " owes " + payment.toUser + ": " + payment.amount));
+            groupPaymentsDiv.appendChild(paymentDiv);
+        });
+    });
+    groupWrapper.appendChild(groupPaymentsDiv);
+
 };
