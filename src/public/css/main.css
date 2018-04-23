@@ -133,12 +133,24 @@ p.big {
     background-color: #DDD;
     color: black;
     padding: 10px 24px;
-    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    width: 87%;
     cursor: pointer;
     font-weight: bold;
 }
 .innerDiv1 {
-    background-color: red;
+    color:red;
+    font-size: 10pt;
+    background-color: whitesmoke;
+}
+.innerDiv2 {
+  color: green;
+  font-size: 10pt;
+  margin-left: 3%;
+  background-color: whitesmoke;
+  
 }
 
 .group-button:hover {
@@ -238,7 +250,7 @@ p.big {
     background-color: green;
 }
 #search {
-    background-color: lightgrey;
+    background-color: grey;
     height: 45px;
     width: 100%;
 }
