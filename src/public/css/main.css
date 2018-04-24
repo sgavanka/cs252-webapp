@@ -485,4 +485,6 @@ p.big {
     background-color: pink;
     border-bottom: solid 1px black;
 }
-
+.cursorFix {
+    cursor: pointer;
+}
