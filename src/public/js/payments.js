@@ -74,7 +74,7 @@ var displayPayments = function(groupKey) {
     databaseRef.child("groups").child(groupKey).child("payments").on("child_added", function(snapshot) {
         console.log("child added!");
         var currKey = snapshot.key;
-        paymentsRef.child(currKey).on("value", function(childSnapshot) {
+        paymentsRef.child(currKey).once("value", function(childSnapshot) {
             var payment = childSnapshot.val();
             var paymentDiv = document.createElement("li");
             paymentDiv.setAttribute("id", childSnapshot.key);
@@ -122,8 +122,8 @@ var deletePayment = function(groupKey, paymentId) {
                 }
             });
         });
+    }).then(function() {
+        paymentsRef.child(paymentId).remove();
+        databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
     });
-
-    paymentsRef.child(paymentId).remove();
-    databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
 };
