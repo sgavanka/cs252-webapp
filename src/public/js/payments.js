@@ -112,7 +112,7 @@ var displayPayments = function(groupKey) {
             paymentDiv.setAttribute("id", childSnapshot.key);
             paymentDiv.appendChild(document.createTextNode(payment.fromUser + " owes " + payment.toUser + ": $" + payment.amount));
             let paymentDivButton = document.createElement("button");
-            paymentDivButton.appendChild(document.createTextNode("Clear payment"));
+            paymentDivButton.appendChild(document.createTextNode("Payment recieved"));
             paymentDivButton.addEventListener("click", function() {
                 user.databaseRef.once("value", function(childChildSnapshot) {
                     if (childChildSnapshot.val().fullName == childSnapshot.val().toUser) {
