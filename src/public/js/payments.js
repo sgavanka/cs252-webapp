@@ -4,12 +4,25 @@ let singleGroupDiv;
 let infoAboutPayment = document.createElement("div");
 let thisPayment = document.createElement("div");
 
-var addPayment = function(groupKey, createPay) {
+var addPayment = function(groupKey, createPay, groupWrapper) {
     //TODO: fix selection box for fromUser
     //functionality to add a payment to a group
+    var payHead = document.createElement("div");
     console.log("button clicked!! functionality to add a payment");
     var fromUserInput = document.createElement("select");
+    var fromTxt = document.createElement("span");
+    fromTxt.appendChild(document.createTextNode("From \u2192 "));
+    var fromUser = document.createElement("div");
+    fromTxt.classList.add("payS");
+    fromUser.appendChild(fromTxt);
+    fromUser.appendChild(fromUserInput);
     var toUserInput = document.createElement("select");
+    var toTxt = document.createElement("span");
+    toTxt.appendChild(document.createTextNode("To   \u2192      "))
+    var toUser = document.createElement("div");
+    toTxt.classList.add("payT");
+    toUser.appendChild(toTxt);
+    toUser.appendChild(toUserInput);
     var option1;
     var option2;
     fromUserInput.setAttribute("id", "fromUser");
@@ -28,6 +41,11 @@ var addPayment = function(groupKey, createPay) {
         });
     });
     var amountInput = document.createElement("input");
+    var amountSpan = document.createElement("span");
+    amountSpan.appendChild(document.createTextNode("Amount \u2192"));
+    var aInput = document.createElement("div");
+    aInput.appendChild(amountSpan);
+    aInput.appendChild(amountInput);
     var descriptionInput = document.createElement("input");
     amountInput.setAttribute("id", "amount");
     amountInput.setAttribute("type", "number");
@@ -36,6 +54,7 @@ var addPayment = function(groupKey, createPay) {
     descriptionInput.setAttribute("placeholder", "Payment Description");
     var submitPaymentButton = document.createElement("button");
     submitPaymentButton.appendChild(document.createTextNode("Add payment"));
+    submitPaymentButton.classList.add("fixer");
 
     let cancelButton = document.createElement("button");
     cancelButton.appendChild(document.createTextNode("Cancel"));
@@ -105,23 +124,31 @@ var addPayment = function(groupKey, createPay) {
                 }
             });
         });
-        thisPayment.removeChild(fromUserInput);
-        thisPayment.removeChild(toUserInput);
-        thisPayment.removeChild(amountInput);
+        thisPayment.removeChild(payHead);
+        // thisPayment.removeChild(fromUserInput);
+        thisPayment.removeChild(fromUser);
+        thisPayment.removeChild(toUsert);
+        thisPayment.removeChild(aInput);
         thisPayment.removeChild(descriptionInput);
         thisPayment.removeChild(submitPaymentButton);
-        thisPayment.removeChild(cancelButton);
-        createPay.removeChild(thisPayment);
+        groupWrapper.removeChild(thisPayment);
         console.log("removed child");
         paymentButton.removeAttribute('disabled');
     });
-    thisPayment.appendChild(fromUserInput);
-    thisPayment.appendChild(toUserInput);
-    thisPayment.appendChild(amountInput);
+    thisPayment.appendChild(payHead);
+    payHead.appendChild(document.createTextNode("Create Payment"));
+    // thisPayment.appendChild(fromUserInput);
+    thisPayment.appendChild(fromUser);
+    thisPayment.appendChild(toUser);
+    thisPayment.appendChild(aInput);
     thisPayment.appendChild(descriptionInput);
     thisPayment.appendChild(submitPaymentButton);
-    thisPayment.appendChild(cancelButton);
-    createPay.appendChild(thisPayment);
+    thisPayment.classList.add("paySelect");
+    submitPaymentButton.classList.add("fixer");
+    payHead.classList.add("payHead");
+    toTxt.classList.add("payT");
+    fromTxt.classList.add("payS");
+    groupWrapper.appendChild(thisPayment);
 };
 var displayPayments = function(groupKey) {
     console.log("button created");

@@ -372,7 +372,7 @@ window.onload = function() {
         paymentButton.addEventListener("click", function() {
             //payments.js
             paymentButton.setAttribute('disabled', 'disabled');
-            addPayment(groupKey,createPay);
+            addPayment(groupKey,createPay, groupWrapper);
         });
  
         closeButton.classList.add("dropButton");

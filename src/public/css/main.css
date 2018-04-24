@@ -525,3 +525,43 @@ p.big {
     height: auto;
     text-align: center;
 }
+.paySelect {
+    position: fixed;
+    z-index: 10000;
+    top: 11%;
+    left:85.8%;
+    height: 84.5%;
+    width: 13%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #4c8abd;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+.payHead {
+    color : white;
+    background-color: #4c8abd;;
+    text-align: center;
+
+}
+payT {
+color: red;
+}
+payS {
+color : green;
+}
+#fromUser {
+    margin-left: 7%;
+
+}
+#toUser {
+    margin-left: 14%
+}
+.fixer {
+    margin-top: 2%;
+    margin-left: 35%;
+    border-radius: 5px;
+    background-color: #06619e;
+    color: white;
+}
+}
