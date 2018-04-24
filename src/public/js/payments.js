@@ -46,22 +46,45 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
     var aInput = document.createElement("div");
     aInput.appendChild(amountSpan);
     aInput.appendChild(amountInput);
+    var descriptionInput = document.createElement("input");
     amountInput.setAttribute("id", "amount");
     amountInput.setAttribute("type", "number");
+    amountInput.setAttribute("placeholder", "Payment Amount");
+    descriptionInput.setAttribute("id", "description");
+    descriptionInput.setAttribute("placeholder", "Payment Description");
     var submitPaymentButton = document.createElement("button");
     submitPaymentButton.appendChild(document.createTextNode("Add payment"));
     submitPaymentButton.classList.add("fixer");
+
+    let cancelButton = document.createElement("button");
+    cancelButton.appendChild(document.createTextNode("Cancel"));
+    cancelButton.addEventListener("click", function() {
+        thisPayment.removeChild(fromUserInput);
+        thisPayment.removeChild(toUserInput);
+        thisPayment.removeChild(amountInput);
+        thisPayment.removeChild(descriptionInput);
+        thisPayment.removeChild(submitPaymentButton);
+        thisPayment.removeChild(cancelButton);
+        paymentButton.removeAttribute('disabled');
+    });
+
     //pushes to the database
     submitPaymentButton.addEventListener("click", function() {
         var fUser = document.getElementById("fromUser").value;
         var tUser = document.getElementById("toUser").value;
+        if (fUser == tUser) {
+            alert("You can't send money from and to the same person!");
+            return;
+        }
         var amt = document.getElementById("amount").value;
+        var description = document.getElementById("description").value;
         console.log(fUser + " " + tUser + " " + amt);
         var databasePayment = databaseRef.child("groups").child(groupKey).child("payments");
         var payment = {
             fromUser: fUser,
             toUser: tUser,
-            amount: amt
+            amount: amt,
+            description: description
         };
         //main payment is stored in the payments node, only amount is stored in the group. 
         //Key of node in payments and the one in group are the same for ease of access
@@ -106,6 +129,7 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
         thisPayment.removeChild(fromUser);
         thisPayment.removeChild(toUsert);
         thisPayment.removeChild(aInput);
+        thisPayment.removeChild(descriptionInput);
         thisPayment.removeChild(submitPaymentButton);
         groupWrapper.removeChild(thisPayment);
         console.log("removed child");
@@ -117,6 +141,7 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
     thisPayment.appendChild(fromUser);
     thisPayment.appendChild(toUser);
     thisPayment.appendChild(aInput);
+    thisPayment.appendChild(descriptionInput);
     thisPayment.appendChild(submitPaymentButton);
     thisPayment.classList.add("paySelect");
     submitPaymentButton.classList.add("fixer");
@@ -138,10 +163,18 @@ var displayPayments = function(groupKey) {
         var currKey = snapshot.key;
         paymentsRef.child(currKey).once("value", function(childSnapshot) {
             var payment = childSnapshot.val();
-            var paymentDiv = document.createElement("li");
+            var paymentDiv = document.createElement("li")
+            var preElement = document.createElement("pre");
+            if (payment.description != "") {
+                let bold = document.createElement("b");
+                bold.appendChild(document.createTextNode(payment.description));
+                preElement.appendChild(bold);
+                preElement.appendChild(document.createElement("br"));
+            }
+            preElement.appendChild(document.createTextNode(payment.fromUser + " owes " + payment.toUser + ": $" + payment.amount));
             paymentDiv.setAttribute("id", childSnapshot.key);
             paymentDiv.classList.add("divvy");
-            paymentDiv.appendChild(document.createTextNode(payment.fromUser + " owes " + payment.toUser + ": $" + payment.amount));
+            paymentDiv.appendChild(preElement);
             let paymentDivButton = document.createElement("button");
             paymentDivButton.classList.add("conf-button");
             paymentDivButton.appendChild(document.createTextNode("Payment recieved"));
@@ -153,10 +186,10 @@ var displayPayments = function(groupKey) {
                 });
             });
             user.databaseRef.once("value", function(childChildSnapshot) {
-            if (childChildSnapshot.val().fullName == childSnapshot.val().toUser) {
-            paymentDiv.appendChild(paymentDivButton);
-            }
-        });
+                if (childChildSnapshot.val().fullName == childSnapshot.val().toUser) {
+                    paymentDiv.appendChild(paymentDivButton);
+                }
+            });
             groupPaymentsDiv.appendChild(paymentDiv);
         });
     });

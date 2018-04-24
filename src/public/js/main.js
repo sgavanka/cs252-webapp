@@ -350,6 +350,9 @@ window.onload = function() {
 
         groupsRef.child(groupKey).child("users").on("child_removed", function(childSnapshot) {
             userList.removeChild(document.getElementById(childSnapshot.key));
+            groupsRef.child(groupKey).child("payments").once("value", function(childChildSnapshot) {
+                deletePayment(groupKey, Object.keys(childChildSnapshot.val())[0]);
+            });
         });
 
         groupWrapper.appendChild(addUser);
