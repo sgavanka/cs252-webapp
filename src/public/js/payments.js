@@ -124,7 +124,7 @@ var displayPayments = function(groupKey) {
             if (payment.description == undefined) {
                 payment.description = "N/A";
             }
-            preElement.appendChild(document.createTextNode("Description: " + payment.description + " " + payment.fromUser + " owes " + payment.toUser + ": $" + payment.amount));
+            preElement.appendChild(document.createTextNode(payment.description + ": " + payment.fromUser + " owes " + payment.toUser + ": $" + payment.amount));
             paymentDiv.setAttribute("id", childSnapshot.key);
             paymentDiv.classList.add("divvy");
             paymentDiv.appendChild(preElement);
