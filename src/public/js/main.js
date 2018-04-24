@@ -62,6 +62,10 @@ window.onload = function() {
         searchForGroup();
     });
     paymentsWrapper = document.getElementById("payments-wrapper");
+    let textN = document.createElement("div");
+    textN.appendChild(document.createTextNode("Payment Summary"));
+    textN.id = "paymentTitle";
+    paymentsWrapper.appendChild(textN);
     paymentsScreenButton = document.getElementById("payments-screen-button");
     paymentsScreenButton.addEventListener("click", function(event) {
         event.preventDefault();
