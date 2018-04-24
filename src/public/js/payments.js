@@ -96,7 +96,6 @@ var displayPayments = function(groupKey) {
     groupWrapper.appendChild(lineBreak);
     //Iterates through the database when a child is added and displays list of payments
     databaseRef.child("groups").child(groupKey).child("payments").on("child_added", function(snapshot) {
-        console.log("child added!");
         var currKey = snapshot.key;
         paymentsRef.child(currKey).once("value", function(childSnapshot) {
             var payment = childSnapshot.val();
@@ -115,7 +114,6 @@ var displayPayments = function(groupKey) {
 
     databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
         groupPaymentsDiv.removeChild(document.getElementById(snapshot.key));
-        //TODO decrement totalOutgoing and totalIncoming for both users involved (group ref and user ref)
     });
 
     groupWrapper.appendChild(groupPaymentsDiv);
