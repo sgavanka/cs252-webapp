@@ -243,10 +243,20 @@ window.onload = function() {
             return;
         }
         console.log("Would open group with id of " + groupKey);
-        groupWrapper.appendChild(document.createTextNode(groupName));
-        if (deleteButton) {
-            groupWrapper.appendChild(deleteButton);
-        }
+        // groupWrapper.appendChild(document.createTextNode(groupName));
+        let topName = document.createElement("div");
+        topName.id = "topName";
+        topName.appendChild(document.createTextNode(groupName));
+        let drop = document.createElement("div");
+        let dropBtn = document.createElement("div");
+        let dropDown = document.createElement("div");
+        drop.classList.add("dropdown");
+        dropBtn.classList.add("dropbtn");
+        dropDown.classList.add("dropdown-content");
+        drop.appendChild(dropBtn);
+        dropBtn.appendChild(dropDown);
+        topName.appendChild(drop);
+
         let closeButton = document.createElement("button");
         closeButton.appendChild(document.createTextNode("Close"));
         closeButton.addEventListener("click", function() {
@@ -259,8 +269,15 @@ window.onload = function() {
             //payments.js
             addPayment(groupKey);
         });
-
+        closeButton.classList.add("dropButton");
+        deleteButton.classList.add("dropButton")
+        groupWrapper.appendChild(topName);
         groupWrapper.appendChild(paymentButton);
+        // groupWrapper.appendChild(closeButton);
+        dropDown.appendChild(closeButton);
+         if (deleteButton) {
+            dropDown.appendChild(deleteButton);
+        }
         groupDetailsWrapper.classList.add("hidden");
         groupWrapper.classList.remove("hidden");
         //functionality in payments.js
