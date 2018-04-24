@@ -47,6 +47,11 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
     aInput.appendChild(amountSpan);
     aInput.appendChild(amountInput);
     var descriptionInput = document.createElement("input");
+    var descriptionTxt = document.createElement("span");
+    descriptionTxt.appendChild(document.createTextNode("Desc \u2192"))
+    var desc = document.createElement("div");
+    desc.appendChild(descriptionTxt);
+    desc.appendChild(descriptionInput);
     amountInput.setAttribute("id", "amount");
     amountInput.setAttribute("type", "number");
     amountInput.setAttribute("min", 0);
@@ -134,7 +139,7 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
         thisPayment.removeChild(fromUser);
         thisPayment.removeChild(toUsert);
         thisPayment.removeChild(aInput);
-        thisPayment.removeChild(descriptionInput);
+        thisPayment.removeChild(desc);
         thisPayment.removeChild(submitPaymentButton);
         groupWrapper.removeChild(thisPayment);
         console.log("removed child");
@@ -146,13 +151,14 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
     thisPayment.appendChild(fromUser);
     thisPayment.appendChild(toUser);
     thisPayment.appendChild(aInput);
-    thisPayment.appendChild(descriptionInput);
+    thisPayment.appendChild(desc);
     thisPayment.appendChild(submitPaymentButton);
     thisPayment.classList.add("paySelect");
     submitPaymentButton.classList.add("fixer");
     payHead.classList.add("payHead");
     toTxt.classList.add("payT");
     fromTxt.classList.add("payS");
+    descriptionTxt.add("payC");
     groupWrapper.appendChild(thisPayment);
 };
 var displayPayments = function(groupKey) {

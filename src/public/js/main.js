@@ -25,6 +25,7 @@ let paymentButton;
 let paymentsScreenButton;
 let paymentsWrapper;
 let addingUser = false;
+let addUserDiv;
 
 window.onload = function() {
     addUserToGroupButton = document.getElementById("add-user-to-group-button");
