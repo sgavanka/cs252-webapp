@@ -445,11 +445,13 @@ window.onload = function() {
                 if (child2.val().fromUser == user.fullName) {
                     let totalPaymentDiv = document.createElement("div");
                     totalPaymentDiv.classList.add("total-payment-div");
-                    paymentsWrapper.appendChild(document.createTextNode("You owe " + child2.val().toUser + " $" + child2.val().amount));
-                    paymentsWrapper.appendChild(document.createElement("br"));
+                    totalPaymentDiv.appendChild(document.createTextNode("You owe " + child2.val().toUser + " $" + child2.val().amount));
+                    paymentsWrapper.appendChild(totalPaymentDiv);
                 } else {
-                    paymentsWrapper.appendChild(document.createTextNode(child2.val().fromUser + " owes you $" + child2.val().amount));
-                    paymentsWrapper.appendChild(document.createElement("br"));
+                    let totalPaymentDiv = document.createElement("div");
+                    totalPaymentDiv.classList.add("total-payment-div");
+                    totalPaymentDiv.appendChild(document.createTextNode(child2.val().fromUser + " owes you $" + child2.val().amount));
+                    paymentsWrapper.appendChild(totalPaymentDiv);
                 }
             });
             user.databaseRef.child("groups").child(snapshot.key).on("value", function(childChildSnapshot) {

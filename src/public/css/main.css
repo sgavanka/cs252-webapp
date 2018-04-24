@@ -480,9 +480,9 @@ p.big {
 }
 
 .group-name-div {
-
+    background-color: red;
 }
 
 .total-payment-div {
-
+    background-color: green;
 }
