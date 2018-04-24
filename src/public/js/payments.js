@@ -121,7 +121,7 @@ var displayPayments = function(groupKey) {
             groupPaymentsDiv.appendChild(paymentDiv);
         });
     });
-   databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
+    databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
         groupPaymentsDiv.removeChild(document.getElementById(snapshot.key));
         //TODO decrement totalOutgoing and totalIncoming for both users involved (group ref and user ref)
     });
@@ -155,7 +155,7 @@ var displayPayments = function(groupKey) {
         });
     });
     groupWrapper.appendChild(document.createElement("br"));
-    groupWrapper.appendChild(userPaymentsByGroupDiv);
+    //groupWrapper.appendChild(userPaymentsByGroupDiv);
     return groupPaymentsDiv;
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
