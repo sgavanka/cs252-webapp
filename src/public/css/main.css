@@ -347,3 +347,20 @@ p.big {
 #cancel-create-group-button {
     background-color: red;
 }
+
+.user-list {
+    text-align: center;
+    float: right;
+    width: 200px;
+    margin-right: 10px;
+}
+
+.user-delete-button {
+    float: right;
+    margin-right: 1px;
+}
+
+.user-list-item {
+    background-color: pink;
+    border-bottom: solid 1px black;
+}
