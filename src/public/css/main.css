@@ -406,8 +406,12 @@ p.big {
     height: 30px;
     position: relative;
     right: 10%; 
-
 }
+
+.dropButton:hover {
+    background-color: #2681ae;
+}
+
 .addPayment {
     margin-top: 1%;
     margin-left: 1%; 
@@ -509,6 +513,11 @@ p.big {
     color: white;
     background-color: #06619e;
 }
+
+.conf-button:hover {
+    background-color: #2681ae;
+}
+
 .divvy {
     border-bottom: groove;
     border-color: black;
