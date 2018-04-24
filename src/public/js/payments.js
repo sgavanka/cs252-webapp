@@ -28,8 +28,10 @@ var addPayment = function(groupKey, createPay) {
         });
     });
     var amountInput = document.createElement("input");
+    var descriptionInput = document.createElement("input");
     amountInput.setAttribute("id", "amount");
     amountInput.setAttribute("type", "number");
+    descriptionInput.setAttribute("id", "description");
     var submitPaymentButton = document.createElement("button");
     submitPaymentButton.appendChild(document.createTextNode("Add payment"));
     //pushes to the database
@@ -41,12 +43,14 @@ var addPayment = function(groupKey, createPay) {
             return;
         }
         var amt = document.getElementById("amount").value;
+        var description = document.getElementById("description").value;
         console.log(fUser + " " + tUser + " " + amt);
         var databasePayment = databaseRef.child("groups").child(groupKey).child("payments");
         var payment = {
             fromUser: fUser,
             toUser: tUser,
-            amount: amt
+            amount: amt,
+            description: description
         };
         //main payment is stored in the payments node, only amount is stored in the group. 
         //Key of node in payments and the one in group are the same for ease of access
@@ -89,6 +93,7 @@ var addPayment = function(groupKey, createPay) {
         thisPayment.removeChild(fromUserInput);
         thisPayment.removeChild(toUserInput);
         thisPayment.removeChild(amountInput);
+        thisPayment.removeChild(descriptionInput);
         thisPayment.removeChild(submitPaymentButton);
         createPay.removeChild(thisPayment);
         console.log("removed child");
@@ -97,6 +102,7 @@ var addPayment = function(groupKey, createPay) {
     thisPayment.appendChild(fromUserInput);
     thisPayment.appendChild(toUserInput);
     thisPayment.appendChild(amountInput);
+    thisPayment.appendChild(descriptionInput);
     thisPayment.appendChild(submitPaymentButton);
     createPay.appendChild(thisPayment);
 };
@@ -113,10 +119,15 @@ var displayPayments = function(groupKey) {
         var currKey = snapshot.key;
         paymentsRef.child(currKey).once("value", function(childSnapshot) {
             var payment = childSnapshot.val();
-            var paymentDiv = document.createElement("li");
+            var paymentDiv = document.createElement("li")
+            var preElement = document.createElement("pre");
+            if (payment.description == undefined) {
+                payment.description = "N/A";
+            }
+            preElement.appendChild(document.createTextNode("Description: " + payment.description + " " + payment.fromUser + " owes " + payment.toUser + ": $" + payment.amount));
             paymentDiv.setAttribute("id", childSnapshot.key);
             paymentDiv.classList.add("divvy");
-            paymentDiv.appendChild(document.createTextNode(payment.fromUser + " owes " + payment.toUser + ": $" + payment.amount));
+            paymentDiv.appendChild(preElement);
             let paymentDivButton = document.createElement("button");
             paymentDivButton.classList.add("conf-button");
             paymentDivButton.appendChild(document.createTextNode("Payment recieved"));
