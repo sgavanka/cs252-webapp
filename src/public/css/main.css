@@ -26,6 +26,7 @@ body {
     padding: 30px;
     width: 200px;
     height: 150px;
+    border: black 1px solid;
 }
 
 p.big {
@@ -35,6 +36,7 @@ p.big {
 .container {
     width: 300px;
     margin: auto;
+    
 }
 
 #bod {
@@ -483,4 +485,6 @@ p.big {
     background-color: pink;
     border-bottom: solid 1px black;
 }
-
+.cursorFix {
+    cursor: pointer;
+}
