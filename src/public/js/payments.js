@@ -39,14 +39,21 @@ var addPayment = function(groupKey) {
         //Key of node in payments and the one in group are the same for ease of access
         var lastPushed = paymentsRef.push(payment);
         databasePayment.child(lastPushed.key).set({ amount: amt });
+        //User payments div to be used to show a users payments in GUI
         databaseRef.child("users").once("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 if (childSnapshot.val().fullName == fUser) {
+                    databaseRef.child("users").child(childSnapshot.key).child("payments").child(lastPushed.key).set({
+                        groupKey: groupKey,
+                    });
                     var prevTotal = childSnapshot.val().totalOutgoing;
                     var newTotal = +prevTotal + +amt;
                     console.log("new total is: " + newTotal);
                     childSnapshot.getRef().update({ totalOutgoing: newTotal });
                 } else if (childSnapshot.val().fullName == tUser) {
+                    databaseRef.child("users").child(childSnapshot.key).child("payments").child(lastPushed.key).set({
+                        groupKey: groupKey,
+                    });
                     var prevTotal = childSnapshot.val().totalIncoming;
                     var newTotal = +prevTotal + +amt;
                     console.log("new total is: " + newTotal);
@@ -65,7 +72,6 @@ var displayPayments = function(groupKey) {
     groupPaymentsDiv = document.createElement("ul");
     groupWrapper.appendChild(lineBreak);
     //Iterates through the database when a child is added and displays list of payments
-    //TODO: child_removed
     databaseRef.child("groups").child(groupKey).child("payments").on("child_added", function(snapshot) {
         console.log("child added!");
         var currKey = snapshot.key;
@@ -84,6 +90,9 @@ var displayPayments = function(groupKey) {
         });
     });
     groupWrapper.appendChild(groupPaymentsDiv);
+    databaseRef.child("users").child(user.key).child("payments").on("child_added", function(snapshot) {
+
+    });
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
 var deletePayment = function(groupKey, paymentId) {
