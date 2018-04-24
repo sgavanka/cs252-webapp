@@ -20,7 +20,10 @@ let usersToAddToGroupList;
 let userToAddToGroupInput;
 let searchButton;
 let searchInput;
+var userPaymentsByGroupDiv; //SANCHIT: use this div for list of payments by a user
 let paymentButton;
+let paymentsScreenButton;
+let paymentsWrapper;
 let addingUser = false;
 
 window.onload = function() {
@@ -58,6 +61,13 @@ window.onload = function() {
     searchButton.addEventListener("click", function() {
         searchForGroup();
     });
+    paymentsWrapper = document.getElementById("payments-wrapper");
+    paymentsScreenButton = document.getElementById("payments-screen-button");
+    paymentsScreenButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        closeGroup(currentGroupKey);
+        paymentsWrapper.classList.remove("hidden");
+    })
 
     var searchForGroup = function() {
         user.databaseRef.child("groups").orderByChild("groupName").equalTo(searchInput.value).once('value', function(snapshot) {
@@ -121,6 +131,7 @@ window.onload = function() {
             closeGroup(currentGroupKey);
         }
         groupDetailsWrapper.classList.remove("hidden");
+        paymentsWrapper.classList.add("hidden");
         while (usersToAddToGroupList.firstChild) {
             usersToAddToGroupList.removeChild(usersToAddToGroupList.firstChild);
         }
@@ -244,6 +255,7 @@ window.onload = function() {
         } else if (currentGroupKey && currentGroupKey == groupKey) {
             return;
         }
+        paymentsWrapper.classList.add("hidden");
         console.log("Would open group with id of " + groupKey);
 
         // groupWrapper.appendChild(document.createTextNode(groupName));

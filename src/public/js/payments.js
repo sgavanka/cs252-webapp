@@ -1,5 +1,4 @@
 let groupPaymentsDiv;
-let userPaymentsByGroupDiv; //SANCHIT: use this div for list of payments by a user
 let userDiv;
 let singleGroupDiv;
 let infoAboutPayment = document.createElement("div");
@@ -158,7 +157,7 @@ var displayPayments = function(groupKey) {
         });
     });
     groupWrapper.appendChild(document.createElement("br"));
-    //groupWrapper.appendChild(userPaymentsByGroupDiv);
+    paymentsWrapper.appendChild(userPaymentsByGroupDiv);
     return groupPaymentsDiv;
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
