@@ -41,16 +41,16 @@ window.onload = function() {
     });
 
     register = function() {
-    firebase.auth().createUserWithEmailAndPassword(registerEmail.value, registerPassword.value).then(function() {
-        if (firebase.auth().currentUser) {
-            // Push the newly created user's name and email to the database under a node with the same key as the user's uid.
-            databaseRef.child("users").child(firebase.auth().currentUser.uid).set({ email: registerEmail.value, fullName: registerName.value, totalOutgoing: '0', totalIncoming: '0' });
-            window.location.assign("main.html");
-        }
-    }).catch(function(error) {
-        if (error != null) {
-            alert(error.message);
-        }
-    });
-}
+        firebase.auth().createUserWithEmailAndPassword(registerEmail.value, registerPassword.value).then(function() {
+            if (firebase.auth().currentUser) {
+                // Push the newly created user's name and email to the database under a node with the same key as the user's uid.
+                databaseRef.child("users").child(firebase.auth().currentUser.uid).set({ email: registerEmail.value, fullName: registerName.value, totalOutgoing: 0, totalIncoming: 0, payments: false });
+                window.location.assign("main.html");
+            }
+        }).catch(function(error) {
+            if (error != null) {
+                alert(error.message);
+            }
+        });
+    }
 }
