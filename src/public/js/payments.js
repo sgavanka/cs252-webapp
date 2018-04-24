@@ -45,7 +45,13 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
     var aInput = document.createElement("div");
     aInput.appendChild(amountSpan);
     aInput.appendChild(amountInput);
+    var descSpan = document.createElement("span");
+    descSpan.appendChild(document.createTextNode("Desc. \u2192"));
     var descriptionInput = document.createElement("input");
+    var dInput = document.createElement("div");
+    dInput.appendChild(descSpan);
+    dInput.appendChild(descriptionInput);
+
     amountInput.setAttribute("id", "amount");
     amountInput.setAttribute("type", "number");
     amountInput.setAttribute("min", 0);
@@ -63,7 +69,7 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
         thisPayment.removeChild(fromUser);
         thisPayment.removeChild(toUser);
         thisPayment.removeChild(aInput);
-        thisPayment.removeChild(descriptionInput);
+        thisPayment.removeChild(dInput);
         thisPayment.removeChild(submitPaymentButton);
         thisPayment.removeChild(cancelButton);
         groupWrapper.removeChild(thisPayment);
@@ -134,7 +140,7 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
         thisPayment.removeChild(fromUser);
         thisPayment.removeChild(toUser);
         thisPayment.removeChild(aInput);
-        thisPayment.removeChild(descriptionInput);
+        thisPayment.removeChild(dInput);
         thisPayment.removeChild(submitPaymentButton);
         thisPayment.removeChild(cancelButton);
         groupWrapper.removeChild(thisPayment);
@@ -147,7 +153,7 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
     thisPayment.appendChild(fromUser);
     thisPayment.appendChild(toUser);
     thisPayment.appendChild(aInput);
-    thisPayment.appendChild(descriptionInput);
+    thisPayment.appendChild(dInput);
     thisPayment.appendChild(submitPaymentButton);
     thisPayment.appendChild(cancelButton);
     thisPayment.classList.add("paySelect");
