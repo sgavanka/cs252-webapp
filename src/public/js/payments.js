@@ -36,6 +36,10 @@ var addPayment = function(groupKey, createPay) {
     submitPaymentButton.addEventListener("click", function() {
         var fUser = document.getElementById("fromUser").value;
         var tUser = document.getElementById("toUser").value;
+        if (fUser == tUser) {
+            alert("You can't send money from and to the same person!");
+            return;
+        }
         var amt = document.getElementById("amount").value;
         console.log(fUser + " " + tUser + " " + amt);
         var databasePayment = databaseRef.child("groups").child(groupKey).child("payments");
@@ -124,10 +128,10 @@ var displayPayments = function(groupKey) {
                 });
             });
             user.databaseRef.once("value", function(childChildSnapshot) {
-            if (childChildSnapshot.val().fullName == childSnapshot.val().toUser) {
-            paymentDiv.appendChild(paymentDivButton);
-            }
-        });
+                if (childChildSnapshot.val().fullName == childSnapshot.val().toUser) {
+                    paymentDiv.appendChild(paymentDivButton);
+                }
+            });
             groupPaymentsDiv.appendChild(paymentDiv);
         });
     });
