@@ -71,7 +71,6 @@ var displayPayments = function(groupKey) {
     groupPaymentsDiv = document.createElement("div");
     groupWrapper.appendChild(lineBreak);
     //Iterates through the database when a child is added and displays list of payments
-    //TODO: child_removed
     databaseRef.child("groups").child(groupKey).child("payments").on("child_added", function(snapshot) {
         console.log("child added!");
         var currKey = snapshot.key;
@@ -89,11 +88,16 @@ var displayPayments = function(groupKey) {
             groupPaymentsDiv.appendChild(paymentDiv);
         });
     });
+
+    databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
+        groupPaymentsDiv.removeChild(document.getElementById(snapshot.key));
+        //TODO decrement totalOutgoing and totalIncoming for both users involved (group ref and user ref)
+    });
+
     groupWrapper.appendChild(groupPaymentsDiv);
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
 var deletePayment = function(groupKey, paymentId) {
-    groupPaymentsDiv.removeChild(document.getElementById(paymentId));
-    //paymentsRef.child(paymentId).remove();
-    // databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
+    paymentsRef.child(paymentId).remove();
+    databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
 };
