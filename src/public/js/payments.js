@@ -50,6 +50,9 @@ var addPayment = function(groupKey) {
                     var newTotal = +prevTotal + +amt;
                     console.log("new total is: " + newTotal);
                     childSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    });
                 } else if (childSnapshot.val().fullName == tUser) {
                     databaseRef.child("users").child(childSnapshot.key).child("payments").child(lastPushed.key).set({
                         groupKey: groupKey,
@@ -58,6 +61,9 @@ var addPayment = function(groupKey) {
                     var newTotal = +prevTotal + +amt;
                     console.log("new total is: " + newTotal);
                     childSnapshot.getRef().update({ totalIncoming: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalIncoming: newTotal });
+                    });
                 }
             });
         });
@@ -75,7 +81,7 @@ var displayPayments = function(groupKey) {
     databaseRef.child("groups").child(groupKey).child("payments").on("child_added", function(snapshot) {
         console.log("child added!");
         var currKey = snapshot.key;
-        paymentsRef.child(currKey).on("value", function(childSnapshot) {
+        paymentsRef.child(currKey).once("value", function(childSnapshot) {
             var payment = childSnapshot.val();
             var paymentDiv = document.createElement("li");
             paymentDiv.setAttribute("id", childSnapshot.key);
@@ -89,6 +95,12 @@ var displayPayments = function(groupKey) {
             groupPaymentsDiv.appendChild(paymentDiv);
         });
     });
+
+    databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
+        groupPaymentsDiv.removeChild(document.getElementById(snapshot.key));
+        //TODO decrement totalOutgoing and totalIncoming for both users involved (group ref and user ref)
+    });
+
     groupWrapper.appendChild(groupPaymentsDiv);
     databaseRef.child("users").child(user.key).child("payments").on("child_added", function(snapshot) {
 
@@ -96,7 +108,32 @@ var displayPayments = function(groupKey) {
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
 var deletePayment = function(groupKey, paymentId) {
-    groupPaymentsDiv.removeChild(document.getElementById(paymentId));
-    //paymentsRef.child(paymentId).remove();
-    // databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
+
+    paymentsRef.child(paymentId).once("value", function(snapshot2) {
+        let amt = snapshot2.val().amount;
+        let fUser = snapshot2.val().fromUser;
+        let tUser = snapshot2.val().toUser;
+        databaseRef.child("users").once("value", function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                if (childSnapshot.val().fullName == fUser) {
+                    var prevTotal = childSnapshot.val().totalOutgoing;
+                    var newTotal = +prevTotal - +amt;
+                    childSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    });
+                } else if (childSnapshot.val().fullName == tUser) {
+                    var prevTotal = childSnapshot.val().totalIncoming;
+                    var newTotal = +prevTotal - +amt;
+                    childSnapshot.getRef().update({ totalIncoming: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalIncoming: newTotal });
+                    });
+                }
+            });
+        });
+    }).then(function() {
+        paymentsRef.child(paymentId).remove();
+        databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
+    });
 };
