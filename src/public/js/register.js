@@ -41,6 +41,10 @@ window.onload = function() {
     });
 
     register = function() {
+        if (registerPassword.value != registerConfirmPassword.value) {
+            alert("Passwords do not match");
+            return;
+        }
         firebase.auth().createUserWithEmailAndPassword(registerEmail.value, registerPassword.value).then(function() {
             if (firebase.auth().currentUser) {
                 // Push the newly created user's name and email to the database under a node with the same key as the user's uid.
