@@ -49,6 +49,7 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
     var descriptionInput = document.createElement("input");
     amountInput.setAttribute("id", "amount");
     amountInput.setAttribute("type", "number");
+    amountInput.setAttribute("min", 0);
     amountInput.setAttribute("placeholder", "Payment Amount");
     descriptionInput.setAttribute("id", "description");
     descriptionInput.setAttribute("placeholder", "Payment Description");
@@ -72,11 +73,15 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
     submitPaymentButton.addEventListener("click", function() {
         var fUser = document.getElementById("fromUser").value;
         var tUser = document.getElementById("toUser").value;
+        var amt = document.getElementById("amount").value;
         if (fUser == tUser) {
             alert("You can't send money from and to the same person!");
             return;
         }
-        var amt = document.getElementById("amount").value;
+        if ((amt == "") || (amt < 0)) {
+            alert("Payment amount cannot be blank/negative");
+            return;
+        }
         var description = document.getElementById("description").value;
         console.log(fUser + " " + tUser + " " + amt);
         var databasePayment = databaseRef.child("groups").child(groupKey).child("payments");
