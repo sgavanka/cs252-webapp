@@ -9,7 +9,7 @@ ul {
   list-style: none;
   overflow:visible; 
   overflow-y:scroll;
-  height: 700px;
+  height: 779px;
 }
 
 .hidden {
@@ -468,6 +468,6 @@ p.big {
 }
 
 .user-list-item {
-    background-color: pink;
+    background-color: #dae8ec;
     border-bottom: solid 1px black;
 }
