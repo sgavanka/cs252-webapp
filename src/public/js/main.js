@@ -65,6 +65,7 @@ window.onload = function() {
             if (snapshot.val()) {
                 let foundGroup = document.getElementById(Object.keys(snapshot.val())[0]);
                 foundGroup.click();
+                searchInput.value = "";
             }
         });
     }
@@ -233,7 +234,7 @@ window.onload = function() {
         } else {
             // If the user logged out, set the user object to null.
             user = null;
-            // window.location.assign("index.html");
+            window.location.assign("index.html");
         }
     });
 
