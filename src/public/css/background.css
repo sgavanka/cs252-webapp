@@ -1,4 +1,5 @@
 body {
-    /* background-image: url("geometric_wallpaper.jpg"); */
-    background-color: whitesmoke;
+    background-image: url("cool.gif");
+    background-size: 1080px 600px;
+    height: 100%;
 }
