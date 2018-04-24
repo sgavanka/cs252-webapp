@@ -9,7 +9,7 @@ ul {
   list-style: none;
   overflow:visible; 
   overflow-y:scroll;
-  height: 70px;
+  height: 700px;
 }
 
 .hidden {

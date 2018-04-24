@@ -85,7 +85,7 @@ var addPayment = function(groupKey, createPay) {
         thisPayment.removeChild(toUserInput);
         thisPayment.removeChild(amountInput);
         thisPayment.removeChild(submitPaymentButton);
-        groupWrapper.removeChild(thisPayment);
+        createPay.removeChild(thisPayment);
         console.log("removed child");
         paymentButton.removeAttribute('disabled');
     });
@@ -114,8 +114,11 @@ var displayPayments = function(groupKey) {
             let paymentDivButton = document.createElement("button");
             paymentDivButton.appendChild(document.createTextNode("Clear payment"));
             paymentDivButton.addEventListener("click", function() {
-                if (user.databaseRef.val().fullName == childSnapshot.val().toUser)
-                    deletePayment(groupKey, childSnapshot.key);
+                user.databaseRef.once("value", function(childChildSnapshot) {
+                    if (childChildSnapshot.val().fullName == childSnapshot.val().toUser) {
+                        deletePayment(groupKey, childSnapshot.key);
+                    }
+                });
             });
             paymentDiv.appendChild(paymentDivButton);
             groupPaymentsDiv.appendChild(paymentDiv);
