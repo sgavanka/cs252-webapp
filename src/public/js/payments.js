@@ -120,15 +120,9 @@ var displayPayments = function(groupKey) {
         groupPaymentsDiv.removeChild(document.getElementById(snapshot.key));
     });
     return groupPaymentsDiv;
-
-
-   
-
-
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
 var deletePayment = function(groupKey, paymentId) {
-
     paymentsRef.child(paymentId).once("value", function(snapshot2) {
         let amt = snapshot2.val().amount;
         let fUser = snapshot2.val().fromUser;

@@ -213,8 +213,8 @@ window.onload = function() {
             user.databaseRef.on('value', function(snapshot) {
                 user.email = snapshot.val().email;
                 user.fullName = snapshot.val().fullName;
-                totalOutgoingSpan.innerHTML = snapshot.val().totalOutgoing;
-                totalIncomingSpan.innerHTML = snapshot.val().totalIncoming;
+                // totalOutgoingSpan.innerHTML = snapshot.val().totalOutgoing;
+                // totalIncomingSpan.innerHTML = snapshot.val().totalIncoming;
 
                 // Setup all of the users groups stored in the database and store that data locally
                 user.groups = new Array();
@@ -330,9 +330,6 @@ window.onload = function() {
         groupWrapper.appendChild(addUser);
         groupWrapper.appendChild(userList);
 
-        if (deleteButton) {
-            groupWrapper.appendChild(deleteButton);
-        }
         let closeButton = document.createElement("button");
         closeButton.appendChild(document.createTextNode("Close"));
         closeButton.addEventListener("click", function() {
@@ -349,15 +346,14 @@ window.onload = function() {
         });
  
         closeButton.classList.add("dropButton");
-        deleteButton.classList.add("dropButton")
         groupWrapper.appendChild(topName);
         createPay.appendChild(paymentName);
         createPay.appendChild(paymentButton);
         groupWrapper.appendChild(createPay);
-        // groupWrapper.appendChild(closeButton);
         dropDown.appendChild(closeButton);
          if (deleteButton) {
             dropDown.appendChild(deleteButton);
+            deleteButton.classList.add("dropButton")
         }
 
         groupDetailsWrapper.classList.add("hidden");
