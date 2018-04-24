@@ -60,8 +60,9 @@ var addPayment = function(groupKey, createPay) {
                     console.log("new total is: " + newTotal);
                     childSnapshot.getRef().update({ totalOutgoing: newTotal });
                     childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        let newTot = +childChildSnapshot.val().totalOutgoing + +amt;
                         childChildSnapshot.getRef().update({
-                            totalOutgoing: newTotal
+                            totalOutgoing: newTot
                         });
                     });
                 } else if (childSnapshot.val().fullName == tUser) {
@@ -73,8 +74,9 @@ var addPayment = function(groupKey, createPay) {
                     console.log("new total is: " + newTotal);
                     childSnapshot.getRef().update({ totalIncoming: newTotal });
                     childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        let newTot = +childChildSnapshot.val().totalIncoming + +amt;
                         childChildSnapshot.getRef().update({
-                            totalIncoming: newTotal
+                            totalIncoming: newTot
                         });
                     });
                 }
@@ -173,7 +175,8 @@ var deletePayment = function(groupKey, paymentId) {
                     var newTotal = +prevTotal - +amt;
                     childSnapshot.getRef().update({ totalOutgoing: newTotal });
                     childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
-                        childChildSnapshot.getRef().update({ totalOutgoing: newTotal });
+                        let newTot = +childChildSnapshot.val().totalOutgoing - +amt;
+                        childChildSnapshot.getRef().update({ totalOutgoing: newTot });
                     });
                 } else if (childSnapshot.val().fullName == tUser) {
                     databaseRef.child("users").child(childSnapshot.key).child("payments").child(paymentId).remove();
@@ -181,7 +184,8 @@ var deletePayment = function(groupKey, paymentId) {
                     var newTotal = +prevTotal - +amt;
                     childSnapshot.getRef().update({ totalIncoming: newTotal });
                     childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
-                        childChildSnapshot.getRef().update({ totalIncoming: newTotal });
+                        let newTot = +childChildSnapshot.val().totalIncoming - +amt;
+                        childChildSnapshot.getRef().update({ totalIncoming: newTot });
                     });
                 }
             });
