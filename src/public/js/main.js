@@ -65,6 +65,7 @@ window.onload = function() {
             if (snapshot.val()) {
                 let foundGroup = document.getElementById(Object.keys(snapshot.val())[0]);
                 foundGroup.click();
+                searchInput.value = "";
             }
         });
     }
