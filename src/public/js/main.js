@@ -432,12 +432,32 @@ window.onload = function() {
         innerDiv1.appendChild(document.createTextNode("You Owe: $0"));
         innerDiv2.appendChild(document.createTextNode("You are Owed: $0"));
 
+        var added = false;
         groupsRef.child(snapshot.key).child("payments").on("child_added", function(childSnapshot) {
+            paymentsRef.child(childSnapshot.key).once("value", function(child2) {
+                if (!added) {
+                    let groupNameDiv = document.createElement("div");
+                    groupNameDiv.appendChild(document.createTextNode(snapshot.val().groupName));
+                    groupNameDiv.classList.add("group-name-div");
+                    paymentsWrapper.appendChild(groupNameDiv);
+                    added = true;
+                }
+                if (child2.val().fromUser == user.fullName) {
+                    let totalPaymentDiv = document.createElement("div");
+                    totalPaymentDiv.classList.add("total-payment-div");
+                    paymentsWrapper.appendChild(document.createTextNode("You owe " + child2.val().toUser + " $" + child2.val().amount));
+                    paymentsWrapper.appendChild(document.createElement("br"));
+                } else {
+                    paymentsWrapper.appendChild(document.createTextNode(child2.val().fromUser + " owes you $" + child2.val().amount));
+                    paymentsWrapper.appendChild(document.createElement("br"));
+                }
+            });
             user.databaseRef.child("groups").child(snapshot.key).on("value", function(childChildSnapshot) {
                 innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
                 innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
             });
         });
+
 
         groupsRef.child(snapshot.key).child("payments").on("child_removed", function(childSnapshot) {
             user.databaseRef.child("groups").child(snapshot.key).on("value", function(childChildSnapshot) {

@@ -421,7 +421,7 @@ p.big {
 .addPayment1 {
     position: fixed;
     right: 1%;
-    top: 11.5%;
+    top: 108px;
     border-style: solid;
     border-color: #4c8abd;
     border-width: 1px;
@@ -470,4 +470,19 @@ p.big {
 .user-list-item {
     background-color: #dae8ec;
     border-bottom: solid 1px black;
+}
+
+
+#payments-wrapper {
+    text-align: center;
+    overflow-y: scroll;
+    /*height: 100%;*/
+}
+
+.group-name-div {
+
+}
+
+.total-payment-div {
+
 }

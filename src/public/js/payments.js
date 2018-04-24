@@ -101,7 +101,7 @@ var displayPayments = function(groupKey) {
     userPaymentsByGroupDiv = document.createElement("ul");
     userPaymentsByGroupDiv.setAttribute("id", user.databaseRef.key);
     //userPaymentsByGroupDiv.style.visibility = "hidden";
-    groupWrapper.appendChild(lineBreak);
+    // groupWrapper.appendChild(lineBreak);
     //Iterates through the database when a child is added and displays list of payments
     databaseRef.child("groups").child(groupKey).child("payments").on("child_added", function(snapshot) {
         var currKey = snapshot.key;
@@ -125,10 +125,9 @@ var displayPayments = function(groupKey) {
     });
     databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
         groupPaymentsDiv.removeChild(document.getElementById(snapshot.key));
-        //TODO decrement totalOutgoing and totalIncoming for both users involved (group ref and user ref)
     });
 
-    groupWrapper.appendChild(groupPaymentsDiv);
+    // groupWrapper.appendChild(groupPaymentsDiv);
     //paymentsByUserDiv
     var currUserKey = user.databaseRef.key;
     databaseRef.child("users").child(currUserKey).child("payments").on("child_added", function(snapshot) {
@@ -156,8 +155,8 @@ var displayPayments = function(groupKey) {
             }
         });
     });
-    groupWrapper.appendChild(document.createElement("br"));
-    paymentsWrapper.appendChild(userPaymentsByGroupDiv);
+    // groupWrapper.appendChild(document.createElement("br"));
+    // paymentsWrapper.appendChild(userPaymentsByGroupDiv);
     return groupPaymentsDiv;
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
