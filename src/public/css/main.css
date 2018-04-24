@@ -7,6 +7,9 @@
 ul {
   list-style-type: none;
   list-style: none;
+  overflow:visible; 
+  overflow-y:scroll;
+  height: 700px;
 }
 
 .hidden {
@@ -414,4 +417,37 @@ p.big {
     position: relative;
     right: 10%; 
 
+}
+.addPayment {
+    margin-top: 2%;
+    margin-left: 20%;
+    border-style: solid;
+    border-color: #4c8abd;
+    border-width: 1px;
+    height: 800px;
+    width: 30%;
+    border-radius: 5px;
+}
+.payHeader {
+    background-color: #4c8abd;
+    color:white;
+    text-align: center;
+}
+.payButton {
+    text-align: center;
+    color: white;
+    background-color: #06619e;
+    width: 90px;
+    height: 25px;
+    border-radius: 5px;
+    margin-left: 190px;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+    
+    -webkit-box-shadow: 1px 4px 1px #06619e;
+    -moz-box-shadow: 1px 4px 1px #06619e;
+    box-shadow: 1px 4px 1px #06619e;
+    
+    margin-bottom: 8px;
 }
