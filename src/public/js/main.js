@@ -20,6 +20,7 @@ let usersToAddToGroupList;
 let userToAddToGroupInput;
 let searchButton;
 let searchInput;
+let paymentButton;
 let addingUser = false;
 
 window.onload = function() {
@@ -180,7 +181,6 @@ window.onload = function() {
             user.key = changedUser.key;
             // databaseRef is the reference to this user's node in the database.
             user.databaseRef = usersRef.child(user.firebaseUser.uid);
-
             myGroupsRef = user.databaseRef.child("groups");
 
             // When the user is added to a group
@@ -336,12 +336,14 @@ window.onload = function() {
             closeGroup(groupKey);
         });
 
-        let paymentButton = document.createElement("button");
+        paymentButton = document.createElement("button");
+        paymentButton.setAttribute("id", "add-payment-button");
         paymentButton.appendChild(document.createTextNode("Add payment"));
         paymentButton.classList.add("payButton");
 
         paymentButton.addEventListener("click", function() {
             //payments.js
+            paymentButton.setAttribute('disabled', 'disabled');
             addPayment(groupKey,createPay);
         });
  
