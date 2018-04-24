@@ -458,7 +458,7 @@ window.onload = function() {
                     totalPaymentDiv.classList.add("total-payment-div");
                     totalPaymentDiv.appendChild(document.createTextNode("You owe " + child2.val().toUser + " $" + child2.val().amount));
                     paymentsWrapper.appendChild(totalPaymentDiv);
-                } else {
+                } else if (child2.val().toUser == user.fullName){
                     let totalPaymentDiv = document.createElement("div");
                     totalPaymentDiv.classList.add("total-payment-div");
                     totalPaymentDiv.appendChild(document.createTextNode(child2.val().fromUser + " owes you $" + child2.val().amount));
