@@ -36,6 +36,7 @@ p.big {
 .container {
     width: 300px;
     margin: auto;
+    margin-top: 50px;
     
 }
 
@@ -75,8 +76,8 @@ p.big {
     color: #ecf0f1;
     text-decoration: none;
     border-radius: 5px;
-    border: solid 1px green;
-    background: green;
+    border: solid 1px #06619e;
+    background: #10719e;
     text-align: center;
     padding: 10px 15px 10px;
 
@@ -84,9 +85,9 @@ p.big {
     -moz-transition: all 0.1s;
     transition: all 0.1s;
 
-    -webkit-box-shadow: 1px 4px 1px green;
-    -moz-box-shadow: 1px 4px 1px lightgreen;
-    box-shadow: 1px 4px 1px lightgreen;
+    -webkit-box-shadow: 1px 4px 1px #06619e;
+    -moz-box-shadow: 1px 4px 1px #06619e;
+    box-shadow: 1px 4px 1px #06619e;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -97,7 +98,7 @@ p.big {
 #register-password,
 #register-confirm-password {
     border-radius: 5px;
-    border: 3px solid green;
+    border: 3px solid #06619e;
     background-color: lightblue;
     width: 200px;
     height: 20px;
@@ -112,16 +113,16 @@ p.big {
 }
 
 .button:hover {
-    background-color: darkgreen;
-    -webkit-box-shadow: 0px 6px 0px darkgreen;
-    -moz-box-shadow: 0px 6px 0px darkgreen;
+    background-color: #2681ae;
+    -webkit-box-shadow: 0px 6px 0px #06619e;
+    -moz-box-shadow: 0px 6px 0px #06619e;
     cursor: pointer;
 }
 
 .button:active {
-    -webkit-box-shadow: 0px 2px 0px darkgreen;
-    -moz-box-shadow: 0px 2px 0px darkgreen;
-    box-shadow: 0px 2px 0px darkgreen;
+    -webkit-box-shadow: 0px 2px 0px #06619e;
+    -moz-box-shadow: 0px 2px 0px #06619e;
+    box-shadow: 0px 2px 0px #06619e;
     position: relative;
     top: 4px;
 }
@@ -223,24 +224,15 @@ p.big {
     border-radius: 5px;
     width: 100px;
     height: 30px;
-    margin-top: 5px;
+    margin-top: 8px;
     margin-left: 2px;
     
     -webkit-transition: all 0.1s;
     -moz-transition: all 0.1s;
     transition: all 0.1s;
-    
-    -webkit-box-shadow: 1px 4px 1px #06619e;
-    -moz-box-shadow: 1px 4px 1px #06619e;
-    box-shadow: 1px 4px 1px #06619e;
-    font-family: 'Roboto', sans-serif;
-
 }
 #create-group-button:hover{
-    background-color: darkblue;
-    -webkit-box-shadow: 1px 4px 1px darkblue;
-    -moz-box-shadow: 1px 4px 1px darkblue;
-    box-shadow: 1px 4px 1px darkblue;
+    background-color: #2681ae;
 }
 
 #search-input{
@@ -283,7 +275,7 @@ p.big {
 }
 
 #search-button:hover {
-    background-color: darkgreen;
+    background-color: #2681ae;
 }
 
 #current-group-wrapper {
