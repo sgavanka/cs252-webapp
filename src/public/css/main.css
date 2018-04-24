@@ -484,3 +484,6 @@ p.big {
     border-bottom: solid 1px black;
 }
 
+#login-wrapper {
+    border: 1px black solid;
+}

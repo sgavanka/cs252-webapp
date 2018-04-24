@@ -319,6 +319,9 @@ window.onload = function() {
             userLI.appendChild(document.createTextNode(childSnapshot.val().fullName));
             let deleteButton = document.createElement("div");
             deleteButton.appendChild(document.createTextNode("X"));
+            deleteButton.addEventListener("mouseover", function() {
+                deleteButton.style.cursor="pointer";
+            })
             deleteButton.addEventListener("click", function() {
                 usersRef.child(childSnapshot.key).child("groups").child(groupKey).remove();
                 groupsRef.child(groupKey).child("users").child(childSnapshot.key).remove();
