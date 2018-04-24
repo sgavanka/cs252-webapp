@@ -1,4 +1,8 @@
 let groupPaymentsDiv;
+let userPaymentsByGroupDiv;
+let userDiv;
+let singleGroupDiv;
+let infoAboutPayment;
 var addPayment = function(groupKey) {
     //TODO: fix selection box for fromUser
     //functionality to add a payment to a group
@@ -56,7 +60,9 @@ var addPayment = function(groupKey) {
                     console.log("new total is: " + newTotal);
                     childSnapshot.getRef().update({ totalOutgoing: newTotal });
                     childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
-                        childChildSnapshot.getRef().update({ totalOutgoing: newTotal });
+                        childChildSnapshot.getRef().update({
+                            totalOutgoing: newTotal
+                        });
                     });
                 } else if (childSnapshot.val().fullName == tUser) {
                     databaseRef.child("users").child(childSnapshot.key).child("payments").child(lastPushed.key).set({
@@ -67,20 +73,11 @@ var addPayment = function(groupKey) {
                     console.log("new total is: " + newTotal);
                     childSnapshot.getRef().update({ totalIncoming: newTotal });
                     childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
-                        childChildSnapshot.getRef().update({ totalIncoming: newTotal });
+                        childChildSnapshot.getRef().update({
+                            totalIncoming: newTotal
+                        });
                     });
                 }
-                /*if (childSnapshot.val().fullName == fUser) {
-                    var prevTotal = childSnapshot.val().totalOutgoing;
-                    var newTotal = +prevTotal + +amt;
-                    console.log("new total is: " + newTotal);
-                    childSnapshot.getRef().update({ totalOutgoing: newTotal });
-                } else if (childSnapshot.val().fullName == tUser) {
-                    var prevTotal = childSnapshot.val().totalIncoming;
-                    var newTotal = +prevTotal + +amt;
-                    console.log("new total is: " + newTotal);
-                    childSnapshot.getRef().update({ totalIncoming: newTotal });
-                }*/
             });
         });
         thisPayment.appendChild(fromUserInput);
@@ -93,6 +90,8 @@ var addPayment = function(groupKey) {
 var displayPayments = function(groupKey) {
     var lineBreak = document.createElement("br");
     groupPaymentsDiv = document.createElement("ul");
+    userPaymentsByGroupDiv = document.createElement("ul");
+    userByGroupDiv.setAttribute("id", groupKey);
     groupWrapper.appendChild(lineBreak);
     //Iterates through the database when a child is added and displays list of payments
     databaseRef.child("groups").child(groupKey).child("payments").on("child_added", function(snapshot) {
@@ -115,12 +114,35 @@ var displayPayments = function(groupKey) {
 
     databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
         groupPaymentsDiv.removeChild(document.getElementById(snapshot.key));
+
         //TODO decrement totalOutgoing and totalIncoming for both users involved (group ref and user ref)
     });
 
     groupWrapper.appendChild(groupPaymentsDiv);
+    //paymentsByUserDiv
     databaseRef.child("users").child(user.key).child("payments").on("child_added", function(snapshot) {
-
+        paymentsRef.child(snapshot.key).once("value", function(childSnapshot) {
+            var payment = childSnapshot.val();
+            if (user.fullName == payment.fromUser) {
+                infoAboutPayment = document.createTextNode("You owe " + payment.toUser + " $" + payment.amount);
+            } else if (user.fullName == childSnapshot.toUser) {
+                infoAboutPayment = document.createTextNode(payment.fromUser + " owes you " + " $" + payment.amount);
+            }
+            if (document.getElementById(snapshot.val().groupKey)) {
+                //append to this existing div
+                singleGroupDiv = document.getElementById(snapshot.val().groupKey);
+                singleGroupDiv.appendChild(infoAboutPayment);
+            } else {
+                singleGroupDiv = document.createElement("li");
+                singleGroupDiv.setAttribute("id", snapshot.val().groupKey);
+                databaseRef.child("groups").child(groupKey).on("value", function(snapshot) {
+                    var groupName = document.createTextNode("Group name: " + snapshot.val().groupName + "\n");
+                    singleGroupDiv.appendChild(groupName);
+                });
+                singleGroupDiv.appendChild(infoAboutPayment);
+                userPaymentsByGroupDiv.appendChild(singleGroupDiv);
+            }
+        });
     });
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
