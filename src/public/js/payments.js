@@ -98,6 +98,32 @@ var displayPayments = function(groupKey) {
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
 var deletePayment = function(groupKey, paymentId) {
+
+    paymentsRef.child(paymentId).once("value", function(snapshot2) {
+        let amt = snapshot2.val().amount;
+        let fUser = snapshot2.val().fromUser;
+        let tUser = snapshot2.val().toUser;
+        databaseRef.child("users").once("value", function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                if (childSnapshot.val().fullName == fUser) {
+                    var prevTotal = childSnapshot.val().totalOutgoing;
+                    var newTotal = +prevTotal - +amt;
+                    childSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    });
+                } else if (childSnapshot.val().fullName == tUser) {
+                    var prevTotal = childSnapshot.val().totalIncoming;
+                    var newTotal = +prevTotal - +amt;
+                    childSnapshot.getRef().update({ totalIncoming: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalIncoming: newTotal });
+                    });
+                }
+            });
+        });
+    });
+
     paymentsRef.child(paymentId).remove();
     databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
 };

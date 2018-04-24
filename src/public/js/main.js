@@ -317,6 +317,7 @@ window.onload = function() {
 
         groupsRef.child(snapshot.key).child("payments").on("child_removed", function(childSnapshot) {
             user.databaseRef.child("groups").child(snapshot.key).on("value", function(childChildSnapshot) {
+                console.log("decrement owed");
                 innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
                 innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
             });
