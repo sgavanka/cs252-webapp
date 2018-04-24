@@ -5,7 +5,7 @@ let singleGroupDiv;
 let infoAboutPayment = document.createElement("div");
 let thisPayment = document.createElement("div");
 
-var addPayment = function(groupKey) {
+var addPayment = function(groupKey, createPay) {
     //TODO: fix selection box for fromUser
     //functionality to add a payment to a group
     console.log("button clicked!! functionality to add a payment");
@@ -93,7 +93,7 @@ var addPayment = function(groupKey) {
     thisPayment.appendChild(toUserInput);
     thisPayment.appendChild(amountInput);
     thisPayment.appendChild(submitPaymentButton);
-    groupWrapper.appendChild(thisPayment);
+    createPay.appendChild(thisPayment);
 };
 var displayPayments = function(groupKey) {
     console.log("button created");
@@ -105,7 +105,6 @@ var displayPayments = function(groupKey) {
     groupWrapper.appendChild(lineBreak);
     //Iterates through the database when a child is added and displays list of payments
     databaseRef.child("groups").child(groupKey).child("payments").on("child_added", function(snapshot) {
-        console.log("child added!");
         var currKey = snapshot.key;
         paymentsRef.child(currKey).once("value", function(childSnapshot) {
             var payment = childSnapshot.val();
@@ -122,10 +121,8 @@ var displayPayments = function(groupKey) {
             groupPaymentsDiv.appendChild(paymentDiv);
         });
     });
-
-    databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
+   databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
         groupPaymentsDiv.removeChild(document.getElementById(snapshot.key));
-
         //TODO decrement totalOutgoing and totalIncoming for both users involved (group ref and user ref)
     });
 
@@ -159,10 +156,10 @@ var displayPayments = function(groupKey) {
     });
     groupWrapper.appendChild(document.createElement("br"));
     groupWrapper.appendChild(userPaymentsByGroupDiv);
+    return groupPaymentsDiv;
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
 var deletePayment = function(groupKey, paymentId) {
-
     paymentsRef.child(paymentId).once("value", function(snapshot2) {
         let amt = snapshot2.val().amount;
         let fUser = snapshot2.val().fromUser;

@@ -21,6 +21,7 @@ let userToAddToGroupInput;
 let searchButton;
 let searchInput;
 let paymentButton;
+let addingUser = false;
 
 window.onload = function() {
     addUserToGroupButton = document.getElementById("add-user-to-group-button");
@@ -212,8 +213,8 @@ window.onload = function() {
             user.databaseRef.on('value', function(snapshot) {
                 user.email = snapshot.val().email;
                 user.fullName = snapshot.val().fullName;
-                totalOutgoingSpan.innerHTML = snapshot.val().totalOutgoing;
-                totalIncomingSpan.innerHTML = snapshot.val().totalIncoming;
+                // totalOutgoingSpan.innerHTML = snapshot.val().totalOutgoing;
+                // totalIncomingSpan.innerHTML = snapshot.val().totalIncoming;
 
                 // Setup all of the users groups stored in the database and store that data locally
                 user.groups = new Array();
@@ -243,10 +244,92 @@ window.onload = function() {
             return;
         }
         console.log("Would open group with id of " + groupKey);
-        groupWrapper.appendChild(document.createTextNode(groupName));
-        if (deleteButton) {
-            groupWrapper.appendChild(deleteButton);
-        }
+
+        // groupWrapper.appendChild(document.createTextNode(groupName));
+        let topName = document.createElement("div");
+        topName.id = "topName";
+        topName.appendChild(document.createTextNode(groupName));
+        let drop = document.createElement("div");
+        let dropBtn = document.createElement("div");
+        let dropDown = document.createElement("div");
+        let createPay = document.createElement("div");
+        let paymentName = document.createElement("div");
+        paymentName.appendChild(document.createTextNode("Payments"));
+        paymentName.classList.add("payHeader");
+        drop.classList.add("dropdown");
+        dropBtn.classList.add("dropbtn");
+        dropDown.classList.add("dropdown-content");
+        createPay.classList.add("addPayment")
+        drop.appendChild(dropBtn);
+        dropBtn.appendChild(dropDown);
+        topName.appendChild(drop);
+
+
+        
+
+        let userList = document.createElement("ul");
+        userList.classList.add("user-list");
+        let addUser = document.createElement("button");
+        addUser.appendChild(document.createTextNode("Add User"));
+        addUser.addEventListener("click", function() {
+            let emailInput = document.createElement("input");
+            let submitButton = document.createElement("button");
+            let cancelButton = document.createElement("button");
+            cancelButton.appendChild(document.createTextNode("Cancel"));
+            cancelButton.addEventListener("click", function() {
+                groupWrapper.removeChild(emailInput);
+                groupWrapper.removeChild(submitButton);
+                groupWrapper.removeChild(cancelButton);
+            })
+            submitButton.appendChild(document.createTextNode("Add"));
+            submitButton.addEventListener("click", function() {
+                usersRef.orderByChild('email').equalTo(emailInput.value).once('value', function(snapshot) {
+                    if (snapshot.val()) {
+                        if (user.firebaseUser.uid != Object.keys(snapshot.val())[0]) {
+                            usersRef.child(Object.keys(snapshot.val())[0]).once('value', function(childSnapshot) {
+                                usersRef.child(childSnapshot.key).child("groups").child(groupKey).set({ groupName: groupName, totalIncoming: 0, totalOutgoing: 0 });
+                                groupsRef.child(groupKey).child('users').child(childSnapshot.key).set({ fullName: childSnapshot.val().fullName });
+                                groupWrapper.removeChild(emailInput);
+                                groupWrapper.removeChild(submitButton);
+                                groupWrapper.removeChild(cancelButton);
+                            });
+                        } else {
+                            alert("You cannot add yourself to the group.");
+                        }
+                    } else {
+                        alert("The specified user does not exist.");
+                    }
+                });
+            });
+            groupWrapper.appendChild(emailInput);
+            groupWrapper.appendChild(submitButton);
+            groupWrapper.appendChild(cancelButton);
+        });
+
+
+        groupsRef.child(groupKey).child("users").on("child_added", function(childSnapshot) {
+            let userLI = document.createElement("li");
+            userLI.classList.add("user-list-item");
+            userLI.id = childSnapshot.key;
+            userLI.appendChild(document.createTextNode(childSnapshot.val().fullName));
+            let deleteButton = document.createElement("div");
+            deleteButton.appendChild(document.createTextNode("X"));
+            deleteButton.addEventListener("click", function() {
+                usersRef.child(childSnapshot.key).child("groups").child(groupKey).remove();
+                groupsRef.child(groupKey).child("users").child(childSnapshot.key).remove();
+            });
+            deleteButton.classList.add("user-delete-button");
+            userLI.appendChild(deleteButton);
+            userList.appendChild(userLI);
+        });
+
+        groupsRef.child(groupKey).child("users").on("child_removed", function(childSnapshot) {
+            userList.removeChild(document.getElementById(childSnapshot.key));
+        });
+
+        groupWrapper.appendChild(addUser);
+        groupWrapper.appendChild(userList);
+
         let closeButton = document.createElement("button");
         closeButton.appendChild(document.createTextNode("Close"));
         closeButton.addEventListener("click", function() {
@@ -256,18 +339,30 @@ window.onload = function() {
         paymentButton = document.createElement("button");
         paymentButton.setAttribute("id", "add-payment-button");
         paymentButton.appendChild(document.createTextNode("Add payment"));
+        paymentButton.classList.add("payButton");
+
         paymentButton.addEventListener("click", function() {
             //payments.js
             paymentButton.setAttribute('disabled', 'disabled');
-            addPayment(groupKey);
-            console.log("control is here...");
+            addPayment(groupKey,createPay);
         });
-        groupWrapper.appendChild(closeButton);
-        groupWrapper.appendChild(paymentButton);
+ 
+        closeButton.classList.add("dropButton");
+        groupWrapper.appendChild(topName);
+        createPay.appendChild(paymentName);
+        createPay.appendChild(paymentButton);
+        groupWrapper.appendChild(createPay);
+        dropDown.appendChild(closeButton);
+         if (deleteButton) {
+            dropDown.appendChild(deleteButton);
+            deleteButton.classList.add("dropButton")
+        }
+
         groupDetailsWrapper.classList.add("hidden");
         groupWrapper.classList.remove("hidden");
         //functionality in payments.js
-        displayPayments(groupKey);
+        createPay.appendChild(displayPayments(groupKey));
+    
         currentGroupKey = groupKey;
     }
 
@@ -320,7 +415,6 @@ window.onload = function() {
 
         groupsRef.child(snapshot.key).child("payments").on("child_removed", function(childSnapshot) {
             user.databaseRef.child("groups").child(snapshot.key).on("value", function(childChildSnapshot) {
-                console.log("decrement owed");
                 innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
                 innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
             });

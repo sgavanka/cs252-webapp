@@ -6,6 +6,10 @@
 
 ul {
   list-style-type: none;
+  list-style: none;
+  overflow:visible; 
+  overflow-y:scroll;
+  height: 700px;
 }
 
 .hidden {
@@ -231,10 +235,10 @@ p.big {
 
 }
 #create-group-button:hover{
-    background-color: darkgreen;
-    -webkit-box-shadow: 1px 4px 1px darkgreen;
-    -moz-box-shadow: 1px 4px 1px darkgreen;
-    box-shadow: 1px 4px 1px darkgreen;
+    background-color: darkblue;
+    -webkit-box-shadow: 1px 4px 1px darkblue;
+    -moz-box-shadow: 1px 4px 1px darkblue;
+    box-shadow: 1px 4px 1px darkblue;
 }
 
 #search-input{
@@ -243,7 +247,7 @@ p.big {
     height: 25px;
     border-radius: 5px;
     border-color: black;
-    background: lightblue;
+    background: whitesmoke;
     color: black;   
     margin-top: 8px;
     margin-left: 12px;
@@ -255,7 +259,7 @@ p.big {
     background-color: green;
 }
 #search {
-    background-color: grey;
+    background-color: #333;
     height: 45px;
     width: 100%;
 }
@@ -312,7 +316,7 @@ p.big {
     width: 230px;
     height: 25px;
     border-color: black;
-    background: lightblue;
+    background: whitesmoke;
     color: black; 
     font-family: 'Roboto', sans-serif;
 }
@@ -347,3 +351,123 @@ p.big {
 #cancel-create-group-button {
     background-color: red;
 }
+
+#topName{
+    color:white;
+    background-color: #333;
+    text-align: center;
+    height: 45px;
+    font-size: 25pt;
+}
+.dropbtn {
+    background-image: url("makefg.png");
+    height: 35px;
+    width: 35px;
+    font-size: 16px;
+    border: none;
+    background-size:contain;
+    background-color: #333;
+    float: right;
+   
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    float: right;
+     margin-right: 4%; 
+    margin-top: .4%;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    background-color: #f1f1f1;
+
+    margin-top: 100%;
+    
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: -1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    /* padding: 12px 16px; */
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+.dropButton {
+    color: white;
+    background-color: #06619e;
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+    position: relative;
+    right: 10%; 
+
+}
+.addPayment {
+    margin-top: 2%;
+    margin-left: 20%;
+    border-style: solid;
+    border-color: #4c8abd;
+    border-width: 1px;
+    height: 800px;
+    width: 30%;
+    border-radius: 5px;
+}
+.payHeader {
+    background-color: #4c8abd;
+    color:white;
+    text-align: center;
+}
+.payButton {
+    text-align: center;
+    color: white;
+    background-color: #06619e;
+    width: 90px;
+    height: 25px;
+    border-radius: 5px;
+    margin-left: 190px;
+    -webkit-transition: all 0.1s;
+    -moz-transition: all 0.1s;
+    transition: all 0.1s;
+    
+    -webkit-box-shadow: 1px 4px 1px #06619e;
+    -moz-box-shadow: 1px 4px 1px #06619e;
+    box-shadow: 1px 4px 1px #06619e;
+    
+    margin-bottom: 8px;
+}
+
+
+.user-list {
+    text-align: center;
+    float: right;
+    width: 200px;
+    margin-right: 10px;
+}
+
+.user-delete-button {
+    float: right;
+    margin-right: 1px;
+}
+
+.user-list-item {
+    background-color: pink;
+    border-bottom: solid 1px black;
+}
+
