@@ -20,6 +20,7 @@ let usersToAddToGroupList;
 let userToAddToGroupInput;
 let searchButton;
 let searchInput;
+let addingUser = false;
 
 window.onload = function() {
     addUserToGroupButton = document.getElementById("add-user-to-group-button");
@@ -151,7 +152,7 @@ window.onload = function() {
                 for (var i = 1; i < usersToAddToGroupList.childNodes.length; i++) {
                     // Add the ith user in the list of users to add to the group.
                     group.child('users').child(usersToAddToGroupList.childNodes[i].id).set({ fullName: usersToAddToGroupList.childNodes[i].innerText.slice(0, -1) });
-                    usersRef.child(usersToAddToGroupList.childNodes[i].id).child("groups").child(group.key).set({ groupName: groupNameInput.value, totalIncoming: "0", totalOutgoing: "0" });
+                    usersRef.child(usersToAddToGroupList.childNodes[i].id).child("groups").child(group.key).set({ groupName: groupNameInput.value, totalIncoming: 0, totalOutgoing: 0 });
                 }
                 groupDetailsWrapper.classList.add("hidden");
                 groupNameInput.value = "";
@@ -204,7 +205,7 @@ window.onload = function() {
 
             // When something in an existing group changes -- i think this would include if the name changes, if a user is added, or if a payment is made
             myGroupsRef.on("child_changed", function(snapshot) {
-                alert("group changed");
+                // alert("group changed");
             });
 
             // Sets the email and full name of this user to the values stored in the database.
@@ -243,6 +244,7 @@ window.onload = function() {
             return;
         }
         console.log("Would open group with id of " + groupKey);
+
         // groupWrapper.appendChild(document.createTextNode(groupName));
         let topName = document.createElement("div");
         topName.id = "topName";
@@ -262,6 +264,75 @@ window.onload = function() {
         dropBtn.appendChild(dropDown);
         topName.appendChild(drop);
 
+
+        
+
+        let userList = document.createElement("ul");
+        userList.classList.add("user-list");
+        let addUser = document.createElement("button");
+        addUser.appendChild(document.createTextNode("Add User"));
+        addUser.addEventListener("click", function() {
+            let emailInput = document.createElement("input");
+            let submitButton = document.createElement("button");
+            let cancelButton = document.createElement("button");
+            cancelButton.appendChild(document.createTextNode("Cancel"));
+            cancelButton.addEventListener("click", function() {
+                groupWrapper.removeChild(emailInput);
+                groupWrapper.removeChild(submitButton);
+                groupWrapper.removeChild(cancelButton);
+            })
+            submitButton.appendChild(document.createTextNode("Add"));
+            submitButton.addEventListener("click", function() {
+                usersRef.orderByChild('email').equalTo(emailInput.value).once('value', function(snapshot) {
+                    if (snapshot.val()) {
+                        if (user.firebaseUser.uid != Object.keys(snapshot.val())[0]) {
+                            usersRef.child(Object.keys(snapshot.val())[0]).once('value', function(childSnapshot) {
+                                usersRef.child(childSnapshot.key).child("groups").child(groupKey).set({ groupName: groupName, totalIncoming: 0, totalOutgoing: 0 });
+                                groupsRef.child(groupKey).child('users').child(childSnapshot.key).set({ fullName: childSnapshot.val().fullName });
+                                groupWrapper.removeChild(emailInput);
+                                groupWrapper.removeChild(submitButton);
+                                groupWrapper.removeChild(cancelButton);
+                            });
+                        } else {
+                            alert("You cannot add yourself to the group.");
+                        }
+                    } else {
+                        alert("The specified user does not exist.");
+                    }
+                });
+            });
+            groupWrapper.appendChild(emailInput);
+            groupWrapper.appendChild(submitButton);
+            groupWrapper.appendChild(cancelButton);
+        });
+
+
+        groupsRef.child(groupKey).child("users").on("child_added", function(childSnapshot) {
+            let userLI = document.createElement("li");
+            userLI.classList.add("user-list-item");
+            userLI.id = childSnapshot.key;
+            userLI.appendChild(document.createTextNode(childSnapshot.val().fullName));
+            let deleteButton = document.createElement("div");
+            deleteButton.appendChild(document.createTextNode("X"));
+            deleteButton.addEventListener("click", function() {
+                usersRef.child(childSnapshot.key).child("groups").child(groupKey).remove();
+                groupsRef.child(groupKey).child("users").child(childSnapshot.key).remove();
+            });
+            deleteButton.classList.add("user-delete-button");
+            userLI.appendChild(deleteButton);
+            userList.appendChild(userLI);
+        });
+
+        groupsRef.child(groupKey).child("users").on("child_removed", function(childSnapshot) {
+            userList.removeChild(document.getElementById(childSnapshot.key));
+        });
+
+        groupWrapper.appendChild(addUser);
+        groupWrapper.appendChild(userList);
+
+        if (deleteButton) {
+            groupWrapper.appendChild(deleteButton);
+        }
         let closeButton = document.createElement("button");
         closeButton.appendChild(document.createTextNode("Close"));
         closeButton.addEventListener("click", function() {
@@ -276,6 +347,7 @@ window.onload = function() {
             //payments.js
             addPayment(groupKey,createPay);
         });
+ 
         closeButton.classList.add("dropButton");
         deleteButton.classList.add("dropButton")
         groupWrapper.appendChild(topName);
@@ -287,6 +359,7 @@ window.onload = function() {
          if (deleteButton) {
             dropDown.appendChild(deleteButton);
         }
+
         groupDetailsWrapper.classList.add("hidden");
         groupWrapper.classList.remove("hidden");
         //functionality in payments.js
@@ -336,16 +409,14 @@ window.onload = function() {
         innerDiv2.appendChild(document.createTextNode("You are Owed: $0"));
 
         groupsRef.child(snapshot.key).child("payments").on("child_added", function(childSnapshot) {
-            user.databaseRef.child("groups").child(snapshot.key).once("value", function(childChildSnapshot) {
-                if (childChildSnapshot.val().totalOutgoing != undefined)
-                    innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
-                if (childChildSnapshot.val().totalOutgoing != undefined)
-                    innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
+            user.databaseRef.child("groups").child(snapshot.key).on("value", function(childChildSnapshot) {
+                innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
+                innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
             });
         });
 
         groupsRef.child(snapshot.key).child("payments").on("child_removed", function(childSnapshot) {
-            user.databaseRef.child("groups").child(snapshot.key).once("value", function(childChildSnapshot) {
+            user.databaseRef.child("groups").child(snapshot.key).on("value", function(childChildSnapshot) {
                 innerDiv1.innerHTML = "You Owe: $" + childChildSnapshot.val().totalOutgoing;
                 innerDiv2.innerHTML = "You are Owed: $" + childChildSnapshot.val().totalIncoming;
             });

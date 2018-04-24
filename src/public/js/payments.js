@@ -5,15 +5,19 @@ var addPayment = function(groupKey, createPay) {
     console.log("button clicked!! functionality to add a payment");
     var fromUserInput = document.createElement("select");
     var toUserInput = document.createElement("select");
+    var option1;
+    var option2;
     fromUserInput.setAttribute("id", "fromUser");
     toUserInput.setAttribute("id", "toUser");
     databaseRef.child("groups").child(groupKey).child("users").on("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
-            var username = childSnapshot.val();
-            var option1 = document.createElement("option");
-            var option2 = document.createElement("option");
-            option1.text = username.fullName;
-            option2.text = username.fullName;
+            var user = childSnapshot.val();
+            option1 = document.createElement("option");
+            option2 = document.createElement("option");
+            option1.setAttribute("id", (childSnapshot.key + "option1"));
+            option2.setAttribute("id", (childSnapshot.key + "option2"));
+            option1.text = user.fullName;
+            option2.text = user.fullName;
             fromUserInput.add(option1);
             toUserInput.add(option2);
         });
@@ -24,6 +28,7 @@ var addPayment = function(groupKey, createPay) {
     var submitPaymentButton = document.createElement("button");
     submitPaymentButton.appendChild(document.createTextNode("Add payment"));
     //pushes to the database
+    var thisPayment = document.createElement("div");
     submitPaymentButton.addEventListener("click", function() {
         var fUser = document.getElementById("fromUser").value;
         var tUser = document.getElementById("toUser").value;
@@ -39,9 +44,33 @@ var addPayment = function(groupKey, createPay) {
         //Key of node in payments and the one in group are the same for ease of access
         var lastPushed = paymentsRef.push(payment);
         databasePayment.child(lastPushed.key).set({ amount: amt });
+        //User payments div to be used to show a users payments in GUI
         databaseRef.child("users").once("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 if (childSnapshot.val().fullName == fUser) {
+                    databaseRef.child("users").child(childSnapshot.key).child("payments").child(lastPushed.key).set({
+                        groupKey: groupKey,
+                    });
+                    var prevTotal = childSnapshot.val().totalOutgoing;
+                    var newTotal = +prevTotal + +amt;
+                    console.log("new total is: " + newTotal);
+                    childSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    });
+                } else if (childSnapshot.val().fullName == tUser) {
+                    databaseRef.child("users").child(childSnapshot.key).child("payments").child(lastPushed.key).set({
+                        groupKey: groupKey,
+                    });
+                    var prevTotal = childSnapshot.val().totalIncoming;
+                    var newTotal = +prevTotal + +amt;
+                    console.log("new total is: " + newTotal);
+                    childSnapshot.getRef().update({ totalIncoming: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalIncoming: newTotal });
+                    });
+                }
+                /*if (childSnapshot.val().fullName == fUser) {
                     var prevTotal = childSnapshot.val().totalOutgoing;
                     var newTotal = +prevTotal + +amt;
                     console.log("new total is: " + newTotal);
@@ -51,25 +80,29 @@ var addPayment = function(groupKey, createPay) {
                     var newTotal = +prevTotal + +amt;
                     console.log("new total is: " + newTotal);
                     childSnapshot.getRef().update({ totalIncoming: newTotal });
-                }
+                }*/
             });
         });
+        thisPayment.appendChild(fromUserInput);
+        thisPayment.appendChild(toUserInput);
+        thisPayment.appendChild(amountInput);
+        thisPayment.appendChild(submitPaymentButton);
     });
+
     createPay.appendChild(fromUserInput);
     createPay.appendChild(toUserInput);
     createPay.appendChild(amountInput);
     createPay.appendChild(submitPaymentButton);
+
 };
 var displayPayments = function(groupKey) {
     var lineBreak = document.createElement("br");
     groupPaymentsDiv = document.createElement("ul");
     groupWrapper.appendChild(lineBreak);
     //Iterates through the database when a child is added and displays list of payments
-    //TODO: child_removed
     databaseRef.child("groups").child(groupKey).child("payments").on("child_added", function(snapshot) {
-        console.log("child added!");
         var currKey = snapshot.key;
-        paymentsRef.child(currKey).on("value", function(childSnapshot) {
+        paymentsRef.child(currKey).once("value", function(childSnapshot) {
             var payment = childSnapshot.val();
             var paymentDiv = document.createElement("li");
             paymentDiv.setAttribute("id", childSnapshot.key);
@@ -83,11 +116,46 @@ var displayPayments = function(groupKey) {
             groupPaymentsDiv.appendChild(paymentDiv);
         });
     });
+   databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
+        groupPaymentsDiv.removeChild(document.getElementById(snapshot.key));
+    });
     return groupPaymentsDiv;
+
+
+   
+
+
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
 var deletePayment = function(groupKey, paymentId) {
-    groupPaymentsDiv.removeChild(document.getElementById(paymentId));
-    //paymentsRef.child(paymentId).remove();
-    // databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
+
+    paymentsRef.child(paymentId).once("value", function(snapshot2) {
+        let amt = snapshot2.val().amount;
+        let fUser = snapshot2.val().fromUser;
+        let tUser = snapshot2.val().toUser;
+        databaseRef.child("users").once("value", function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                if (childSnapshot.val().fullName == fUser) {
+                    databaseRef.child("users").child(childSnapshot.key).child("payments").child(paymentId).remove();
+                    var prevTotal = childSnapshot.val().totalOutgoing;
+                    var newTotal = +prevTotal - +amt;
+                    childSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalOutgoing: newTotal });
+                    });
+                } else if (childSnapshot.val().fullName == tUser) {
+                    databaseRef.child("users").child(childSnapshot.key).child("payments").child(paymentId).remove();
+                    var prevTotal = childSnapshot.val().totalIncoming;
+                    var newTotal = +prevTotal - +amt;
+                    childSnapshot.getRef().update({ totalIncoming: newTotal });
+                    childSnapshot.getRef().child("groups").child(groupKey).once("value", function(childChildSnapshot) {
+                        childChildSnapshot.getRef().update({ totalIncoming: newTotal });
+                    });
+                }
+            });
+        });
+    }).then(function() {
+        paymentsRef.child(paymentId).remove();
+        databaseRef.child("groups").child(groupKey).child("payments").child(paymentId).remove();
+    });
 };
