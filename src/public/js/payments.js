@@ -31,9 +31,24 @@ var addPayment = function(groupKey, createPay) {
     var descriptionInput = document.createElement("input");
     amountInput.setAttribute("id", "amount");
     amountInput.setAttribute("type", "number");
+    amountInput.setAttribute("placeholder", "Payment Amount");
     descriptionInput.setAttribute("id", "description");
+    descriptionInput.setAttribute("placeholder", "Payment Description");
     var submitPaymentButton = document.createElement("button");
     submitPaymentButton.appendChild(document.createTextNode("Add payment"));
+
+    let cancelButton = document.createElement("button");
+    cancelButton.appendChild(document.createTextNode("Cancel"));
+    cancelButton.addEventListener("click", function() {
+        thisPayment.removeChild(fromUserInput);
+        thisPayment.removeChild(toUserInput);
+        thisPayment.removeChild(amountInput);
+        thisPayment.removeChild(descriptionInput);
+        thisPayment.removeChild(submitPaymentButton);
+        thisPayment.removeChild(cancelButton);
+        paymentButton.removeAttribute('disabled');
+    });
+
     //pushes to the database
     submitPaymentButton.addEventListener("click", function() {
         var fUser = document.getElementById("fromUser").value;
@@ -95,6 +110,7 @@ var addPayment = function(groupKey, createPay) {
         thisPayment.removeChild(amountInput);
         thisPayment.removeChild(descriptionInput);
         thisPayment.removeChild(submitPaymentButton);
+        thisPayment.removeChild(cancelButton);
         createPay.removeChild(thisPayment);
         console.log("removed child");
         paymentButton.removeAttribute('disabled');
@@ -104,6 +120,7 @@ var addPayment = function(groupKey, createPay) {
     thisPayment.appendChild(amountInput);
     thisPayment.appendChild(descriptionInput);
     thisPayment.appendChild(submitPaymentButton);
+    thisPayment.appendChild(cancelButton);
     createPay.appendChild(thisPayment);
 };
 var displayPayments = function(groupKey) {
