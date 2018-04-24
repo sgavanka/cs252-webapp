@@ -138,10 +138,13 @@ var displayPayments = function(groupKey) {
             var payment = childSnapshot.val();
             var paymentDiv = document.createElement("li")
             var preElement = document.createElement("pre");
-            if (payment.description == undefined) {
-                payment.description = "N/A";
+            if (payment.description != "") {
+                let bold = document.createElement("b");
+                bold.appendChild(document.createTextNode(payment.description));
+                preElement.appendChild(bold);
+                preElement.appendChild(document.createElement("br"));
             }
-            preElement.appendChild(document.createTextNode(payment.description + ": " + payment.fromUser + " owes " + payment.toUser + ": $" + payment.amount));
+            preElement.appendChild(document.createTextNode(payment.fromUser + " owes " + payment.toUser + ": $" + payment.amount));
             paymentDiv.setAttribute("id", childSnapshot.key);
             paymentDiv.classList.add("divvy");
             paymentDiv.appendChild(preElement);
