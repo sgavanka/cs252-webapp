@@ -254,12 +254,17 @@ window.onload = function() {
         let dropDown = document.createElement("div");
         let createPay = document.createElement("div");
         let paymentName = document.createElement("div");
+        let UsersName = document.createElement("div");
+        let userDiv = document.createElement("div");
         paymentName.appendChild(document.createTextNode("Payments"));
         paymentName.classList.add("payHeader");
+        UsersName.appendChild(document.createTextNode("User List"));
+        UsersName.classList.add("payHeader");
         drop.classList.add("dropdown");
         dropBtn.classList.add("dropbtn");
         dropDown.classList.add("dropdown-content");
         createPay.classList.add("addPayment")
+        userDiv.classList.add("addPayment1")
         drop.appendChild(dropBtn);
         dropBtn.appendChild(dropDown);
         topName.appendChild(drop);
@@ -328,7 +333,7 @@ window.onload = function() {
         });
 
         groupWrapper.appendChild(addUser);
-        groupWrapper.appendChild(userList);
+        // userDiv.appendChild(userList);
 
         let closeButton = document.createElement("button");
         closeButton.appendChild(document.createTextNode("Close"));
@@ -339,7 +344,7 @@ window.onload = function() {
         paymentButton = document.createElement("button");
         paymentButton.setAttribute("id", "add-payment-button");
         paymentButton.appendChild(document.createTextNode("Add payment"));
-        paymentButton.classList.add("payButton");
+        paymentButton.classList.add("dropButton");
 
         paymentButton.addEventListener("click", function() {
             //payments.js
@@ -348,11 +353,16 @@ window.onload = function() {
         });
  
         closeButton.classList.add("dropButton");
+        addUser.classList.add("dropButton");
         groupWrapper.appendChild(topName);
         createPay.appendChild(paymentName);
-        createPay.appendChild(paymentButton);
+        userDiv.appendChild(UsersName);
+        userDiv.appendChild(userList);        
+        dropDown.appendChild(paymentButton);
         groupWrapper.appendChild(createPay);
+        groupWrapper.appendChild(userDiv);
         dropDown.appendChild(closeButton);
+        dropDown.appendChild(addUser);
          if (deleteButton) {
             dropDown.appendChild(deleteButton);
             deleteButton.classList.add("dropButton")
