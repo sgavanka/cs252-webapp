@@ -244,7 +244,28 @@ window.onload = function() {
             return;
         }
         console.log("Would open group with id of " + groupKey);
-        groupWrapper.appendChild(document.createTextNode(groupName));
+
+        // groupWrapper.appendChild(document.createTextNode(groupName));
+        let topName = document.createElement("div");
+        topName.id = "topName";
+        topName.appendChild(document.createTextNode(groupName));
+        let drop = document.createElement("div");
+        let dropBtn = document.createElement("div");
+        let dropDown = document.createElement("div");
+        let createPay = document.createElement("div");
+        let paymentName = document.createElement("div");
+        paymentName.appendChild(document.createTextNode("Payments"));
+        paymentName.classList.add("payHeader");
+        drop.classList.add("dropdown");
+        dropBtn.classList.add("dropbtn");
+        dropDown.classList.add("dropdown-content");
+        createPay.classList.add("addPayment")
+        drop.appendChild(dropBtn);
+        dropBtn.appendChild(dropDown);
+        topName.appendChild(drop);
+
+
+        
 
         let userList = document.createElement("ul");
         userList.classList.add("user-list");
@@ -320,16 +341,30 @@ window.onload = function() {
 
         let paymentButton = document.createElement("button");
         paymentButton.appendChild(document.createTextNode("Add payment"));
+        paymentButton.classList.add("payButton");
+
         paymentButton.addEventListener("click", function() {
             //payments.js
-            addPayment(groupKey);
+            addPayment(groupKey,createPay);
         });
-        groupWrapper.appendChild(closeButton);
-        groupWrapper.appendChild(paymentButton);
+ 
+        closeButton.classList.add("dropButton");
+        deleteButton.classList.add("dropButton")
+        groupWrapper.appendChild(topName);
+        createPay.appendChild(paymentName);
+        createPay.appendChild(paymentButton);
+        groupWrapper.appendChild(createPay);
+        // groupWrapper.appendChild(closeButton);
+        dropDown.appendChild(closeButton);
+         if (deleteButton) {
+            dropDown.appendChild(deleteButton);
+        }
+
         groupDetailsWrapper.classList.add("hidden");
         groupWrapper.classList.remove("hidden");
         //functionality in payments.js
-        displayPayments(groupKey);
+        createPay.appendChild(displayPayments(groupKey));
+    
         currentGroupKey = groupKey;
     }
 

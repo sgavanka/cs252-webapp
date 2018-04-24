@@ -1,5 +1,5 @@
 let groupPaymentsDiv;
-var addPayment = function(groupKey) {
+var addPayment = function(groupKey, createPay) {
     //TODO: fix selection box for fromUser
     //functionality to add a payment to a group
     console.log("button clicked!! functionality to add a payment");
@@ -88,7 +88,12 @@ var addPayment = function(groupKey) {
         thisPayment.appendChild(amountInput);
         thisPayment.appendChild(submitPaymentButton);
     });
-    groupWrapper.appendChild(thisPayment);
+
+    createPay.appendChild(fromUserInput);
+    createPay.appendChild(toUserInput);
+    createPay.appendChild(amountInput);
+    createPay.appendChild(submitPaymentButton);
+
 };
 var displayPayments = function(groupKey) {
     var lineBreak = document.createElement("br");
@@ -111,15 +116,15 @@ var displayPayments = function(groupKey) {
             groupPaymentsDiv.appendChild(paymentDiv);
         });
     });
-
-    databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
+   databaseRef.child("groups").child(groupKey).child("payments").on("child_removed", function(snapshot) {
         groupPaymentsDiv.removeChild(document.getElementById(snapshot.key));
     });
+    return groupPaymentsDiv;
 
-    groupWrapper.appendChild(groupPaymentsDiv);
-    databaseRef.child("users").child(user.key).child("payments").on("child_added", function(snapshot) {
 
-    });
+   
+
+
 };
 //functionality to delete edit from database, will remove from list as well as the main payment node(will work once UI button is implemented)
 var deletePayment = function(groupKey, paymentId) {
