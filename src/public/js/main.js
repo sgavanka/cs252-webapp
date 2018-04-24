@@ -20,6 +20,7 @@ let usersToAddToGroupList;
 let userToAddToGroupInput;
 let searchButton;
 let searchInput;
+var thisPayment = document.createElement("div");
 var userPaymentsByGroupDiv; //SANCHIT: use this div for list of payments by a user
 let paymentButton;
 let paymentsScreenButton;
@@ -406,6 +407,9 @@ window.onload = function() {
             groupWrapper.classList.add("hidden");
             while (groupWrapper.firstChild) {
                 groupWrapper.removeChild(groupWrapper.firstChild);
+            }
+            while (thisPayment.firstChild) {
+                thisPayment.removeChild(thisPayment.firstChild);
             }
         }
     }

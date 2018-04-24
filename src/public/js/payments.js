@@ -2,7 +2,6 @@ let groupPaymentsDiv;
 let userDiv;
 let singleGroupDiv;
 let infoAboutPayment = document.createElement("div");
-let thisPayment = document.createElement("div");
 
 var addPayment = function(groupKey, createPay, groupWrapper) {
     //TODO: fix selection box for fromUser
@@ -60,12 +59,14 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
     let cancelButton = document.createElement("button");
     cancelButton.appendChild(document.createTextNode("Cancel"));
     cancelButton.addEventListener("click", function() {
-        thisPayment.removeChild(fromUserInput);
-        thisPayment.removeChild(toUserInput);
-        thisPayment.removeChild(amountInput);
+        thisPayment.removeChild(payHead);
+        thisPayment.removeChild(fromUser);
+        thisPayment.removeChild(toUser);
+        thisPayment.removeChild(aInput);
         thisPayment.removeChild(descriptionInput);
         thisPayment.removeChild(submitPaymentButton);
         thisPayment.removeChild(cancelButton);
+        groupWrapper.removeChild(thisPayment);
         paymentButton.removeAttribute('disabled');
     });
 
@@ -130,12 +131,12 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
             });
         });
         thisPayment.removeChild(payHead);
-        // thisPayment.removeChild(fromUserInput);
         thisPayment.removeChild(fromUser);
-        thisPayment.removeChild(toUsert);
+        thisPayment.removeChild(toUser);
         thisPayment.removeChild(aInput);
         thisPayment.removeChild(descriptionInput);
         thisPayment.removeChild(submitPaymentButton);
+        thisPayment.removeChild(cancelButton);
         groupWrapper.removeChild(thisPayment);
         console.log("removed child");
         paymentButton.removeAttribute('disabled');
@@ -148,6 +149,7 @@ var addPayment = function(groupKey, createPay, groupWrapper) {
     thisPayment.appendChild(aInput);
     thisPayment.appendChild(descriptionInput);
     thisPayment.appendChild(submitPaymentButton);
+    thisPayment.appendChild(cancelButton);
     thisPayment.classList.add("paySelect");
     submitPaymentButton.classList.add("fixer");
     payHead.classList.add("payHead");
