@@ -25,7 +25,7 @@ body {
     padding: 30px;
     width: 200px;
     height: 150px;
-    border: black 1px solid;
+    border: #1c6a9d 2px solid;
 }
 
 p.big {
@@ -165,12 +165,12 @@ p.big {
 }
 
 .group-button:hover {
-    background-color: #CCC;
+    background-color: #98AFC7;
 }
 
 .logout-button {
     position: fixed;
-    right: 10px;
+    right: 0px;
     top: 0px;
     font-size: 17px;
     cursor: pointer;
@@ -184,7 +184,6 @@ p.big {
     overflow: hidden;
 }
 
-
 /* Style the links inside the navigation bar */
 
 .nav-wrapper a {
@@ -196,14 +195,11 @@ p.big {
     font-size: 17px;
 }
 
-
 /* Change the color of links on hover */
 
 .nav-wrapper a:hover {
-    background-color: #CCC;
-    color: black;
+    background-color: #06619e;
 }
-
 
 /* Add a color to the active/current link */
 
@@ -212,7 +208,6 @@ p.big {
     color: white;
 }
 .nav-wrapper a.actived {
-
     color: white;
 }
 
