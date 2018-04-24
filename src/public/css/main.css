@@ -507,12 +507,12 @@ p.big {
 }
 .conf-button {
     color: white;
-    background-color: green;
-    float: right;
+    background-color: #06619e;
 }
 .divvy {
     border-bottom: groove;
     border-color: black;
     border-width: 1px;
-    /* hello */
+    height: auto;
+    text-align: center;
 }
