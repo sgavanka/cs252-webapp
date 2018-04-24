@@ -529,8 +529,8 @@ p.big {
     position: fixed;
     z-index: 10000;
     top: 11%;
-    left:85.8%;
-    height: 84.5%;
+    right: 1%;
+    height: 78.9%;
     width: 13%;
     border-width: 1px;
     border-style: solid;
