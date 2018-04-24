@@ -133,6 +133,7 @@ var deletePayment = function(groupKey, paymentId) {
         databaseRef.child("users").once("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 if (childSnapshot.val().fullName == fUser) {
+                    databaseRef.child("users").child(childSnapshot.key).child("payments").child(paymentId).remove();
                     var prevTotal = childSnapshot.val().totalOutgoing;
                     var newTotal = +prevTotal - +amt;
                     childSnapshot.getRef().update({ totalOutgoing: newTotal });
@@ -140,6 +141,7 @@ var deletePayment = function(groupKey, paymentId) {
                         childChildSnapshot.getRef().update({ totalOutgoing: newTotal });
                     });
                 } else if (childSnapshot.val().fullName == tUser) {
+                    databaseRef.child("users").child(childSnapshot.key).child("payments").child(paymentId).remove();
                     var prevTotal = childSnapshot.val().totalIncoming;
                     var newTotal = +prevTotal - +amt;
                     childSnapshot.getRef().update({ totalIncoming: newTotal });
