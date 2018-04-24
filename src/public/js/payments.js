@@ -111,8 +111,10 @@ var displayPayments = function(groupKey) {
             var payment = childSnapshot.val();
             var paymentDiv = document.createElement("li");
             paymentDiv.setAttribute("id", childSnapshot.key);
+            paymentDiv.classList.add("divvy");
             paymentDiv.appendChild(document.createTextNode(payment.fromUser + " owes " + payment.toUser + ": $" + payment.amount));
             let paymentDivButton = document.createElement("button");
+            paymentDivButton.classList.add("conf-button");
             paymentDivButton.appendChild(document.createTextNode("Payment recieved"));
             paymentDivButton.addEventListener("click", function() {
                 user.databaseRef.once("value", function(childChildSnapshot) {
@@ -121,7 +123,11 @@ var displayPayments = function(groupKey) {
                     }
                 });
             });
+            user.databaseRef.once("value", function(childChildSnapshot) {
+            if (childChildSnapshot.val().fullName == childSnapshot.val().toUser) {
             paymentDiv.appendChild(paymentDivButton);
+            }
+        });
             groupPaymentsDiv.appendChild(paymentDiv);
         });
     });

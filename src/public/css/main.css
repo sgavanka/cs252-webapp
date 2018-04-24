@@ -505,3 +505,14 @@ p.big {
     color: white;
     background-color: #4c8abd;
 }
+.conf-button {
+    color: white;
+    background-color: green;
+    float: right;
+    
+}
+#divvy {
+    border-bottom: groove;
+    border-color: black;
+    border-width: 1px;
+}
