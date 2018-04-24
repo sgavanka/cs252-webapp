@@ -511,8 +511,9 @@ p.big {
     float: right;
     
 }
-#divvy {
+.divvy {
     border-bottom: groove;
     border-color: black;
     border-width: 1px;
+    /* hello */
 }
